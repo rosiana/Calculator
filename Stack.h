@@ -4,7 +4,7 @@
 
 #ifndef STACK_H
 #define STACK_H
-
+#include "boolean.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -19,6 +19,11 @@ class Stack {
     void operator>>(T& x);
     void operator<<(T x);
 	T getData(int n);
+	bool isFull();
+	bool isEmpty();
+	int getMaxSize() const;
+	int getTopStack();
+	int getDataCount();
   private:
     static int defaultStackSize;
     const int size;
@@ -43,8 +48,7 @@ Stack<T>::Stack(int n):size(n) {
 }
 
 template <class T>
-Stack<T>::Stack(const Stack& S) {
-	size = S.size;
+Stack<T>::Stack(const Stack& S) :size(S.size){
 	topStack = S.topStack;
 	data = new T [size];
 	for (int i = 0; i < size; i++) {
@@ -78,3 +82,27 @@ T Stack<T>::getData(int n){
 		return temp;
 }
 
+template<class T>
+int Stack<T>::getMaxSize() const{
+	return size;
+}
+
+template<class T>
+int Stack<T>::getTopStack(){
+	return topStack;
+}
+
+template<class T>
+bool Stack<T>::isFull(){
+	return (topStack-1)==size;
+}
+
+template<class T>
+bool Stack<T>::isEmpty(){
+	return topStack==0;
+}
+
+template<class T>
+int Stack<T>::getDataCount(){
+	return topStack;
+}

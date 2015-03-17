@@ -9,7 +9,7 @@ class superkalkulator{
 		superkalkulator();
 		~superkalkulator();
 		void Print();
-		void getCountLog();
+		int getCountLog();
 		void WriteLog(string str);
 		void Save();
 		void Input(string input);
@@ -19,9 +19,9 @@ class superkalkulator{
 		void runKalkulatorArab();
 		void runKalkulatorLogika();
 		void runKalkulatorRomawi();
+		Stack<string> getLog();
 	private:
-		Stack<string> Log(100);
-		int countLog;
+		Stack<string> Log;
 		int modeekspresi;
 		int modekalkulator;
 };

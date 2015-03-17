@@ -2,11 +2,11 @@
 #include <string>
 #include <iostream>
 
-#define StackSize 100
+#define LogSize 100
 #include <string>
 using namespace std;
 
-superkalkulator::superkalkulator(){
+superkalkulator::superkalkulator() : Log(LogSize){
 	int countLog = 0;
 	int modeekspresi = 2;
 	int modekalkulator = 1;
@@ -17,15 +17,26 @@ superkalkulator::~superkalkulator(){
 }
 
 void superkalkulator::Print(){
-
+	if(Log.isEmpty())
+	{
+		cout<<"No log recorded"<<endl;
+	}
+	else
+	{
+		cout<<"Log recorded is :"<<endl;
+		for(int i = 0;i<=Log.getTopStack()-1;i++)
+		{
+			cout<<i+1<<") "<<Log.getData(i)<<endl;
+		}
+	}
 }
 
-void superkalkulator::getCountLog(){
-
+int superkalkulator::getCountLog(){
+	return Log.getDataCount();
 }
 
 void superkalkulator::WriteLog(string str){
-
+	Log<<str;
 }
 
 void superkalkulator::Save(){
@@ -58,4 +69,8 @@ void superkalkulator::runKalkulatorLogika(){
 
 void superkalkulator::runKalkulatorRomawi(){
 
+}
+
+Stack<string> superkalkulator::getLog(){
+	return Log;
 }
