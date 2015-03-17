@@ -8,12 +8,12 @@ class superkalkulator{
 	public:
 		superkalkulator();
 		~superkalkulator();
-		void Print();
 		int getCountLog();
 		void WriteLog(string str);
 		void Save();
 		void Input(string input);
 		void Undo(int n);
+		void Redo(int n);
 		void setMode(int n);
 		void setKalkulator(int n);
 		void runKalkulatorArab();

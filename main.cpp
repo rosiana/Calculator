@@ -1,14 +1,23 @@
 #include <iostream>
 #include "superkalkulator.h"
 #include <string>
-
+#include <cmath>
+#include <stdlib.h>
+#define filename "Log.txt"
 using namespace std;
+
 int main(){
 	superkalkulator tes;
-	cout<<tes.getLog().getMaxSize()<<endl;
-	tes.Print();
-	tes.WriteLog("Record 1");
-	tes.Print();
-	cout<<"Log recorded : "<<tes.getCountLog()<<" data"<<endl;
+	string masukan = "";
+	cout<<"Selamat datang"<<endl;
+	cout<<"Silahkan masukkan perintah atau exit untuk keluar"<<endl;
+	cout<<"Masukan : ";
+	std::getline(std::cin,masukan);
+	while(masukan!="exit")
+	{
+		tes.Input(masukan);
+		cout<<"Masukan : ";
+		std::getline(std::cin,masukan);
+	}
 	return 0;
 }

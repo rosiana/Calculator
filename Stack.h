@@ -23,7 +23,7 @@ class Stack {
 	bool isEmpty();
 	int getMaxSize() const;
 	int getTopStack();
-	int getDataCount();
+	int getDataCount(); // Mengembalikan jumlah data di stack
   private:
     static int defaultStackSize;
     const int size;
