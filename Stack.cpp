@@ -6,7 +6,7 @@
 #include <cstdio>
 
 #include "Stack.h"
-
+#include <string>
 using namespace std;
 
 template <class T>

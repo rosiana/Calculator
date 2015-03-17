@@ -2,11 +2,21 @@
 
 /* Implementasi Kelas Stack */
 
+#include <iostream>
+#include <cstdio>
+
+#include "Stack.h"
+
+using namespace std;
+/* 13512088 Annisaur Rosi Lutfiana */
+
+/* Implementasi Kelas Stack */
+
 #ifndef STACK_H
 #define STACK_H
 
 #include <iostream>
-#include <string>
+
 using namespace std;
 
 template <class T>
@@ -18,7 +28,7 @@ class Stack {
     ~Stack();
     void operator>>(T& x);
     void operator<<(T x);
-	T getData(int n);
+
   private:
     static int defaultStackSize;
     const int size;
@@ -27,6 +37,7 @@ class Stack {
 };
 
 #endif
+
 template <class T>
 int Stack<T>::defaultStackSize = 100;
 
@@ -65,16 +76,10 @@ void Stack<T>::operator>>(T& x) {
 
 template <class T>
 void Stack<T>::operator<<(T x) {
-	data[topStack] = x;
 	topStack++;
+	data[topStack] = x;
 }
 
-template<class T>
-T Stack<T>::getData(int n){
-	T temp;
-	if(n<=topStack-1)
-		return data[n];
-	else
-		return temp;
-}
+
+
 
