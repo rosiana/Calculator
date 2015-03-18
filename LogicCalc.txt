@@ -1,0 +1,37 @@
+/**
+ * @author
+ * @file LogicCalc.h
+ * @class LogicCalc
+ * @brief Kelas untuk pengolahan ekspresi dengan operand angka arab
+ */
+
+#ifndef LogicCalc_H
+#define LogicCalc_H
+
+#include <iostream>
+#include <stdlib.h>
+#include <string>
+#include <cmath>
+#include <math.h>
+#include "Stack.h"
+using namespace std;
+
+class LogicCalc {
+    public:
+		LogicCalc(string ekspresi,int mode,int size);
+		~LogicCalc();
+        float Calculate();
+		void SmallCalculate(Stack<float> &bil,Stack<string> &operatorx);
+		float CalculateInfix();
+		int CalculatePrefix();
+		float CalculatePostfix();
+
+    private:
+        Stack<float> bil;
+        Stack<string> operatorx;
+		string ekspresi;
+		int mode;
+};
+
+#endif
+
