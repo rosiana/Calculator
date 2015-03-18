@@ -257,3 +257,105 @@ int RomanCalc::CalculateInfix()
 	}
 	return hasil;
 }
+
+int RomanCalc::CalculatePrefix() {
+    char buffer[15];
+    int i,op1, op2, len, j, x;
+    stack<int> s;
+    len = strlen(ekspresi);
+    j = 0;
+    for(i=len-1; i>=0; i--){
+
+        if(ekspresi[i]>='0' && ekspresi[i]<='9'){
+            buffer[j++] = ekspresi[i];
+        }
+        else if(ekspresi[i]==' '){
+            if(j>0){
+                buffer[j] = '\0';
+                x = atoi(buffer);
+                s.push(x);
+                j = 0;
+            }
+        }
+        else if(ekspresi[i]=='+' || ekspresi[i]=='-' || ekspresi[i]=='*' || ekspresi[i]==':' || ekspresi[i]=='%' || ekspresi[i]=='/'){
+            op1 = s.top();
+            s.pop();
+            op2 = s.top();
+            s.pop();
+            switch(ekspresi[i]){
+                case '+':
+                    s.push(op2 + op1);
+                    break;
+                case '-':
+                    s.push(op2 - op1);
+                    break;
+                case '*':
+                    s.push(op2 * op1);
+                    break;
+                case ':':
+                    s.push(op2 / op1);
+                    break;
+                case '%':
+                    s.push(op2 % op1);
+                    break;
+                case '/':
+                    int div;
+                    div = (int)floor(op2 / op1);
+                    s.push(div);
+                    break;
+            }
+        }
+    }
+    return s.top;
+}
+
+int RomanCalc::CalculatePostfix() {
+    char buffer[15];
+    int i,op1, op2, len, j, x;
+    stack<int> s;
+    len = strlen(ekspresi);
+    j = 0;
+    for(i=0; i<len;i++){
+
+        if(ekspresi[i]>='0' && ekspresi[i]<='9'){
+            buffer[j++] = ekspresi[i];
+        }
+        else if(ekspresi[i]==' '){
+            if(j>0){
+                buffer[j] = '\0';
+                x = atoi(buffer);
+                s.push(x);
+                j = 0;
+            }
+        }
+        else if(ekspresi[i]=='+' || ekspresi[i]=='-' || ekspresi[i]=='*' || ekspresi[i]==':' || ekspresi[i]=='%' || ekspresi[i]=='/'){
+            op1 = s.top();
+            s.pop();
+            op2 = s.top();
+            s.pop();
+            switch(ekspresi[i]){
+                case '+':
+                    s.push(op2 + op1);
+                    break;
+                case '-':
+                    s.push(op2 - op1);
+                    break;
+                case '*':
+                    s.push(op2 * op1);
+                    break;
+                case ':':
+                    s.push(op2 / op1);
+                    break;
+                case '%':
+                    s.push(op2 % op1);
+                    break;
+                case '/':
+                    int div;
+                    div = (int)floor(op2 / op1);
+                    s.push(div);
+                    break;
+            }
+        }
+    }
+    return s.top;
+}
