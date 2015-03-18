@@ -24,7 +24,7 @@ class ArabCalc {
 		void SmallCalculate(Stack<float> &bil,Stack<string> &operatorx);
 		float CalculateInfix();
 		int CalculatePrefix();
-		float CalculatePostfix();
+		int CalculatePostfix();
 
     private:
         Stack<float> bil;

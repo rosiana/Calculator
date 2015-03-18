@@ -11,6 +11,19 @@
 #include "RomanCalc.h"
 
 using namespace std;
+//tools debug
+/*void RomanCalc::Print(Stack<int> bil,Stack<string>operatorx){
+	cout<<"Stack bilangan"<<endl;
+	for(int i = 0;i<=bil.getDataCount()-1;i++)
+	{
+		cout<<i<<"). "<<bil.getData(i)<<endl;
+	}
+	cout<<"Stack operator"<<endl;
+	for(int j = 0;j<=operatorx.getDataCount()-1;j++)
+	{
+		cout<<j<<"). "<<operatorx.getData(j)<<endl;
+	}
+}*/
 
 /**
  * @fn RomanCalc(string ekspresi,int mode,int size)
@@ -168,7 +181,7 @@ string RomanCalc::Calculate(){
  * @brief Prosedur penentu operator untuk perhitungan mode infix
  */
 void RomanCalc::SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
-{
+{	
 	int popbil1;
 	int popbil2;
 	string dumpoperator;
@@ -285,11 +298,11 @@ int RomanCalc::CalculateInfix()
 			ekspresitemp.erase(0,1);
 		}
 	}
-	hasil = bil.getLastData();
 	while(!operatorx.isEmpty())
 	{
 		SmallCalculate(bil,operatorx);
 	}
+	hasil = bil.getLastData();
 	return hasil;
 }
 
@@ -370,7 +383,6 @@ int RomanCalc::CalculatePostfix() {
         if(ekspresitemp[i] == 'M' || ekspresitemp[i] == 'D' || ekspresitemp[i] == 'C' || ekspresitemp[i] == 'L' || ekspresitemp[i] == 'X'
 		|| ekspresitemp[i] == 'V'|| ekspresitemp[i] == 'I'){
             buffer += ekspresitemp.substr(i,1);
-			cout<<ekspresitemp.substr(i,1)<<":"<<buffer<<endl;
 			j++;
         }
         else if(ekspresitemp[i]==' '){

@@ -106,22 +106,23 @@ float ArabCalc::CalculateInfix(){
 	float dumpbil;
 	float hasil;
 	string ekspresitemp = ekspresi;
+	string temp;
 	while(ekspresitemp.length() != 0)
 	{
-		char *temp =  new char[30];
 		int isCompleteRead = 0;
-		int ctemp = 0;
+		int ctemp = 0; //Menghitung panjang buffer angka
 		while(ekspresitemp[0] == '0' || ekspresitemp[0] == '1' || ekspresitemp[0] == '2' || ekspresitemp[0] == '3' || ekspresitemp[0] == '4' || ekspresitemp[0] == '5'
 		|| ekspresitemp[0] == '6'|| ekspresitemp[0] == '7' || ekspresitemp[0] == '8' || ekspresitemp[0] == '9' || ekspresitemp[0] == '.')
 		{
-			temp[ctemp] = ekspresitemp[0];
-			ekspresitemp.erase(0,1);
+			temp += ekspresitemp.substr(0,1);
 			ctemp++;
+			ekspresitemp.erase(0,1);
 			isCompleteRead = 1;
 		}
 		if(isCompleteRead == 1)
-		{
-			bil<< atof(temp);
+		{	
+			bil<< atof(temp.c_str());
+			temp.erase(0,ctemp);
 		}
 		if(ekspresitemp[0] == '+' || ekspresitemp[0] == '-' || ekspresitemp[0] == '*' || ekspresitemp[0] == ':' || ekspresitemp[0] == '/' || ekspresitemp[0] == '%' || ekspresitemp[0] == '('|| ekspresitemp[0] == ')')
 		{
@@ -253,14 +254,14 @@ int ArabCalc::CalculatePrefix() {
  * @fn CalculatePostfix()
  * @brief Penghitungan mode postfix
  */
-float ArabCalc::CalculatePostfix() {
+int ArabCalc::CalculatePostfix() {
     char buffer[15];
     int i, len, j;
-    float op1, op2, x;
-    Stack<float> s;
+    int op1, op2, x;
+    Stack<int> s;
     len = ekspresi.length();
     j = 0;
-	float dumpfloat;
+	int dumpint;
     for(i=0; i<len;i++){
 
         if(ekspresi[i]>='0' && ekspresi[i]<='9'){
@@ -276,9 +277,9 @@ float ArabCalc::CalculatePostfix() {
         }
         else if(ekspresi[i]=='+' || ekspresi[i]=='-' || ekspresi[i]=='*' || ekspresi[i]==':' || ekspresi[i]=='%' || ekspresi[i]=='/'){
             op1 = s.getLastData();
-            s>>dumpfloat;
+            s>>dumpint;
             op2 = s.getLastData();
-            s>>dumpfloat;
+            s>>dumpint;
             switch(ekspresi[i]){
                 case '+':
                     s<<(op2 + op1);
@@ -292,7 +293,7 @@ float ArabCalc::CalculatePostfix() {
                 case ':':
                     s<<(op2 / op1);
                     break;
-                case '%': // di c++ nggak bisa float mod float
+                case '%': // di c++ nggak bisa int mod int
                     while (op2 >= op1) {
                         op2 = op2 - op1;
                     }

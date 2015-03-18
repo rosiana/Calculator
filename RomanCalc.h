@@ -18,6 +18,7 @@ using namespace std;
 
 class RomanCalc {
     public:
+		//void Print(Stack<int> bil,Stack<string>operatorx); //tools debug
 		RomanCalc(string ekspresi,int mode,int size);
 		~RomanCalc();
         int RomantoDec(string s);
