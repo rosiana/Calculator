@@ -75,7 +75,8 @@ int main(){
 		{
 			char *temp =  new char[30];
 			string apaaja;
-			temp[0] = '@';
+			//temp[0] = '@';
+			int isCompleteRead = 0;
 			int ctemp = 0;
 			while(tes[0] == '0' || tes[0] == '1' || tes[0] == '2' || tes[0] == '3' || tes[0] == '4' || tes[0] == '5'
 			|| tes[0] == '6'|| tes[0] == '7' || tes[0] == '8' || tes[0] == '9' || tes[0] == '.')
@@ -83,15 +84,15 @@ int main(){
 				temp[ctemp] = tes[0];
 				tes.erase(0,1);
 				ctemp++;
+				isCompleteRead = 1;
 			}
-			if(temp[0] !='@')
+			if(isCompleteRead == 1)
 			{	
 				bil<< atof(temp);
 				cbil++;
 			}
 			if(tes[0] == '+' || tes[0] == '-' || tes[0] == '*' || tes[0] == '/' || tes[0] == '%' || tes[0] == '('|| tes[0] == ')')
 			{
-				cout<<"Operan "<<tes[0]<<endl;
 				if(operatorx.isEmpty() || tes[0] == '(')
 				{
 					operatorx<<tes.substr(0,1);
@@ -150,6 +151,10 @@ int main(){
 		while(!bil.isEmpty())
 		{
 			bil>>dumpbil;
+		}
+		while(!operatorx.isEmpty())
+		{
+			operatorx>>dumpoperator;
 		}
 	}
 	
