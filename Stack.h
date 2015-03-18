@@ -24,6 +24,7 @@ class Stack {
 	int getMaxSize() const;
 	int getTopStack();
 	int getDataCount(); // Mengembalikan jumlah data di stack
+	T getLastData();
   private:
     static int defaultStackSize;
     const int size;
@@ -105,4 +106,9 @@ bool Stack<T>::isEmpty(){
 template<class T>
 int Stack<T>::getDataCount(){
 	return topStack;
+}
+
+template<class T>
+T Stack<T>::getLastData(){
+	return this->getData(topStack-1);
 }

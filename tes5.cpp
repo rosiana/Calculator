@@ -4,9 +4,21 @@ using namespace std;
 #include <stdlib.h>
 #include "Stack.h"
 
+void Print(Stack<float> bil,Stack<string>operatorx){
+	cout<<"Stack bilangan"<<endl;
+	for(int i = 0;i<=bil.getDataCount()-1;i++)
+	{
+		cout<<i<<"). "<<bil.getData(i)<<endl;
+	}
+	cout<<"Stack operator"<<endl;
+	for(int j = 0;j<=operatorx.getDataCount()-1;j++)
+	{
+		cout<<j<<"). "<<operatorx.getData(j)<<endl;
+	}
+}
+
 int main(){
 	string tes = "3.44+6*6-(6/3)";
-	string delimiter[10] = {"+","-","/","%",":"};
 	Stack<string> operatorx;
 	Stack<float> bil;
 	int cbil = 0;
@@ -38,14 +50,5 @@ int main(){
 			coperator++;
 		}
 	}
-	cout<<"Stack bilangan"<<endl;
-	for(int i = 0;i<=bil.getDataCount()-1;i++)
-	{
-		cout<<i<<"). "<<bil.getData(i)<<endl;
-	}
-	cout<<"Stack operator"<<endl;
-	for(int j = 0;j<=operatorx.getDataCount()-1;j++)
-	{
-		cout<<j<<"). "<<operatorx.getData(j)<<endl;
-	}
+	return 0;
 }

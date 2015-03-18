@@ -76,15 +76,9 @@ int convert(string s)
 }
 int main()
 {
-	string delimiter[10] = {"+","-","/","%",":"};
-	size_t pos = 0;
-	string token;
-
-	int sizetemp[30];
 	string operatorx[30];
 	int bil[30];
 	int cbil = 0;
-	int m = 0;
 	int coperator = 0;
 	string tes;
 	cout<<"Enter the Roman Numeral in Capital letters (e.g. CCXIX) : ";
@@ -92,6 +86,8 @@ int main()
 	cout<<"Mulai"<<endl;
 	while(tes!= "exit")
 	{
+		int cbil = 0;
+		int coperator = 0;		
 		while(tes.length()!=0)
 		{
 			//temp = "";
