@@ -154,10 +154,10 @@ void RomanCalc::SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
 		bil<< popbil2/popbil1;
 	}
 	else if(popoperator == "%")
-	{	
+	{
 		bil<< tempint2%tempint1;
 	}
-	
+
 	else if(popoperator == "+")
 	{
 		bil<< popbil2+popbil1;
@@ -182,14 +182,14 @@ int RomanCalc::CalculateSufix()
 		int ctemp = 0;
 		while(ekspresitemp[0] == 'M' || ekspresitemp[0] == 'D' || ekspresitemp[0] == 'C' || ekspresitemp[0] == 'L' || ekspresitemp[0] == 'X'
 		|| ekspresitemp[0] == 'V'|| ekspresitemp[0] == 'I')
-		{	
+		{
 			temp += ekspresitemp.substr(0,1);
 			ekspresitemp.erase(0,1);
 			ctemp++;
 			isCompleteRead = 1;
 		}
 		if(isCompleteRead == 1)
-		{	
+		{
 			bil<< convert(temp);
 		}
 		if(ekspresitemp[0] == '+' || ekspresitemp[0] == '-' || ekspresitemp[0] == '*'|| ekspresitemp[0] == ':'  || ekspresitemp[0] == '/' || ekspresitemp[0] == '%' || ekspresitemp[0] == '('|| ekspresitemp[0] == ')')
@@ -216,7 +216,7 @@ int RomanCalc::CalculateSufix()
 				}
 				else if(ekspresitemp[0] == '*' || ekspresitemp[0] == '/' || ekspresitemp[0] == '%' || ekspresitemp[0] == ':')
 				{
-					
+
 					if(operatorx.getLastData() == "*" || operatorx.getLastData() == "/" || operatorx.getLastData() == ":" || operatorx.getLastData() == "%")
 					{
 						SmallCalculate(bil,operatorx);
@@ -236,7 +236,7 @@ int RomanCalc::CalculateSufix()
 					}
 					operatorx>>dumpoperator;
 				}
-				
+
 			}
 			ekspresitemp.erase(0,1);
 		}
@@ -246,4 +246,106 @@ int RomanCalc::CalculateSufix()
 		SmallCalculate(bil,operatorx);
 	}
 	return bil.getLastData();
+}
+
+int RomanCalc::CalculatePrefix() {
+    char buffer[15];
+    int i,op1, op2, len, j, x;
+    stack<int> s;
+    len = strlen(ekspresi);
+    j = 0;
+    for(i=len-1; i>=0; i--){
+
+        if(ekspresi[i]>='0' && ekspresi[i]<='9'){
+            buffer[j++] = ekspresi[i];
+        }
+        else if(ekspresi[i]==' '){
+            if(j>0){
+                buffer[j] = '\0';
+                x = atoi(buffer);
+                s.push(x);
+                j = 0;
+            }
+        }
+        else if(ekspresi[i]=='+' || ekspresi[i]=='-' || ekspresi[i]=='*' || ekspresi[i]==':' || ekspresi[i]=='%' || ekspresi[i]=='/'){
+            op1 = s.top();
+            s.pop();
+            op2 = s.top();
+            s.pop();
+            switch(ekspresi[i]){
+                case '+':
+                    s.push(op2 + op1);
+                    break;
+                case '-':
+                    s.push(op2 - op1);
+                    break;
+                case '*':
+                    s.push(op2 * op1);
+                    break;
+                case ':':
+                    s.push(op2 / op1);
+                    break;
+                case '%':
+                    s.push(op2 % op1);
+                    break;
+                case '/':
+                    int div;
+                    div = (int)floor(op2 / op1);
+                    s.push(div);
+                    break;
+            }
+        }
+    }
+    return s.top;
+}
+
+int RomanCalc::CalculatePostfix() {
+    char buffer[15];
+    int i,op1, op2, len, j, x;
+    stack<int> s;
+    len = strlen(ekspresi);
+    j = 0;
+    for(i=0; i<len;i++){
+
+        if(ekspresi[i]>='0' && ekspresi[i]<='9'){
+            buffer[j++] = ekspresi[i];
+        }
+        else if(ekspresi[i]==' '){
+            if(j>0){
+                buffer[j] = '\0';
+                x = atoi(buffer);
+                s.push(x);
+                j = 0;
+            }
+        }
+        else if(ekspresi[i]=='+' || ekspresi[i]=='-' || ekspresi[i]=='*' || ekspresi[i]==':' || ekspresi[i]=='%' || ekspresi[i]=='/'){
+            op1 = s.top();
+            s.pop();
+            op2 = s.top();
+            s.pop();
+            switch(ekspresi[i]){
+                case '+':
+                    s.push(op2 + op1);
+                    break;
+                case '-':
+                    s.push(op2 - op1);
+                    break;
+                case '*':
+                    s.push(op2 * op1);
+                    break;
+                case ':':
+                    s.push(op2 / op1);
+                    break;
+                case '%':
+                    s.push(op2 % op1);
+                    break;
+                case '/':
+                    int div;
+                    div = (int)floor(op2 / op1);
+                    s.push(div);
+                    break;
+            }
+        }
+    }
+    return s.top;
 }
