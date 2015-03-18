@@ -188,31 +188,40 @@ void superkalkulator::Input(string input){
 	else if(input[0] == '(' || input[0] == '0' || input[0] == '1' || input[0] == '2' || input[0] == '3'
 	|| input[0] == '4' || input[0] == '5'|| input[0] == '6'|| input[0] == '7'|| input[0] == '8'|| input[0] == '9'
 	|| input[0] == 'M' || input[0] == 'D' || input[0] == 'C' || input[0] == 'L' || input[0] == 'X'
-		|| input[0] == 'V'|| input[0] == 'I')
+		|| input[0] == 'V'|| input[0] == 'I' || input[0] == '~' || input[0] == '&' || input[0] == '|')
 	{
 		cout<<".....Ekspresi....."<<endl;
 		ArabCalc *arab;
 		RomanCalc *roman;
-		switch(modekalkulator)
+		cout<<"Check"<<CheckEkspresiType(input)<<endl;
+		cout<<"Input"<<input<<endl;
+		if(CheckEkspresiType(input) == modekalkulator || (modekalkulator == 1 && CheckEkspresiType(input) == 0) || (modekalkulator == 2 && CheckEkspresiType(input) == 0))
 		{
-			case 1 : cout<<"Running Kalk Arab ";
-					arab = new ArabCalc(input,modeekspresi,70);
-					cout<<"Hasil "<<arab->Calculate()<<endl;
-					break;
-			case 2 : cout<<"Running Kalk Logika ";
-					break;
-			case 3 : cout<<"Running Kalk Romawi ";
-					roman = new RomanCalc(input,modeekspresi,70);
-					cout<<"Hasil "<<roman->Calculate()<<endl;	
-					break;
-			default: break;
+			switch(modekalkulator)
+			{
+				case 1 : cout<<"Running Kalk Arab ";
+						arab = new ArabCalc(input,modeekspresi,70);
+						cout<<"Hasil "<<arab->Calculate()<<endl;
+						break;
+				case 2 : cout<<"Running Kalk Logika ";
+						break;
+				case 3 : cout<<"Running Kalk Romawi ";
+						roman = new RomanCalc(input,modeekspresi,70);
+						cout<<"Hasil "<<roman->Calculate()<<endl;	
+						break;
+				default: break;
+			}
+			switch(modeekspresi)
+			{
+				case 1 : cout<<"in prefix mode"<<endl;break;
+				case 2 : cout<<"in Infix mode"<<endl;break;
+				case 3 : cout<<"in postfix mode"<<endl;break;
+				default: break;
+			}
 		}
-		switch(modeekspresi)
+		else
 		{
-			case 1 : cout<<"in prefix mode"<<endl;break;
-			case 2 : cout<<"in Infix mode"<<endl;break;
-			case 3 : cout<<"in postfix mode"<<endl;break;
-			default: break;
+			cout<<"Jenis ekspresi tidak sesuai kalkulator"<<endl;
 		}
 		this->WriteLog(input);
 	}
@@ -278,4 +287,55 @@ void superkalkulator::runKalkulatorRomawi(){
 
 Stack<string> superkalkulator::getLog(){
 	return Log;
+}
+
+int superkalkulator::CheckEkspresiType(string ekspresi)
+{
+	int mode;
+	string tempekspresi = ekspresi;
+	int Exit = 0;
+	int ArabnLogika = 0;
+	while(tempekspresi.length() != 0 && Exit==0)
+	{
+		if(tempekspresi[0] == '~' || tempekspresi[0] == '&' || tempekspresi[0] == '|')
+		{
+			mode = 2;
+			Exit = 1;
+		}
+		else if(tempekspresi[0] == 'M' || tempekspresi[0] == 'D' || tempekspresi[0] == 'C' || tempekspresi[0] == 'L' || tempekspresi[0] == 'X'|| tempekspresi[0] == 'V'|| tempekspresi[0] == 'I')
+		{
+			mode = 3;
+			Exit = 1;
+		}
+		else if(tempekspresi[0] == '+' || tempekspresi[0] == '-' || tempekspresi[0] == '*' || tempekspresi[0] == ':' || tempekspresi[0] == '/' || tempekspresi[0] == '%')
+		{
+			mode = 1;
+			Exit = 1;
+		}
+		else if(tempekspresi[0] == '0' || tempekspresi[0] == '1')
+		{
+			if(tempekspresi.length() > 1)
+			{
+				if(tempekspresi[1] == '0' || tempekspresi[1] == '1')
+				{
+					mode = 1;
+				}
+				else
+				{
+					mode = 0;
+				}
+			}
+			else
+			{
+				mode = 0;
+			}				
+		}
+		else if( tempekspresi[0] == '2' || tempekspresi[0] == '3' || tempekspresi[0] == '4' || tempekspresi[0] == '5'
+			|| tempekspresi[0] == '6'|| tempekspresi[0] == '7' || tempekspresi[0] == '8' || tempekspresi[0] == '9')
+		{
+			mode = 1;
+		}
+		tempekspresi.erase(0,1);
+	}
+	return mode;
 }

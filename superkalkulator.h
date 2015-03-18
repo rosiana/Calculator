@@ -20,6 +20,7 @@ class superkalkulator{
 		void runKalkulatorLogika();
 		void runKalkulatorRomawi();
 		Stack<string> getLog();
+		int CheckEkspresiType(string input);
 	private:
 		Stack<string> Log;
 		int modeekspresi;

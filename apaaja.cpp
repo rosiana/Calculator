@@ -10,7 +10,9 @@ int main(){
 	int ArabnLogika = 0;
 	while(input != "exit")
 	{
-		while(input.length() != 0 || !Exit)
+		Exit = 0;
+		ArabnLogika = 0;
+		while(input.length() != 0 && Exit==0)
 		{
 			if(input[0] == '~' || input[0] == '&' || input[0] == '|')
 			{
@@ -24,16 +26,35 @@ int main(){
 				ArabnLogika = 0;
 				Exit = 1;
 			}
-			if(input[0] == '+' || input[0] == '-' || input[0] == '*' || input[0] == ':' || input[0] == '/' || input[0] == '%')
+			else if(input[0] == '+' || input[0] == '-' || input[0] == '*' || input[0] == ':' || input[0] == '/' || input[0] == '%')
 			{
 				cout<<"Arab"<<endl;
 				ArabnLogika = 0;
 				Exit = 1;
 			}
-			else if(input[0] == '0' || input[0] == '1' || input[0] == '2' || input[0] == '3'
-				|| input[0] == '4' || input[0] == '5'|| input[0] == '6'|| input[0] == '7'|| input[0] == '8'|| input[0] == '9')
+			else if(input[0] == '0' || input[0] == '1')
 			{
-				ArabnLogika = 1;
+				if(input.length() > 1)
+				{
+					if(input[1] == '0' || input[1] == '1')
+					{
+						ArabnLogika = 0;
+						cout<<"Romawi"<<endl;
+					}
+					else
+					{
+						ArabnLogika = 1;
+					}
+				}
+				else
+				{
+					ArabnLogika = 1;
+				}				
+			}
+			else if( input[0] == '2' || input[0] == '3' || input[0] == '4' || input[0] == '5'
+				|| input[0] == '6'|| input[0] == '7' || input[0] == '8' || input[0] == '9')
+			{
+				cout<<"Logika"<<endl;
 			}
 			input.erase(0,1);
 		}
