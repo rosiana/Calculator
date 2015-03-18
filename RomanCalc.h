@@ -11,11 +11,13 @@ class RomanCalc {
     public:
 		RomanCalc(string ekspresi,int mode,int size);
 		~RomanCalc();
-        string DectoRoman(int d);
+        	string DectoRoman(int d);
 		int RomantoDec(string s);
-        string Calculate();
+        	string Calculate();
 		void SmallCalculate(Stack<int> &bil,Stack<string> &operatorx);
 		int CalculateInfix();
+		int CalculatePrefix();
+		int CalculatePostfix();
 		
     private:
         Stack<int> bil;
