@@ -91,7 +91,7 @@ void superkalkulator::Input(string input){
 		{
 			cout<<"Masukkan mode ekspresi"<<endl;
 			cout<<"1. Prefix"<<endl;
-			cout<<"2. Sufix"<<endl;
+			cout<<"2. Infix"<<endl;
 			cout<<"3. PostFix"<<endl;
 			std::getline(std::cin,smode);
 			mode = String2Int(smode);
@@ -186,24 +186,31 @@ void superkalkulator::Input(string input){
 		
 	}
 	else if(input[0] == '(' || input[0] == '0' || input[0] == '1' || input[0] == '2' || input[0] == '3'
-	|| input[0] == '4' || input[0] == '5'|| input[0] == '6'|| input[0] == '7'|| input[0] == '8'|| input[0] == '9')
+	|| input[0] == '4' || input[0] == '5'|| input[0] == '6'|| input[0] == '7'|| input[0] == '8'|| input[0] == '9'
+	|| input[0] == 'M' || input[0] == 'D' || input[0] == 'C' || input[0] == 'L' || input[0] == 'X'
+		|| input[0] == 'V'|| input[0] == 'I')
 	{
 		cout<<".....Ekspresi....."<<endl;
 		ArabCalc *arab;
+		RomanCalc *roman;
 		switch(modekalkulator)
 		{
 			case 1 : cout<<"Running Kalk Arab ";
 					arab = new ArabCalc(input,modeekspresi,70);
 					cout<<"Hasil "<<arab->Calculate()<<endl;
 					break;
-			case 2 : cout<<"Running Kalk Logika ";break;
-			case 3 : cout<<"Running Kalk Romawi ";break;
+			case 2 : cout<<"Running Kalk Logika ";
+					break;
+			case 3 : cout<<"Running Kalk Romawi ";
+					roman = new RomanCalc(input,modeekspresi,70);
+					cout<<"Hasil "<<roman->Calculate()<<endl;	
+					break;
 			default: break;
 		}
 		switch(modeekspresi)
 		{
 			case 1 : cout<<"in prefix mode"<<endl;break;
-			case 2 : cout<<"in sufix mode"<<endl;break;
+			case 2 : cout<<"in Infix mode"<<endl;break;
 			case 3 : cout<<"in postfix mode"<<endl;break;
 			default: break;
 		}

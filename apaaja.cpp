@@ -3,8 +3,46 @@
 using namespace std;
 
 int main(){
-	float a = 1.9;
-	int c = (int) floor(a - 0.5);
-	cout<<c<<endl;
+	string input;
+	cout<<"Silahkan masukkan ekspresi"<<endl;
+	std::getline(std::cin,input);
+	int Exit = 0;
+	int ArabnLogika = 0;
+	while(input != "exit")
+	{
+		while(input.length() != 0 || !Exit)
+		{
+			if(input[0] == '~' || input[0] == '&' || input[0] == '|')
+			{
+				cout<<"Logika"<<endl;
+				ArabnLogika = 0;
+				Exit = 1;
+			}
+			else if(input[0] == 'M' || input[0] == 'D' || input[0] == 'C' || input[0] == 'L' || input[0] == 'X'|| input[0] == 'V'|| input[0] == 'I')
+			{
+				cout<<"Romawi"<<endl;
+				ArabnLogika = 0;
+				Exit = 1;
+			}
+			if(input[0] == '+' || input[0] == '-' || input[0] == '*' || input[0] == ':' || input[0] == '/' || input[0] == '%')
+			{
+				cout<<"Arab"<<endl;
+				ArabnLogika = 0;
+				Exit = 1;
+			}
+			else if(input[0] == '0' || input[0] == '1' || input[0] == '2' || input[0] == '3'
+				|| input[0] == '4' || input[0] == '5'|| input[0] == '6'|| input[0] == '7'|| input[0] == '8'|| input[0] == '9')
+			{
+				ArabnLogika = 1;
+			}
+			input.erase(0,1);
+		}
+		if(ArabnLogika == 1)
+		{
+			cout<<"Bisa logika dan romawi"<<endl;
+		}
+		cout<<"Silahkan masukkan ekspresi"<<endl;
+		std::getline(std::cin,input);
+	}	
 	return 0;
 }

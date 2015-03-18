@@ -2,12 +2,11 @@
 #include <stdlib.h>
 
 #include "RomanCalc.h"
-#include "Stack.h"
 
 using namespace std;
 
-RomanCalc::RomanClac(string ekspresi,int mode,int size) :bil(size),operatorx(size){
-	this->ekspresi = eksrepsi;
+RomanCalc::RomanCalc(string ekspresi,int mode,int size) :bil(size),operatorx(size){
+	this->ekspresi = ekspresi;
 	this->mode = mode;
 }
 int RomanCalc::RomantoDec(string s) {
@@ -110,7 +109,7 @@ string RomanCalc::DectoRoman (int d) {
     for(int i = 0; i < 13; i++) {
         while (d >= dec[i]) {
             d -= dec[i];
-            numeral.append(num[i]);
+            rom.append(num[i]);
         }
     }
     return rom;
@@ -124,9 +123,9 @@ string RomanCalc::Calculate(){
 	int hasil;
 	if(mode == 2)//infix
 	{
-		hasil = CalculateSufix();
+		hasil = CalculateInfix();
 	}
-	return hasil;
+	return DectoRoman(hasil);
 }
 
 void RomanCalc::SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
@@ -155,7 +154,7 @@ void RomanCalc::SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
 	}
 	else if(popoperator == "%")
 	{	
-		bil<< tempint2%tempint1;
+		bil<< popbil2%popbil1;
 	}
 	
 	else if(popoperator == "+")
@@ -167,12 +166,13 @@ void RomanCalc::SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
 		bil<< popbil2-popbil1;
 	}
 }
-int RomanCalc::CalculateSufix()
+int RomanCalc::CalculateInfix()
 {
 	string popbil1,popbil2,popoperator;
 	string dumpoperator;
 	int dumpbil;
 	int m = 0;
+	int hasil;
 	int coperator = 0;
 	string ekspresitemp = ekspresi;
 	while(ekspresitemp.length()!=0)
@@ -190,7 +190,7 @@ int RomanCalc::CalculateSufix()
 		}
 		if(isCompleteRead == 1)
 		{	
-			bil<< convert(temp);
+			bil<< RomantoDec(temp);
 		}
 		if(ekspresitemp[0] == '+' || ekspresitemp[0] == '-' || ekspresitemp[0] == '*'|| ekspresitemp[0] == ':'  || ekspresitemp[0] == '/' || ekspresitemp[0] == '%' || ekspresitemp[0] == '('|| ekspresitemp[0] == ')')
 		{
@@ -245,5 +245,15 @@ int RomanCalc::CalculateSufix()
 	{
 		SmallCalculate(bil,operatorx);
 	}
-	return bil.getLastData();
+	hasil = bil.getLastData();
+	//Cleaning
+	while(!bil.isEmpty())
+	{
+		bil>>dumpbil;
+	}
+	while(!operatorx.isEmpty())
+	{
+		operatorx>>dumpoperator;
+	}
+	return hasil;
 }
