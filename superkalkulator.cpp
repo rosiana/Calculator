@@ -13,6 +13,7 @@
 #include <string>
 #include "ArabCalc.h"
 #include "RomanCalc.h"
+#include "LogicCalc.h"
 #include <cstdlib>
 //#include "LogikaCalc.h"
 
@@ -229,6 +230,7 @@ void superkalkulator::Input(string input){
 		cout<<".....Ekspresi....."<<endl;
 		ArabCalc *arab;
 		RomanCalc *roman;
+		LogicCalc *logic;
 		if(CheckEkspresiType(input) == modekalkulator || (modekalkulator == 1 && CheckEkspresiType(input) == 0) || (modekalkulator == 2 && CheckEkspresiType(input) == 0))
 		{
 			switch(modekalkulator)
@@ -238,6 +240,8 @@ void superkalkulator::Input(string input){
 						cout<<"Hasil "<<arab->Calculate()<<endl;
 						break;
 				case 2 : cout<<"Running Kalk Logika "<<endl;
+						logic = new LogicCalc(input,modeekspresi,70);
+						cout<<"Hasil "<<logic->Calculate()<<endl;
 						break;
 				case 3 : cout<<"Running Kalk Romawi "<<endl;
 						roman = new RomanCalc(input,modeekspresi,70);

@@ -12,6 +12,20 @@
 
 using namespace std;
 
+//tools debug
+/*void ArabCalc::Print(Stack<int> bil,Stack<string>operatorx){
+	cout<<"Stack bilangan"<<endl;
+	for(int i = 0;i<=bil.getDataCount()-1;i++)
+	{
+		cout<<i<<"). "<<bil.getData(i)<<endl;
+	}
+	cout<<"Stack operator"<<endl;
+	for(int j = 0;j<=operatorx.getDataCount()-1;j++)
+	{
+		cout<<j<<"). "<<operatorx.getData(j)<<endl;
+	}
+}*/
+
 /**
  * @fn ArabCalc(string ekspresi,int mode,int size)
  * @brief Konstruktor parameter kalkulator arab

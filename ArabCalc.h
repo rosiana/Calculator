@@ -18,6 +18,7 @@ using namespace std;
 
 class ArabCalc {
     public:
+		//void Print(Stack<int> bil,Stack<string>operatorx); //tools debug
 		ArabCalc(string ekspresi,int mode,int size);
 		~ArabCalc();
         float Calculate();
