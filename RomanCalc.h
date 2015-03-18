@@ -3,17 +3,23 @@
 
 #include <iostream>
 #include <stdlib.h>
-
+#include <string>
 using namespace std;
 
 class RomanCalc {
     public:
+		RomanCalc(string ekspresi,int mode);
+		~RomanCalc();
         int RomantoDec(const string& s);
         string DectoRoman(int d);
-        string Calculate(RomanCalc R);
+        string Calculate();
+		void SmallCalculate(Stack<float> &bil,Stack<string> &operatorx);
+		
     private:
-        Stack<char> op;
-        Stack<int> num;
+        Stack<int> bil;
+        Stack<string> operatorx;
+		int mode;
+		string ekspresi;
 };
 
 #endif

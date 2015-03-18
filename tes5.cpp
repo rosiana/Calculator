@@ -57,11 +57,9 @@ void SmallCalculate(Stack<float> &bil,Stack<string> &operatorx)
 }
 
 int main(){
-	string tes = "3-4%5";
-	cout<<tes<<endl;
 	Stack<string> operatorx;
-	string popbil1,popbil2,popoperator;
 	Stack<float> bil;
+	string popbil1,popbil2,popoperator;
 	string dumpoperator;
 	float dumpbil;
 	int cbil = 0;
@@ -145,7 +143,7 @@ int main(){
 			SmallCalculate(bil,operatorx);
 
 		}
-		cout<<"HASIL : "<<bil.getLastData()<<endl;
+		cout<<"HaSIL : "<<bil.getLastData()<<endl;
 		cout<<"Silahkan masukkan formula.exit untuk keluar"<<endl;
 		std::getline(std::cin,tes);
 		while(!bil.isEmpty())

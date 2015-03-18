@@ -31,11 +31,6 @@ class Stack {
     int topStack;
     T *data;
 };
-
-#endif
-template <class T>
-int Stack<T>::defaultStackSize = 100;
-
 template <class T>
 Stack<T>::Stack():size(defaultStackSize) {
 	topStack = 0;
@@ -112,3 +107,4 @@ template<class T>
 T Stack<T>::getLastData(){
 	return this->getData(topStack-1);
 }
+#endif

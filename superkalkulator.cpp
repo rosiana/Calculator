@@ -4,6 +4,11 @@
 #include <fstream>
 #define LogSize 100
 #include <string>
+#include "ArabCalc.h"
+#include "RomanCalc.h"
+#include <cstdlib>
+//#include "LogikaCalc.h"
+
 using namespace std;
 
 int String2Int(const std::string& str)
@@ -184,9 +189,13 @@ void superkalkulator::Input(string input){
 	|| input[0] == '4' || input[0] == '5'|| input[0] == '6'|| input[0] == '7'|| input[0] == '8'|| input[0] == '9')
 	{
 		cout<<".....Ekspresi....."<<endl;
+		ArabCalc *arab;
 		switch(modekalkulator)
 		{
-			case 1 : cout<<"Running Kalk Arab ";break;
+			case 1 : cout<<"Running Kalk Arab ";
+					arab = new ArabCalc(input,modeekspresi,70);
+					cout<<"Hasil "<<arab->Calculate()<<endl;
+					break;
 			case 2 : cout<<"Running Kalk Logika ";break;
 			case 3 : cout<<"Running Kalk Romawi ";break;
 			default: break;

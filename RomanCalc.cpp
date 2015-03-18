@@ -6,6 +6,10 @@
 
 using namespace std;
 
+RomanCalc::RomanClac(string ekspresi,int mode,int size) :bil(size),operatorx(size){
+	this->ekspresi = eksrepsi;
+	this->mode = mode;
+}
 int RomanCalc::RomantoDec(string s) {
 	int i = 0;
     int dec = 0;
@@ -110,4 +114,50 @@ string RomanCalc::DectoRoman (int d) {
         }
     }
     return rom;
+}
+
+RomanCalc::~RomanCalc(){
+	//no memory to free
+}
+
+string RomanCalc::Calculate(){
+
+}
+
+void RomanCalc::SmallCalculate(Stack<float> &bil,Stack<string> &operatorx)
+{
+	float popbil1;
+	float popbil2;
+	string dumpoperator;
+	float dumpbil;
+	popbil1 = bil.getLastData();
+	bil>>dumpbil;
+	popbil2 = bil.getLastData();
+	bil>>dumpbil;
+	string popoperator = operatorx.getLastData();
+	operatorx>>dumpoperator;
+	if(popoperator == "*")
+	{
+		bil<< popbil2*popbil1;
+	}
+	else if(popoperator == "/")
+	{
+		bil<< popbil2/popbil1;
+	}
+	else if(popoperator == "%")
+	{	
+		int tempint1 = (int) floor(popbil1 + 0.5);
+		int tempint2 = (int) floor(popbil2 + 0.5);
+		float hasil = (float)(tempint2%tempint1);
+		bil<< hasil;
+	}
+	
+	else if(popoperator == "+")
+	{
+		bil<< popbil2+popbil1;
+	}
+	else if(popoperator == "-")
+	{
+		bil<< popbil2-popbil1;
+	}
 }
