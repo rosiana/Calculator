@@ -269,7 +269,7 @@ float ArabCalc::CalculatePostfix() {
         else if(ekspresi[i]==' '){
             if(j>0){
                 buffer[j] = '\0';
-                x = atoi(buffer);
+                x = atof(buffer);
                 s<<x;
                 j = 0;
             }
