@@ -188,3 +188,123 @@ float ArabCalc::CalculateInfix(){
 	}
 	return hasil;
 }
+
+/**
+ * @fn CalculatePrefix()
+ * @brief Penghitungan mode prefix
+ */
+float ArabCalc::CalculatePrefix() {
+    char buffer[15];
+    int i, len, j;
+    float op1, op2, x;
+    Stack<float> s;
+	float dumpfloat;
+    len = ekspresi.length();
+    j = 0;
+    for(i=len-1; i>=0; i--){
+
+        if((ekspresi[i]>='0' && ekspresi[i]<='9') || ekspresi[i]<='.'){
+            buffer[j++] = ekspresi[i];
+        }
+        else if(ekspresi[i]==' '){
+            if(j>0){
+                buffer[j] = '\0';
+                x = atof(buffer);
+                s<<x;
+                j = 0;
+            }
+        }
+        else if(ekspresi[i]=='+' || ekspresi[i]=='-' || ekspresi[i]=='*' || ekspresi[i]==':' || ekspresi[i]=='%' || ekspresi[i]=='/'){
+            op1 = s.getLastData();
+            s>>dumpfloat;
+            op2 = s.getLastData();
+            s>>dumpfloat;
+            switch(ekspresi[i]){
+                case '+':
+                    s<<op2 + op1;
+                    break;
+                case '-':
+                    s<<(op2 - op1);
+                    break;
+                case '*':
+                    s<<(op2 * op1);
+                    break;
+                case ':':
+                    s<<(op2 / op1);
+                    break;
+                case '%': // di c++ nggak bisa float mod float
+                    while (op2 >= op1) {
+                        op2 = op2 - op1;
+                    }
+                    s<<(op2);
+                    break;
+                case '/':
+                    int div;
+                    div = (int)floor(op2 / op1);
+                    s<<(div);
+                    break;
+            }
+        }
+    }
+    return s.getLastData();
+}
+
+/**
+ * @fn CalculatePostfix()
+ * @brief Penghitungan mode postfix
+ */
+float ArabCalc::CalculatePostfix() {
+    char buffer[15];
+    int i, len, j;
+    float op1, op2, x;
+    Stack<float> s;
+    len = ekspresi.length();
+    j = 0;
+	float dumpfloat;
+    for(i=0; i<len;i++){
+
+        if((ekspresi[i]>='0' && ekspresi[i]<='9') || ekspresi[i]<='.'){
+            buffer[j++] = ekspresi[i];
+        }
+        else if(ekspresi[i]==' '){
+            if(j>0){
+                buffer[j] = '\0';
+                x = atoi(buffer);
+                s<<x;
+                j = 0;
+            }
+        }
+        else if(ekspresi[i]=='+' || ekspresi[i]=='-' || ekspresi[i]=='*' || ekspresi[i]==':' || ekspresi[i]=='%' || ekspresi[i]=='/'){
+            op1 = s.getLastData();
+            s>>dumpfloat;
+            op2 = s.getLastData();
+            s>>dumpfloat;
+            switch(ekspresi[i]){
+                case '+':
+                    s<<(op2 + op1);
+                    break;
+                case '-':
+                    s<<(op2 - op1);
+                    break;
+                case '*':
+                    s<<(op2 * op1);
+                    break;
+                case ':':
+                    s<<(op2 / op1);
+                    break;
+                case '%': // di c++ nggak bisa float mod float
+                    while (op2 >= op1) {
+                        op2 = op2 - op1;
+                    }
+                    s<<(op2);
+                    break;
+                case '/':
+                    int div;
+                    div = (int)floor(op2 / op1);
+                    s<<(div);
+                    break;
+            }
+        }
+    }
+    return s.getLastData();
+}

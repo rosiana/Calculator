@@ -14,8 +14,10 @@ class ArabCalc {
 		ArabCalc(string ekspresi,int mode,int size);
 		~ArabCalc();
         float Calculate();
-		float CalculateSufix();
 		void SmallCalculate(Stack<float> &bil,Stack<string> &operatorx);
+		float CalculateInfix();
+		float CalculatePrefix();
+		float CalculatePostfix();
     private:
         Stack<float> bil;
         Stack<string> operatorx;
