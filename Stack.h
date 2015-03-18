@@ -1,6 +1,9 @@
-/* 13512088 Annisaur Rosi Lutfiana */
-
-/* Implementasi Kelas Stack */
+/**
+ * @author 13512088 Annisaur Rosi Lutfiana
+ * @file Stack.h
+ * @class Stack
+ * @brief Stack generik yang digunakan pada kelas-kelas lain
+ */
 
 #ifndef STACK_H
 #define STACK_H

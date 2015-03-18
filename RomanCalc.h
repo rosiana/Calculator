@@ -1,3 +1,10 @@
+/**
+ * @author 13512088 Annisaur Rosi Lutfiana
+ * @file RomanCalc.h
+ * @class RomanCalc
+ * @brief Kelas untuk pengolahan ekspresi dengan operand angka romawi
+ */
+
 #ifndef RomanCalc_H
 #define RomanCalc_H
 
@@ -20,7 +27,7 @@ class RomanCalc {
 		int CalculateInfix();
 		int CalculatePrefix();
 		int CalculatePostfix();
-		
+
 
     private:
         Stack<int> bil;

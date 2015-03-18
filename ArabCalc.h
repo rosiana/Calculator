@@ -1,3 +1,10 @@
+/**
+ * @author
+ * @file ArabCalc.h
+ * @class ArabCalc
+ * @brief Kelas untuk pengolahan ekspresi dengan operand angka arab
+ */
+
 #ifndef ArabCalc_H
 #define ArabCalc_H
 

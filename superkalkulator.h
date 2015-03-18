@@ -1,3 +1,10 @@
+/**
+ * @author 13512096 Kevin
+ * @file superkalkulator.h
+ * @class superkalkulator
+ * @brief Kelas besar untuk menangani masukan untuk input, setting, dan run kalkulator
+ */
+
 #ifndef superkalkulator_H
 #define superkalkulator_H
 
