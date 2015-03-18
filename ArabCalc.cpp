@@ -16,21 +16,21 @@ ArabCalc::~ArabCalc(){
 
 float ArabCalc::Calculate(){
 	float hasil;
-	if(mode == 2) //Infix
+	if(mode == 2) //Sufix
 	{
-		hasil = CalculateInfix();
+		hasil = CalculateSufix();
 	}
 	return hasil;
 }
 
-float ArabCalc::CalculateInfix(){
+float ArabCalc::CalculateSufix(){
 	string dumpoperator;
 	float dumpbil;
 	float hasil;
 	string ekspresitemp = ekspresi;
 	while(ekspresitemp.length() != 0)
 	{
-		char *temp =  new char[70];
+		char *temp =  new char[30];
 		int isCompleteRead = 0;
 		int ctemp = 0;
 		while(ekspresitemp[0] == '0' || ekspresitemp[0] == '1' || ekspresitemp[0] == '2' || ekspresitemp[0] == '3' || ekspresitemp[0] == '4' || ekspresitemp[0] == '5'

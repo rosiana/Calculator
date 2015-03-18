@@ -91,7 +91,7 @@ void superkalkulator::Input(string input){
 		{
 			cout<<"Masukkan mode ekspresi"<<endl;
 			cout<<"1. Prefix"<<endl;
-			cout<<"2. Infix"<<endl;
+			cout<<"2. Sufix"<<endl;
 			cout<<"3. PostFix"<<endl;
 			std::getline(std::cin,smode);
 			mode = String2Int(smode);

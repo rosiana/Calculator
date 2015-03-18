@@ -3,38 +3,10 @@
 #include <stdlib.h>
 #include <stack>
 #include <string.h>
+#include <cmath>
+#include <math.h>
 
 using namespace std;
-
-bool isOperator(char ch)
-{
-    if (ch=='+' || ch=='-' || ch=='*' || ch=='/')
-        return true;
-    else
-        return false;
-}
-
-
-int performOperation(int op1, int op2, char op)
-{
-    int ans;
-    switch(op){
-    case '+':
-        ans = op2 + op1;
-        break;
-    case '-':
-        ans = op2 - op1;
-        break;
-    case '*':
-        ans = op2 * op1;
-        break;
-    case '/':
-        ans = op2 / op1;
-        break;
-    }
-    return ans;
-}
-
 
 int main()
 {
@@ -59,16 +31,35 @@ int main()
             }
         }
 
-        else if(isOperator(exp[i])){
+        else if(exp[i]=='+' || exp[i]=='-' || exp[i]=='*' || exp[i]==':' || exp[i]=='%' || exp[i]=='/'){
             op1 = s.top();
             s.pop();
             op2 = s.top();
             s.pop();
-            s.push(performOperation(op1, op2, exp[i]));
+            switch(exp[i]){
+                case '+':
+                    s.push(op2 + op1);
+                    break;
+                case '-':
+                    s.push(op2 - op1);
+                    break;
+                case '*':
+                    s.push(op2 * op1);
+                    break;
+                case ':':
+                    s.push(op2 / op1);
+                    break;
+                case '%':
+                    s.push(op2 % op1);
+                    break;
+                case '/':
+                    int div;
+                    div = (int)floor(op2 / op1);
+                    s.push(div);
+                    break;
+            }
         }
     }
-
     printf("Answer is %d\n", s.top());
-
     return 0;
 }
