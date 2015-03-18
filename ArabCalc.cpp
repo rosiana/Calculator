@@ -1,3 +1,10 @@
+/**
+ * @author
+ * @file ArabCalc.cpp
+ * @class ArabCalc
+ * @brief Kelas untuk pengolahan ekspresi dengan operand angka arab
+ */
+
 #include <iostream>
 #include <stdlib.h>
 
@@ -5,24 +12,36 @@
 
 using namespace std;
 
+/**
+ * @fn ArabCalc(string ekspresi,int mode,int size)
+ * @brief Konstruktor parameter kalkulator arab
+ */
 ArabCalc::ArabCalc(string ekspresi,int mode,int size) :bil(size),operatorx(size){
 	this->ekspresi = ekspresi;
 	this->mode = mode;
 }
 
+/**
+ * @fn ~ArabCalc()
+ * @brief Destruktor kalkulator arab
+ */
 ArabCalc::~ArabCalc(){
 	//no memory to free
 }
 
+/**
+ * @fn Calculate()
+ * @brief Penghitungan sesuai mode ekspresi (prefix, infix, postfix)
+ */
 float ArabCalc::Calculate(){
 	float hasil;
-	if(mode == 2) //Sufix
+	if(mode == 1)
+    {
+		hasil = CalculatePrefix();
+	}
+	else if(mode == 2)
 	{
 		hasil = CalculateInfix();
-	}
-	else if(mode == 1)
-	{
-		hasil = CalculatePrefix();
 	}
 	else if(mode == 3)
 	{
@@ -31,94 +50,10 @@ float ArabCalc::Calculate(){
 	return hasil;
 }
 
-float ArabCalc::CalculateInfix(){
-	string dumpoperator;
-	float dumpbil;
-	float hasil;
-	string ekspresitemp = ekspresi;
-	while(ekspresitemp.length() != 0)
-	{
-		char *temp =  new char[30];
-		int isCompleteRead = 0;
-		int ctemp = 0;
-		while(ekspresitemp[0] == '0' || ekspresitemp[0] == '1' || ekspresitemp[0] == '2' || ekspresitemp[0] == '3' || ekspresitemp[0] == '4' || ekspresitemp[0] == '5'
-		|| ekspresitemp[0] == '6'|| ekspresitemp[0] == '7' || ekspresitemp[0] == '8' || ekspresitemp[0] == '9' || ekspresitemp[0] == '.')
-		{	
-			temp[ctemp] = ekspresitemp[0];
-			ekspresitemp.erase(0,1);
-			ctemp++;
-			isCompleteRead = 1;
-		}
-		if(isCompleteRead == 1)
-		{	
-			bil<< atof(temp);
-		}
-		if(ekspresitemp[0] == '+' || ekspresitemp[0] == '-' || ekspresitemp[0] == '*' || ekspresitemp[0] == ':' || ekspresitemp[0] == '/' || ekspresitemp[0] == '%' || ekspresitemp[0] == '('|| ekspresitemp[0] == ')')
-		{
-			if(operatorx.isEmpty() || ekspresitemp[0] == '(')
-			{
-				operatorx<<ekspresitemp.substr(0,1);
-				
-			}
-			else
-			{
-				if(ekspresitemp[0] == '+' || ekspresitemp[0] == '-')
-				{
-					if(operatorx.getLastData() == "*" || operatorx.getLastData() == ":"|| operatorx.getLastData() == "/" || operatorx.getLastData() == "%" || operatorx.getLastData() == "+" || operatorx.getLastData() == "-")
-					{
-						SmallCalculate(bil,operatorx);
-						operatorx<<ekspresitemp.substr(0,1);
-					}
-					else
-					{
-						operatorx<<ekspresitemp.substr(0,1);
-						
-					}
-				}
-				else if(ekspresitemp[0] == '*' || ekspresitemp[0] == '/' || ekspresitemp[0] == '%' || ekspresitemp[0] == ':')
-				{
-					
-					if(operatorx.getLastData() == "*" || operatorx.getLastData() == "/" || operatorx.getLastData() == ":"  || operatorx.getLastData() == "%")
-					{
-						SmallCalculate(bil,operatorx);
-						operatorx<<ekspresitemp.substr(0,1);
-					}
-					else
-					{
-						operatorx<<ekspresitemp.substr(0,1);
-					}
-				}
-				else if(ekspresitemp[0] == ')')
-				{
-					while(operatorx.getLastData() != "(")
-					{
-						SmallCalculate(bil,operatorx);
-					}
-					operatorx>>dumpoperator;
-				}
-				
-			}
-			ekspresitemp.erase(0,1);
-		}
-	}
-	while(!operatorx.isEmpty())
-	{
-		SmallCalculate(bil,operatorx);
-
-	}
-	hasil = bil.getLastData();
-	//Cleaning
-	while(!bil.isEmpty())
-	{
-		bil>>dumpbil;
-	}
-	while(!operatorx.isEmpty())
-	{
-		operatorx>>dumpoperator;
-	}
-	return hasil;
-}
-
+/**
+ * @fn SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
+ * @brief Prosedur penentu operator untuk perhitungan mode infix
+ */
 void ArabCalc::SmallCalculate(Stack<float> &bil,Stack<string> &operatorx)
 {
 	float popbil1;
@@ -145,13 +80,13 @@ void ArabCalc::SmallCalculate(Stack<float> &bil,Stack<string> &operatorx)
 		bil<< a;
 	}
 	else if(popoperator == "%")
-	{	
+	{
 		int tempint1 = (int) floor(popbil1 + 0.5);
 		int tempint2 = (int) floor(popbil2 + 0.5);
 		float hasil = (float)(tempint2%tempint1);
 		bil<< hasil;
 	}
-	
+
 	else if(popoperator == "+")
 	{
 		bil<< popbil2+popbil1;
@@ -162,33 +97,129 @@ void ArabCalc::SmallCalculate(Stack<float> &bil,Stack<string> &operatorx)
 	}
 }
 
+/**
+ * @fn CalculateInfix()
+ * @brief Penghitungan mode infix
+ */
+float ArabCalc::CalculateInfix(){
+	string dumpoperator;
+	float dumpbil;
+	float hasil;
+	string ekspresitemp = ekspresi;
+	while(ekspresitemp.length() != 0)
+	{
+		char *temp =  new char[30];
+		int isCompleteRead = 0;
+		int ctemp = 0;
+		while(ekspresitemp[0] == '0' || ekspresitemp[0] == '1' || ekspresitemp[0] == '2' || ekspresitemp[0] == '3' || ekspresitemp[0] == '4' || ekspresitemp[0] == '5'
+		|| ekspresitemp[0] == '6'|| ekspresitemp[0] == '7' || ekspresitemp[0] == '8' || ekspresitemp[0] == '9' || ekspresitemp[0] == '.')
+		{
+			temp[ctemp] = ekspresitemp[0];
+			ekspresitemp.erase(0,1);
+			ctemp++;
+			isCompleteRead = 1;
+		}
+		if(isCompleteRead == 1)
+		{
+			bil<< atof(temp);
+		}
+		if(ekspresitemp[0] == '+' || ekspresitemp[0] == '-' || ekspresitemp[0] == '*' || ekspresitemp[0] == ':' || ekspresitemp[0] == '/' || ekspresitemp[0] == '%' || ekspresitemp[0] == '('|| ekspresitemp[0] == ')')
+		{
+			if(operatorx.isEmpty() || ekspresitemp[0] == '(')
+			{
+				operatorx<<ekspresitemp.substr(0,1);
+
+			}
+			else
+			{
+				if(ekspresitemp[0] == '+' || ekspresitemp[0] == '-')
+				{
+					if(operatorx.getLastData() == "*" || operatorx.getLastData() == ":"|| operatorx.getLastData() == "/" || operatorx.getLastData() == "%" || operatorx.getLastData() == "+" || operatorx.getLastData() == "-")
+					{
+						SmallCalculate(bil,operatorx);
+						operatorx<<ekspresitemp.substr(0,1);
+					}
+					else
+					{
+						operatorx<<ekspresitemp.substr(0,1);
+
+					}
+				}
+				else if(ekspresitemp[0] == '*' || ekspresitemp[0] == '/' || ekspresitemp[0] == '%' || ekspresitemp[0] == ':')
+				{
+
+					if(operatorx.getLastData() == "*" || operatorx.getLastData() == "/" || operatorx.getLastData() == ":"  || operatorx.getLastData() == "%")
+					{
+						SmallCalculate(bil,operatorx);
+						operatorx<<ekspresitemp.substr(0,1);
+					}
+					else
+					{
+						operatorx<<ekspresitemp.substr(0,1);
+					}
+				}
+				else if(ekspresitemp[0] == ')')
+				{
+					while(operatorx.getLastData() != "(")
+					{
+						SmallCalculate(bil,operatorx);
+					}
+					operatorx>>dumpoperator;
+				}
+
+			}
+			ekspresitemp.erase(0,1);
+		}
+	}
+	while(!operatorx.isEmpty())
+	{
+		SmallCalculate(bil,operatorx);
+
+	}
+	hasil = bil.getLastData();
+	//Cleaning
+	while(!bil.isEmpty())
+	{
+		bil>>dumpbil;
+	}
+	while(!operatorx.isEmpty())
+	{
+		operatorx>>dumpoperator;
+	}
+	return hasil;
+}
+
+/**
+ * @fn CalculatePrefix()
+ * @brief Penghitungan mode prefix
+ */
 int ArabCalc::CalculatePrefix() {
     char buffer[15];
-    int i,op1, op2, len, j, x;
+    int i, len, j;
+    int op1, op2, x;
     Stack<int> s;
 	int dumpint;
-	string tempekspresi = ekspresi;
-    len = tempekspresi.length();
+    len = ekspresi.length();
     j = 0;
     for(i=len-1; i>=0; i--){
-
-        if(tempekspresi[i]>='0' && tempekspresi[i]<='9'){
-            buffer[j++] = tempekspresi[i];
+        if(ekspresi[i]>='0' && ekspresi[i]<='9'){
+            buffer[j++] = ekspresi[i];
         }
-        else if(tempekspresi[i]==' '){
+        else if(ekspresi[i]==' '){
             if(j>0){
+
                 buffer[j] = '\0';
-                x = atoi(buffer);
+                x = atof(buffer);
                 s<<x;
                 j = 0;
             }
         }
-        else if(tempekspresi[i]=='+' || tempekspresi[i]=='-' || tempekspresi[i]=='*' || tempekspresi[i]==':' || tempekspresi[i]=='%' || tempekspresi[i]=='/'){
+        else if(ekspresi[i]=='+' || ekspresi[i]=='-' || ekspresi[i]=='*' || ekspresi[i]==':' || ekspresi[i]=='%' || ekspresi[i]=='/'){
             op1 = s.getLastData();
             s>>dumpint;
             op2 = s.getLastData();
             s>>dumpint;
-            switch(tempekspresi[i]){
+            switch(ekspresi[i]){
                 case '+':
                     s<<op2 + op1;
                     break;
@@ -201,8 +232,11 @@ int ArabCalc::CalculatePrefix() {
                 case ':':
                     s<<(op2 / op1);
                     break;
-                case '%':
-                    s<<(op2 % op1);
+                case '%': // di c++ nggak bisa int mod int
+                    while (op2 >= op1) {
+                        op2 = op2 - op1;
+                    }
+                    s<<(op2);
                     break;
                 case '/':
                     int div;
@@ -215,33 +249,37 @@ int ArabCalc::CalculatePrefix() {
     return s.getLastData();
 }
 
-int ArabCalc::CalculatePostfix() {
+/**
+ * @fn CalculatePostfix()
+ * @brief Penghitungan mode postfix
+ */
+float ArabCalc::CalculatePostfix() {
     char buffer[15];
-    int i,op1, op2, len, j, x;
-    Stack<int> s;
-	string tempekspresi = ekspresi;
-    len = tempekspresi.length();
+    int i, len, j;
+    float op1, op2, x;
+    Stack<float> s;
+    len = ekspresi.length();
     j = 0;
-	int dumpint;
+	float dumpfloat;
     for(i=0; i<len;i++){
 
-        if(tempekspresi[i]>='0' && tempekspresi[i]<='9'){
-            buffer[j++] = tempekspresi[i];
+        if(ekspresi[i]>='0' && ekspresi[i]<='9'){
+            buffer[j++] = ekspresi[i];
         }
-        else if(tempekspresi[i]==' '){
+        else if(ekspresi[i]==' '){
             if(j>0){
                 buffer[j] = '\0';
-                x = atoi(buffer);
+                x = atof(buffer);
                 s<<x;
                 j = 0;
             }
         }
-        else if(tempekspresi[i]=='+' || tempekspresi[i]=='-' || tempekspresi[i]=='*' || tempekspresi[i]==':' || tempekspresi[i]=='%' || tempekspresi[i]=='/'){
+        else if(ekspresi[i]=='+' || ekspresi[i]=='-' || ekspresi[i]=='*' || ekspresi[i]==':' || ekspresi[i]=='%' || ekspresi[i]=='/'){
             op1 = s.getLastData();
-            s>>dumpint;
+            s>>dumpfloat;
             op2 = s.getLastData();
-            s>>dumpint;
-            switch(tempekspresi[i]){
+            s>>dumpfloat;
+            switch(ekspresi[i]){
                 case '+':
                     s<<(op2 + op1);
                     break;
@@ -254,8 +292,11 @@ int ArabCalc::CalculatePostfix() {
                 case ':':
                     s<<(op2 / op1);
                     break;
-                case '%':
-                    s<<(op2 % op1);
+                case '%': // di c++ nggak bisa float mod float
+                    while (op2 >= op1) {
+                        op2 = op2 - op1;
+                    }
+                    s<<(op2);
                     break;
                 case '/':
                     int div;

@@ -1,3 +1,10 @@
+/**
+ * @author 13512096 Kevin
+ * @file superkalkulator.cpp
+ * @class superkalkulator
+ * @brief Kelas besar untuk menangani masukan untuk input, setting, dan run kalkulator
+ */
+
 #include "superkalkulator.h"
 #include <string>
 #include <iostream>
@@ -11,61 +18,85 @@
 
 using namespace std;
 
+/**
+ * @fn String2Int(const std::string& str)
+ * @brief Mengubah string menjadi integer
+ */
 int String2Int(const std::string& str)
 {
 	int result = 0;
     std::string::const_iterator i = str.begin();
- 
+
     if (i == str.end())
         return -999;
- 
+
     bool negative = false;
- 
+
     if (*i == '-')
     {
         negative = true;
         ++i;
- 
+
         if (i == str.end())
             return -999;;
     }
- 
+
     result = 0;
- 
+
     for (; i != str.end(); ++i)
     {
         if (*i < '0' || *i > '9')
             return -999;;
- 
+
         result *= 10;
         result += *i - '0';
     }
- 
+
     if (negative)
     {
         result = -result;
     }
- 
+
     return result;
 }
 
+/**
+ * @fn superkalkulator()
+ * @brief Konstruktor kelas superkalkulator
+ */
 superkalkulator::superkalkulator() : Log(LogSize){
 	modeekspresi = 2;
 	modekalkulator = 1;
 }
 
+/**
+ * @fn ~superkalkulator()
+ * @brief Destruktor kelas superkalkulator
+ */
 superkalkulator::~superkalkulator(){
-	
+
 }
 
+/**
+ * @fn getCountLog()
+ * @brief Penghitung data log
+ */
 int superkalkulator::getCountLog(){
 	return Log.getDataCount();
 }
 
+/**
+ * @fn WriteLog(string str)
+ * @brief Penulis data log
+ */
 void superkalkulator::WriteLog(string str){
 	Log<<str;
 }
 
+/**
+ * @fn Save()
+ * @brief Method untuk save pada log file
+ */
 void superkalkulator::Save(){
    ofstream outfile;
    outfile.open("Log.txt",ios::app);
@@ -77,6 +108,10 @@ void superkalkulator::Save(){
    cout<<"Save success"<<endl;
 }
 
+/**
+ * @fn Input(string input)
+ * @brief Penerima input berupa ekspresi, setting, atau mode
+ */
 void superkalkulator::Input(string input){
 
 	if(input == "Set")
@@ -114,7 +149,7 @@ void superkalkulator::Input(string input){
 			cout<<"Masukkan tidak sesuai"<<endl<<"Tidak berhasil"<<endl;
 		}
 		this->WriteLog(input);
-		
+
 	}
 	else if(input.substr(0,7) == "ShowMem")
 	{
@@ -148,7 +183,7 @@ void superkalkulator::Input(string input){
 				cout<<"Data-"<<i+1<<" : "<<Log.getData(i)<<endl;
 			}
 		}
-		
+
 	}
 	else if(input.substr(0,4) == "Redo")
 	{
@@ -159,10 +194,10 @@ void superkalkulator::Input(string input){
 		//Tidak dimasukkan ke dalam log karena jika redo dijalankan setelah redo maka akan terjadi looping
 	}
 	else if(input.substr(0,4) == "Undo")
-	{	
+	{
 		//this->WriteLog(input);
 		//Tidak dimasukkan ke dalam log karena jika redo dijalankan setelah undo maka akan terjadi keanehan semantik
-		
+
 		cout<<".....Undo....."<<endl;
 		int n = String2Int(input.substr(5,input.length()-1));
 		this->Undo(n);
@@ -172,7 +207,7 @@ void superkalkulator::Input(string input){
 		cout<<".....Save....."<<endl;
 		this->Save();
 		this->WriteLog(input);
-		
+
 	}
 	else if(input == "help")
 	{
@@ -183,7 +218,7 @@ void superkalkulator::Input(string input){
 		cout<<"3). Show All"<<endl;
 		cout<<"4). Redo x"<<endl;
 		cout<<"5). Save"<<endl;
-		
+
 	}
 	else if(input[0] == '(' || input[0] == '0' || input[0] == '1' || input[0] == '2' || input[0] == '3'
 	|| input[0] == '4' || input[0] == '5'|| input[0] == '6'|| input[0] == '7'|| input[0] == '8'|| input[0] == '9'
@@ -208,7 +243,7 @@ void superkalkulator::Input(string input){
 						break;
 				case 3 : cout<<"Running Kalk Romawi ";
 						roman = new RomanCalc(input,modeekspresi,70);
-						cout<<"Hasil "<<roman->Calculate()<<endl;	
+						cout<<"Hasil "<<roman->Calculate()<<endl;
 						break;
 				default: break;
 			}
@@ -232,6 +267,10 @@ void superkalkulator::Input(string input){
 	}*/
 }
 
+/**
+ * @fn Undo(int n)
+ * @brief Method untuk undo atau penghapusan data log
+ */
 void superkalkulator::Undo(int n){
 	string out;
 	if(n <= Log.getDataCount())
@@ -247,9 +286,13 @@ void superkalkulator::Undo(int n){
 	{
 		cout<<"Penghapusan gagal"<<endl;
 	}
-	
+
 }
 
+/**
+ * @fn Redo(int n)
+ * @brief Method untuk melakukan kembali aksi pada log
+ */
 void superkalkulator::Redo(int n){
 	if(n <= Log.getDataCount())
 	{
@@ -266,30 +309,58 @@ void superkalkulator::Redo(int n){
 
 }
 
+/**
+ * @fn setMode(int n)
+ * @brief Mengeset mode ekspresi (prefix, infix, postfix)
+ */
 void superkalkulator::setMode(int n){
 	modeekspresi = n;
 }
 
+/**
+ * @fn setMode(int n)
+ * @brief Mengeset mode kalkulator (arab, romawi, logika)
+ */
 void superkalkulator::setKalkulator(int n){
 	modekalkulator= n;
 }
 
+/**
+ * @fn runKalkulatorArab()
+ * @brief Menjalankan kalkulator arab
+ */
 void superkalkulator::runKalkulatorArab(){
 
 }
 
+/**
+ * @fn runKalkulatorLogika()
+ * @brief Menjalankan kalkulator logika
+ */
 void superkalkulator::runKalkulatorLogika(){
 
 }
 
+/**
+ * @fn runKalkulatorRomawi()
+ * @brief Menjalankan kalkulator romawi
+ */
 void superkalkulator::runKalkulatorRomawi(){
 
 }
 
+/**
+ * @fn getLog()
+ * @brief Mengembalikan log
+ */
 Stack<string> superkalkulator::getLog(){
 	return Log;
 }
 
+/**
+ * @fn CheckEkspresiType(string ekspresi)
+ * @brief Mengecek ekspresi agar dapat ditangani di kalkulator arab, logika, atau romawi
+ */
 int superkalkulator::CheckEkspresiType(string ekspresi)
 {
 	int mode;
@@ -324,7 +395,7 @@ int superkalkulator::CheckEkspresiType(string ekspresi)
 			else
 			{
 				mode = 0;
-			}				
+			}
 		}
 		else if( tempekspresi[0] == '2' || tempekspresi[0] == '3' || tempekspresi[0] == '4' || tempekspresi[0] == '5'
 			|| tempekspresi[0] == '6'|| tempekspresi[0] == '7' || tempekspresi[0] == '8' || tempekspresi[0] == '9')

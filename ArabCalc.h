@@ -1,3 +1,10 @@
+/**
+ * @author
+ * @file ArabCalc.h
+ * @class ArabCalc
+ * @brief Kelas untuk pengolahan ekspresi dengan operand angka arab
+ */
+
 #ifndef ArabCalc_H
 #define ArabCalc_H
 
@@ -14,10 +21,11 @@ class ArabCalc {
 		ArabCalc(string ekspresi,int mode,int size);
 		~ArabCalc();
         float Calculate();
-		float CalculateInfix();
 		void SmallCalculate(Stack<float> &bil,Stack<string> &operatorx);
+		float CalculateInfix();
 		int CalculatePrefix();
-		int CalculatePostfix();
+		float CalculatePostfix();
+
     private:
         Stack<float> bil;
         Stack<string> operatorx;

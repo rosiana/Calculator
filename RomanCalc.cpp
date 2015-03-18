@@ -1,3 +1,10 @@
+/**
+ * @author 13512088 Annisaur Rosi Lutfiana
+ * @file RomanCalc.cpp
+ * @class RomanCalc
+ * @brief Kelas untuk pengolahan ekspresi dengan operand angka romawi
+ */
+
 #include <iostream>
 #include <stdlib.h>
 
@@ -5,10 +12,27 @@
 
 using namespace std;
 
+/**
+ * @fn RomanCalc(string ekspresi,int mode,int size)
+ * @brief Konstruktor parameter kalkulator romawi
+ */
 RomanCalc::RomanCalc(string ekspresi,int mode,int size) :bil(size),operatorx(size){
 	this->ekspresi = ekspresi;
 	this->mode = mode;
 }
+
+/**
+ * @fn ~RomanCalc()
+ * @brief Destruktor kalkulator romawi
+ */
+RomanCalc::~RomanCalc(){
+	//no memory to free
+}
+
+/**
+ * @fn RomantoDec(string s)
+ * @brief Converter angka romawi ke desimal (arab) untuk perhitungan
+ */
 int RomanCalc::RomantoDec(string s) {
 	int i = 0;
     int dec = 0;
@@ -101,7 +125,11 @@ int RomanCalc::RomantoDec(string s) {
 	return dec;
 }
 
-string RomanCalc::DectoRoman (int d) {
+/**
+ * @fn DectoRoman(int d)
+ * @brief Converter angka desimal (arab) ke romawi untuk hasil
+ */
+string RomanCalc::DectoRoman(int d) {
     int dec[13] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
     string num[13] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
     string rom;
@@ -114,27 +142,31 @@ string RomanCalc::DectoRoman (int d) {
     return rom;
 }
 
-RomanCalc::~RomanCalc(){
-	//no memory to free
-}
-
+/**
+ * @fn Calculate()
+ * @brief Penghitungan sesuai mode ekspresi (prefix, infix, postfix)
+ */
 string RomanCalc::Calculate(){
 	int hasil;
-	if(mode == 2)
+	if(mode == 1)
+    {
+		hasil = CalculatePrefix();
+	}
+	else if(mode == 2)
 	{
 		hasil = CalculateInfix();
 	}
-	else if(mode ==1)
-	{
-		hasil = CalculatePrefix();
-	}
-	else if(mode ==  3)
+	else if(mode == 3)
 	{
 		hasil = CalculatePostfix();
 	}
 	return DectoRoman(hasil);
 }
 
+/**
+ * @fn SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
+ * @brief Prosedur penentu operator untuk perhitungan mode infix
+ */
 void RomanCalc::SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
 {
 	int popbil1;
@@ -173,6 +205,11 @@ void RomanCalc::SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
 		bil<< popbil2-popbil1;
 	}
 }
+
+/**
+ * @fn CalculateInfix()
+ * @brief Penghitungan mode infix
+ */
 int RomanCalc::CalculateInfix()
 {
 	string popbil1,popbil2,popoperator;
@@ -256,6 +293,10 @@ int RomanCalc::CalculateInfix()
 	return hasil;
 }
 
+/**
+ * @fn CalculatePrefix()
+ * @brief Penghitungan mode prefix
+ */
 int RomanCalc::CalculatePrefix() {
     char buffer[15];
     int i,op1, op2, len, j, x;
@@ -314,6 +355,10 @@ int RomanCalc::CalculatePrefix() {
     return s.getLastData();
 }
 
+/**
+ * @fn CalculatePostfix()
+ * @brief Penghitungan mode postfix
+ */
 int RomanCalc::CalculatePostfix() {
     string buffer;
     int i,op1, op2, len, j, x;
