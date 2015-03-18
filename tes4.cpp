@@ -105,7 +105,6 @@ int main()
 			}
 			if(temp !="@")
 			{	
-				cout<<"temp"<<temp.substr(1,temp.length())<<endl;
 				bil[cbil] = convert(temp.substr(1,temp.length()));
 				cbil++;
 			}
