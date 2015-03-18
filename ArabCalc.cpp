@@ -18,12 +18,20 @@ float ArabCalc::Calculate(){
 	float hasil;
 	if(mode == 2) //Sufix
 	{
-		hasil = CalculateSufix();
+		hasil = CalculateInfix();
+	}
+	else if(mode == 1)
+	{
+		hasil = CalculatePrefix();
+	}
+	else if(mode == 3)
+	{
+		hasil = CalculatePostfix();
 	}
 	return hasil;
 }
 
-float ArabCalc::CalculateSufix(){
+float ArabCalc::CalculateInfix(){
 	string dumpoperator;
 	float dumpbil;
 	float hasil;
@@ -153,3 +161,110 @@ void ArabCalc::SmallCalculate(Stack<float> &bil,Stack<string> &operatorx)
 		bil<< popbil2-popbil1;
 	}
 }
+
+int ArabCalc::CalculatePrefix() {
+    char buffer[15];
+    int i,op1, op2, len, j, x;
+    Stack<int> s;
+	int dumpint;
+	string tempekspresi = ekspresi;
+    len = tempekspresi.length();
+    j = 0;
+    for(i=len-1; i>=0; i--){
+
+        if(tempekspresi[i]>='0' && tempekspresi[i]<='9'){
+            buffer[j++] = tempekspresi[i];
+        }
+        else if(tempekspresi[i]==' '){
+            if(j>0){
+                buffer[j] = '\0';
+                x = atoi(buffer);
+                s<<x;
+                j = 0;
+            }
+        }
+        else if(tempekspresi[i]=='+' || tempekspresi[i]=='-' || tempekspresi[i]=='*' || tempekspresi[i]==':' || tempekspresi[i]=='%' || tempekspresi[i]=='/'){
+            op1 = s.getLastData();
+            s>>dumpint;
+            op2 = s.getLastData();
+            s>>dumpint;
+            switch(tempekspresi[i]){
+                case '+':
+                    s<<op2 + op1;
+                    break;
+                case '-':
+                    s<<(op2 - op1);
+                    break;
+                case '*':
+                    s<<(op2 * op1);
+                    break;
+                case ':':
+                    s<<(op2 / op1);
+                    break;
+                case '%':
+                    s<<(op2 % op1);
+                    break;
+                case '/':
+                    int div;
+                    div = (int)floor(op2 / op1);
+                    s<<(div);
+                    break;
+            }
+        }
+    }
+    return s.getLastData();
+}
+
+int ArabCalc::CalculatePostfix() {
+    char buffer[15];
+    int i,op1, op2, len, j, x;
+    Stack<int> s;
+	string tempekspresi = ekspresi;
+    len = tempekspresi.length();
+    j = 0;
+	int dumpint;
+    for(i=0; i<len;i++){
+
+        if(tempekspresi[i]>='0' && tempekspresi[i]<='9'){
+            buffer[j++] = tempekspresi[i];
+        }
+        else if(tempekspresi[i]==' '){
+            if(j>0){
+                buffer[j] = '\0';
+                x = atoi(buffer);
+                s<<x;
+                j = 0;
+            }
+        }
+        else if(tempekspresi[i]=='+' || tempekspresi[i]=='-' || tempekspresi[i]=='*' || tempekspresi[i]==':' || tempekspresi[i]=='%' || tempekspresi[i]=='/'){
+            op1 = s.getLastData();
+            s>>dumpint;
+            op2 = s.getLastData();
+            s>>dumpint;
+            switch(tempekspresi[i]){
+                case '+':
+                    s<<(op2 + op1);
+                    break;
+                case '-':
+                    s<<(op2 - op1);
+                    break;
+                case '*':
+                    s<<(op2 * op1);
+                    break;
+                case ':':
+                    s<<(op2 / op1);
+                    break;
+                case '%':
+                    s<<(op2 % op1);
+                    break;
+                case '/':
+                    int div;
+                    div = (int)floor(op2 / op1);
+                    s<<(div);
+                    break;
+            }
+        }
+    }
+    return s.getLastData();
+}
+

@@ -188,7 +188,8 @@ void superkalkulator::Input(string input){
 	else if(input[0] == '(' || input[0] == '0' || input[0] == '1' || input[0] == '2' || input[0] == '3'
 	|| input[0] == '4' || input[0] == '5'|| input[0] == '6'|| input[0] == '7'|| input[0] == '8'|| input[0] == '9'
 	|| input[0] == 'M' || input[0] == 'D' || input[0] == 'C' || input[0] == 'L' || input[0] == 'X'
-		|| input[0] == 'V'|| input[0] == 'I' || input[0] == '~' || input[0] == '&' || input[0] == '|')
+		|| input[0] == 'V'|| input[0] == 'I' || input[0] == '~' || input[0] == '&' || input[0] == '|'
+		|| input[0] == '+' || input[0] == '-' || input[0] == '*'|| input[0] == ':'  || input[0] == '/' || input[0] == '%' || input[0] == '('|| input[0] == ')')
 	{
 		cout<<".....Ekspresi....."<<endl;
 		ArabCalc *arab;
@@ -305,11 +306,6 @@ int superkalkulator::CheckEkspresiType(string ekspresi)
 		else if(tempekspresi[0] == 'M' || tempekspresi[0] == 'D' || tempekspresi[0] == 'C' || tempekspresi[0] == 'L' || tempekspresi[0] == 'X'|| tempekspresi[0] == 'V'|| tempekspresi[0] == 'I')
 		{
 			mode = 3;
-			Exit = 1;
-		}
-		else if(tempekspresi[0] == '+' || tempekspresi[0] == '-' || tempekspresi[0] == '*' || tempekspresi[0] == ':' || tempekspresi[0] == '/' || tempekspresi[0] == '%')
-		{
-			mode = 1;
 			Exit = 1;
 		}
 		else if(tempekspresi[0] == '0' || tempekspresi[0] == '1')

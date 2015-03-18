@@ -120,9 +120,17 @@ RomanCalc::~RomanCalc(){
 
 string RomanCalc::Calculate(){
 	int hasil;
-	if(mode == 2)//infix
+	if(mode == 2)
 	{
 		hasil = CalculateInfix();
+	}
+	else if(mode ==1)
+	{
+		hasil = CalculatePrefix();
+	}
+	else if(mode ==  3)
+	{
+		hasil = CalculatePostfix();
 	}
 	return DectoRoman(hasil);
 }
@@ -253,27 +261,33 @@ int RomanCalc::CalculatePrefix() {
     int i,op1, op2, len, j, x;
     Stack<int> s;
 	int dumpint;
-    len = ekspresi.length();
+	string tempekspresi = ekspresi;
+    len = tempekspresi.length();
     j = 0;
+
     for(i=len-1; i>=0; i--){
 
-        if(ekspresi[i]>='0' && ekspresi[i]<='9'){
-            buffer[j++] = ekspresi[i];
+        if(tempekspresi[0] == 'M' || tempekspresi[0] == 'D' || tempekspresi[0] == 'C' || tempekspresi[0] == 'L' || tempekspresi[0] == 'X'
+		|| tempekspresi[0] == 'V'|| tempekspresi[0] == 'I'){
+            buffer[j++] = tempekspresi[i];
         }
-        else if(ekspresi[i]==' '){
+		
+        else if(tempekspresi[i]==' '){
             if(j>0){
+				cout<<"Masuk"<<buffer<<endl;
+				cout<<"Buffer"<<buffer<<endl;
                 buffer[j] = '\0';
-                x = atoi(buffer);
+                x = RomantoDec(buffer);
                 s<<x;
                 j = 0;
             }
         }
-        else if(ekspresi[i]=='+' || ekspresi[i]=='-' || ekspresi[i]=='*' || ekspresi[i]==':' || ekspresi[i]=='%' || ekspresi[i]=='/'){
+        else if(tempekspresi[i]=='+' || tempekspresi[i]=='-' || tempekspresi[i]=='*' || tempekspresi[i]==':' || tempekspresi[i]=='%' || tempekspresi[i]=='/'){
             op1 = s.getLastData();
             s>>dumpint;
             op2 = s.getLastData();
             s>>dumpint;
-            switch(ekspresi[i]){
+            switch(tempekspresi[i]){
                 case '+':
                     s<<op2 + op1;
                     break;
@@ -301,31 +315,33 @@ int RomanCalc::CalculatePrefix() {
 }
 
 int RomanCalc::CalculatePostfix() {
-    char buffer[15];
+    string buffer;
     int i,op1, op2, len, j, x;
     Stack<int> s;
-    len = ekspresi.length();
+	string ekspresitemp = ekspresi;
+    len = ekspresitemp.length();
     j = 0;
 	int dumpint;
     for(i=0; i<len;i++){
 
-        if(ekspresi[i]>='0' && ekspresi[i]<='9'){
-            buffer[j++] = ekspresi[i];
+        if(ekspresitemp[0] == 'M' || ekspresitemp[0] == 'D' || ekspresitemp[0] == 'C' || ekspresitemp[0] == 'L' || ekspresitemp[0] == 'X'
+		|| ekspresitemp[0] == 'V'|| ekspresitemp[0] == 'I'){
+            buffer += ekspresitemp.substr(i,1);
+			j++;
         }
-        else if(ekspresi[i]==' '){
+        else if(ekspresitemp[i]==' '){
             if(j>0){
-                buffer[j] = '\0';
-                x = atoi(buffer);
+				cout<<"Buffer"<<buffer<<endl;
+                x = RomantoDec(buffer);
                 s<<x;
-                j = 0;
             }
         }
-        else if(ekspresi[i]=='+' || ekspresi[i]=='-' || ekspresi[i]=='*' || ekspresi[i]==':' || ekspresi[i]=='%' || ekspresi[i]=='/'){
+        else if(ekspresitemp[i]=='+' || ekspresitemp[i]=='-' || ekspresitemp[i]=='*' || ekspresitemp[i]==':' || ekspresitemp[i]=='%' || ekspresitemp[i]=='/'){
             op1 = s.getLastData();
             s>>dumpint;
             op2 = s.getLastData();
             s>>dumpint;
-            switch(ekspresi[i]){
+            switch(ekspresitemp[i]){
                 case '+':
                     s<<(op2 + op1);
                     break;
@@ -342,9 +358,7 @@ int RomanCalc::CalculatePostfix() {
                     s<<(op2 % op1);
                     break;
                 case '/':
-                    int div;
-                    div = (int)floor(op2 / op1);
-                    s<<(div);
+                    s<<(op2 / op1);
                     break;
             }
         }
