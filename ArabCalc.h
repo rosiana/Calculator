@@ -4,9 +4,9 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string>
-#include "Stack.h"
 #include <cmath>
 #include <math.h>
+#include "Stack.h"
 using namespace std;
 
 class ArabCalc {
@@ -14,8 +14,8 @@ class ArabCalc {
 		ArabCalc(string ekspresi,int mode,int size);
 		~ArabCalc();
         float Calculate();
+		float CalculateSufix();
 		void SmallCalculate(Stack<float> &bil,Stack<string> &operatorx);
-		
     private:
         Stack<float> bil;
         Stack<string> operatorx;

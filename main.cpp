@@ -3,7 +3,7 @@
 #include <string>
 #include <cmath>
 #include <stdlib.h>
-#define filename "Log.txt"
+
 using namespace std;
 
 int main(){

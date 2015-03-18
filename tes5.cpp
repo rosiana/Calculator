@@ -65,6 +65,7 @@ int main(){
 	int cbil = 0;
 	int m = 0;
 	int coperator = 0;
+	string tes;
 	cout<<"Silahkan masukkan formula.exit untuk keluar"<<endl;
 	std::getline(std::cin,tes);
 	while(tes!= "exit")

@@ -31,6 +31,11 @@ class Stack {
     int topStack;
     T *data;
 };
+
+
+template <class T>
+int Stack<T>::defaultStackSize = 100;
+
 template <class T>
 Stack<T>::Stack():size(defaultStackSize) {
 	topStack = 0;

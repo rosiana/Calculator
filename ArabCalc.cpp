@@ -15,91 +15,98 @@ ArabCalc::~ArabCalc(){
 }
 
 float ArabCalc::Calculate(){
-	string dumpoperator;
-	float dumpbil;
 	float hasil;
 	if(mode == 2) //Sufix
 	{
-		while(ekspresi.length()!=0)
-		{
-			char *temp =  new char[30];
-			int isCompleteRead = 0;
-			int ctemp = 0;
-			while(ekspresi[0] == '0' || ekspresi[0] == '1' || ekspresi[0] == '2' || ekspresi[0] == '3' || ekspresi[0] == '4' || ekspresi[0] == '5'
-			|| ekspresi[0] == '6'|| ekspresi[0] == '7' || ekspresi[0] == '8' || ekspresi[0] == '9' || ekspresi[0] == '.')
-			{	
-				temp[ctemp] = ekspresi[0];
-				ekspresi.erase(0,1);
-				ctemp++;
-				isCompleteRead = 1;
-			}
-			if(isCompleteRead == 1)
-			{	
-				bil<< atof(temp);
-			}
-			if(ekspresi[0] == '+' || ekspresi[0] == '-' || ekspresi[0] == '*' || ekspresi[0] == '/' || ekspresi[0] == '%' || ekspresi[0] == '('|| ekspresi[0] == ')')
-			{
-				if(operatorx.isEmpty() || ekspresi[0] == '(')
-				{
-					operatorx<<ekspresi.substr(0,1);
-					
-				}
-				else
-				{
-					if(ekspresi[0] == '+' || ekspresi[0] == '-')
-					{
-						if(operatorx.getLastData() == "*" || operatorx.getLastData() == "/" || operatorx.getLastData() == "%" || operatorx.getLastData() == "+" || operatorx.getLastData() == "-")
-						{
-							SmallCalculate(bil,operatorx);
-							operatorx<<ekspresi.substr(0,1);
-						}
-						else
-						{
-							operatorx<<ekspresi.substr(0,1);
-							
-						}
-					}
-					else if(ekspresi[0] == '*' || ekspresi[0] == '/' || ekspresi[0] == '%')
-					{
-						
-						if(operatorx.getLastData() == "*" || operatorx.getLastData() == "/" || operatorx.getLastData() == "%")
-						{
-							SmallCalculate(bil,operatorx);
-							operatorx<<ekspresi.substr(0,1);
-						}
-						else
-						{
-							operatorx<<ekspresi.substr(0,1);
-						}
-					}
-					else if(ekspresi[0] == ')')
-					{
-						while(operatorx.getLastData() != "(")
-						{
-							SmallCalculate(bil,operatorx);
-						}
-						operatorx>>dumpoperator;
-					}
-					
-				}
-				ekspresi.erase(0,1);
-			}
-		}
-		while(!operatorx.isEmpty())
-		{
-			SmallCalculate(bil,operatorx);
+		hasil = CalculateSufix();
+	}
+	return hasil;
+}
 
+float ArabCalc::CalculateSufix(){
+	string dumpoperator;
+	float dumpbil;
+	float hasil;
+	string ekspresitemp = ekspresi;
+	while(ekspresitemp.length() != 0)
+	{
+		char *temp =  new char[30];
+		int isCompleteRead = 0;
+		int ctemp = 0;
+		while(ekspresitemp[0] == '0' || ekspresitemp[0] == '1' || ekspresitemp[0] == '2' || ekspresitemp[0] == '3' || ekspresitemp[0] == '4' || ekspresitemp[0] == '5'
+		|| ekspresitemp[0] == '6'|| ekspresitemp[0] == '7' || ekspresitemp[0] == '8' || ekspresitemp[0] == '9' || ekspresitemp[0] == '.')
+		{	
+			temp[ctemp] = ekspresitemp[0];
+			ekspresitemp.erase(0,1);
+			ctemp++;
+			isCompleteRead = 1;
 		}
-		hasil = bil.getLastData();
-		//Cleaning
-		while(!bil.isEmpty())
+		if(isCompleteRead == 1)
+		{	
+			bil<< atof(temp);
+		}
+		if(ekspresitemp[0] == '+' || ekspresitemp[0] == '-' || ekspresitemp[0] == '*' || ekspresitemp[0] == ':' || ekspresitemp[0] == '/' || ekspresitemp[0] == '%' || ekspresitemp[0] == '('|| ekspresitemp[0] == ')')
 		{
-			bil>>dumpbil;
+			if(operatorx.isEmpty() || ekspresitemp[0] == '(')
+			{
+				operatorx<<ekspresitemp.substr(0,1);
+				
+			}
+			else
+			{
+				if(ekspresitemp[0] == '+' || ekspresitemp[0] == '-')
+				{
+					if(operatorx.getLastData() == "*" || operatorx.getLastData() == ":"|| operatorx.getLastData() == "/" || operatorx.getLastData() == "%" || operatorx.getLastData() == "+" || operatorx.getLastData() == "-")
+					{
+						SmallCalculate(bil,operatorx);
+						operatorx<<ekspresitemp.substr(0,1);
+					}
+					else
+					{
+						operatorx<<ekspresitemp.substr(0,1);
+						
+					}
+				}
+				else if(ekspresitemp[0] == '*' || ekspresitemp[0] == '/' || ekspresitemp[0] == '%' || ekspresitemp[0] == ':')
+				{
+					
+					if(operatorx.getLastData() == "*" || operatorx.getLastData() == "/" || operatorx.getLastData() == ":"  || operatorx.getLastData() == "%")
+					{
+						SmallCalculate(bil,operatorx);
+						operatorx<<ekspresitemp.substr(0,1);
+					}
+					else
+					{
+						operatorx<<ekspresitemp.substr(0,1);
+					}
+				}
+				else if(ekspresitemp[0] == ')')
+				{
+					while(operatorx.getLastData() != "(")
+					{
+						SmallCalculate(bil,operatorx);
+					}
+					operatorx>>dumpoperator;
+				}
+				
+			}
+			ekspresitemp.erase(0,1);
 		}
-		while(!operatorx.isEmpty())
-		{
-			operatorx>>dumpoperator;
-		}
+	}
+	while(!operatorx.isEmpty())
+	{
+		SmallCalculate(bil,operatorx);
+
+	}
+	hasil = bil.getLastData();
+	//Cleaning
+	while(!bil.isEmpty())
+	{
+		bil>>dumpbil;
+	}
+	while(!operatorx.isEmpty())
+	{
+		operatorx>>dumpoperator;
 	}
 	return hasil;
 }
@@ -120,9 +127,14 @@ void ArabCalc::SmallCalculate(Stack<float> &bil,Stack<string> &operatorx)
 	{
 		bil<< popbil2*popbil1;
 	}
-	else if(popoperator == "/")
+	else if(popoperator == ":")
 	{
 		bil<< popbil2/popbil1;
+	}
+	else if(popoperator == "/")
+	{
+		int a = (int) floor(popbil2/popbil1 + 0.5);
+		bil<< a;
 	}
 	else if(popoperator == "%")
 	{	

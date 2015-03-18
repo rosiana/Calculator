@@ -95,7 +95,7 @@ int RomanCalc::RomantoDec(string s) {
 		}
 		else
 		{
-			// error
+			cout<<"something wrong"<<endl;
 		}
 		i++;
     }
@@ -121,15 +121,20 @@ RomanCalc::~RomanCalc(){
 }
 
 string RomanCalc::Calculate(){
-
+	int hasil;
+	if(mode == 2)//infix
+	{
+		hasil = CalculateSufix();
+	}
+	return hasil;
 }
 
-void RomanCalc::SmallCalculate(Stack<float> &bil,Stack<string> &operatorx)
+void RomanCalc::SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
 {
-	float popbil1;
-	float popbil2;
+	int popbil1;
+	int popbil2;
 	string dumpoperator;
-	float dumpbil;
+	int dumpbil;
 	popbil1 = bil.getLastData();
 	bil>>dumpbil;
 	popbil2 = bil.getLastData();
@@ -140,16 +145,17 @@ void RomanCalc::SmallCalculate(Stack<float> &bil,Stack<string> &operatorx)
 	{
 		bil<< popbil2*popbil1;
 	}
+	else if(popoperator == ":")
+	{
+		bil<< popbil2/popbil1;
+	}
 	else if(popoperator == "/")
 	{
 		bil<< popbil2/popbil1;
 	}
 	else if(popoperator == "%")
 	{	
-		int tempint1 = (int) floor(popbil1 + 0.5);
-		int tempint2 = (int) floor(popbil2 + 0.5);
-		float hasil = (float)(tempint2%tempint1);
-		bil<< hasil;
+		bil<< tempint2%tempint1;
 	}
 	
 	else if(popoperator == "+")
@@ -160,4 +166,84 @@ void RomanCalc::SmallCalculate(Stack<float> &bil,Stack<string> &operatorx)
 	{
 		bil<< popbil2-popbil1;
 	}
+}
+int RomanCalc::CalculateSufix()
+{
+	string popbil1,popbil2,popoperator;
+	string dumpoperator;
+	int dumpbil;
+	int m = 0;
+	int coperator = 0;
+	string ekspresitemp = ekspresi;
+	while(ekspresitemp.length()!=0)
+	{
+		string temp;
+		int isCompleteRead = 0;
+		int ctemp = 0;
+		while(ekspresitemp[0] == 'M' || ekspresitemp[0] == 'D' || ekspresitemp[0] == 'C' || ekspresitemp[0] == 'L' || ekspresitemp[0] == 'X'
+		|| ekspresitemp[0] == 'V'|| ekspresitemp[0] == 'I')
+		{	
+			temp += ekspresitemp.substr(0,1);
+			ekspresitemp.erase(0,1);
+			ctemp++;
+			isCompleteRead = 1;
+		}
+		if(isCompleteRead == 1)
+		{	
+			bil<< convert(temp);
+		}
+		if(ekspresitemp[0] == '+' || ekspresitemp[0] == '-' || ekspresitemp[0] == '*'|| ekspresitemp[0] == ':'  || ekspresitemp[0] == '/' || ekspresitemp[0] == '%' || ekspresitemp[0] == '('|| ekspresitemp[0] == ')')
+		{
+			if(operatorx.isEmpty() || ekspresitemp[0] == '(')
+			{
+				operatorx<<ekspresitemp.substr(0,1);
+				coperator++;
+			}
+			else
+			{
+				if(ekspresitemp[0] == '+' || ekspresitemp[0] == '-')
+				{
+					if(operatorx.getLastData() == "*" || operatorx.getLastData() == ":"  || operatorx.getLastData() == "/" || operatorx.getLastData() == "%" || operatorx.getLastData() == "+" || operatorx.getLastData() == "-")
+					{
+						SmallCalculate(bil,operatorx);
+						operatorx<<ekspresitemp.substr(0,1);
+					}
+					else
+					{
+						operatorx<<ekspresitemp.substr(0,1);
+						coperator++;
+					}
+				}
+				else if(ekspresitemp[0] == '*' || ekspresitemp[0] == '/' || ekspresitemp[0] == '%' || ekspresitemp[0] == ':')
+				{
+					
+					if(operatorx.getLastData() == "*" || operatorx.getLastData() == "/" || operatorx.getLastData() == ":" || operatorx.getLastData() == "%")
+					{
+						SmallCalculate(bil,operatorx);
+						operatorx<<ekspresitemp.substr(0,1);
+					}
+					else
+					{
+						operatorx<<ekspresitemp.substr(0,1);
+						coperator++;
+					}
+				}
+				else if(ekspresitemp[0] == ')')
+				{
+					while(operatorx.getLastData() != "(")
+					{
+						SmallCalculate(bil,operatorx);
+					}
+					operatorx>>dumpoperator;
+				}
+				
+			}
+			ekspresitemp.erase(0,1);
+		}
+	}
+	while(!operatorx.isEmpty())
+	{
+		SmallCalculate(bil,operatorx);
+	}
+	return bil.getLastData();
 }

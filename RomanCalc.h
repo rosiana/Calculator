@@ -8,7 +8,7 @@ using namespace std;
 
 class RomanCalc {
     public:
-		RomanCalc(string ekspresi,int mode);
+		RomanCalc(string ekspresi,int mode,int size);
 		~RomanCalc();
         int RomantoDec(const string& s);
         string DectoRoman(int d);
