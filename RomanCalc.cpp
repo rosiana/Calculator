@@ -144,13 +144,21 @@ string RomanCalc::DectoRoman(int d) {
 
 /**
  * @fn Calculate()
- * @brief Penghitungan sesuai mode ekspresi (prefix, infix, postfix
+ * @brief Penghitungan sesuai mode ekspresi (prefix, infix, postfix)
  */
 string RomanCalc::Calculate(){
 	int hasil;
-	if(mode == 2)
+	if(mode == 1)
+    {
+		hasil = CalculatePrefix();
+	}
+	else if(mode == 2)
 	{
 		hasil = CalculateInfix();
+	}
+	else if(mode == 3)
+	{
+		hasil = CalculatePostfix();
 	}
 	return DectoRoman(hasil);
 }

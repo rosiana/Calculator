@@ -1,0 +1,14 @@
+digraph G {
+  bgcolor=transparent;
+  compound=true
+  node [ fontsize=10, fontname="Helvetica"];
+  edge [ labelfontsize=9, labelfontname="Helvetica"];
+  subgraph clusterdir_C_3A_2FUsers_2F {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Users" fontname="Helvetica", fontsize=10, URL="dir_C_3A_2FUsers_2F.html"]
+  subgraph clusterdir_C_3A_2FUsers_2FRosi_2F {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_C_3A_2FUsers_2FRosi_2F.html"];
+    dir_C_3A_2FUsers_2FRosi_2F [shape=plaintext label="Rosi"];
+    dir_C_3A_2FUsers_2FRosi_2FDesktop_2F [shape=box label="Desktop" color="red" fillcolor="white" style="filled" URL="dir_C_3A_2FUsers_2FRosi_2FDesktop_2F.html"];
+  }
+  }
+}

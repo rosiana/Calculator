@@ -1,0 +1,590 @@
+%!PS-Adobe-3.0
+%%Creator: graphviz version 2.37.20140401.0445 (20140401.0445)
+%%Title: G
+%%Pages: (atend)
+%%BoundingBox: (atend)
+%%EndComments
+save
+%%BeginProlog
+/DotDict 200 dict def
+DotDict begin
+
+/setupLatin1 {
+mark
+/EncodingVector 256 array def
+ EncodingVector 0
+
+ISOLatin1Encoding 0 255 getinterval putinterval
+EncodingVector 45 /hyphen put
+
+% Set up ISO Latin 1 character encoding
+/starnetISO {
+        dup dup findfont dup length dict begin
+        { 1 index /FID ne { def }{ pop pop } ifelse
+        } forall
+        /Encoding EncodingVector def
+        currentdict end definefont
+} def
+/Times-Roman starnetISO def
+/Times-Italic starnetISO def
+/Times-Bold starnetISO def
+/Times-BoldItalic starnetISO def
+/Helvetica starnetISO def
+/Helvetica-Oblique starnetISO def
+/Helvetica-Bold starnetISO def
+/Helvetica-BoldOblique starnetISO def
+/Courier starnetISO def
+/Courier-Oblique starnetISO def
+/Courier-Bold starnetISO def
+/Courier-BoldOblique starnetISO def
+cleartomark
+} bind def
+
+%%BeginResource: procset graphviz 0 0
+/coord-font-family /Times-Roman def
+/default-font-family /Times-Roman def
+/coordfont coord-font-family findfont 8 scalefont def
+
+/InvScaleFactor 1.0 def
+/set_scale {
+       dup 1 exch div /InvScaleFactor exch def
+       scale
+} bind def
+
+% styles
+/solid { [] 0 setdash } bind def
+/dashed { [9 InvScaleFactor mul dup ] 0 setdash } bind def
+/dotted { [1 InvScaleFactor mul 6 InvScaleFactor mul] 0 setdash } bind def
+/invis {/fill {newpath} def /stroke {newpath} def /show {pop newpath} def} bind def
+/bold { 2 setlinewidth } bind def
+/filled { } bind def
+/unfilled { } bind def
+/rounded { } bind def
+/diagonals { } bind def
+/tapered { } bind def
+
+% hooks for setting color 
+/nodecolor { sethsbcolor } bind def
+/edgecolor { sethsbcolor } bind def
+/graphcolor { sethsbcolor } bind def
+/nopcolor {pop pop pop} bind def
+
+/beginpage {	% i j npages
+	/npages exch def
+	/j exch def
+	/i exch def
+	/str 10 string def
+	npages 1 gt {
+		gsave
+			coordfont setfont
+			0 0 moveto
+			(\() show i str cvs show (,) show j str cvs show (\)) show
+		grestore
+	} if
+} bind def
+
+/set_font {
+	findfont exch
+	scalefont setfont
+} def
+
+% draw text fitted to its expected width
+/alignedtext {			% width text
+	/text exch def
+	/width exch def
+	gsave
+		width 0 gt {
+			[] 0 setdash
+			text stringwidth pop width exch sub text length div 0 text ashow
+		} if
+	grestore
+} def
+
+/boxprim {				% xcorner ycorner xsize ysize
+		4 2 roll
+		moveto
+		2 copy
+		exch 0 rlineto
+		0 exch rlineto
+		pop neg 0 rlineto
+		closepath
+} bind def
+
+/ellipse_path {
+	/ry exch def
+	/rx exch def
+	/y exch def
+	/x exch def
+	matrix currentmatrix
+	newpath
+	x y translate
+	rx ry scale
+	0 0 1 0 360 arc
+	setmatrix
+} bind def
+
+/endpage { showpage } bind def
+/showpage { } def
+
+/layercolorseq
+	[	% layer color sequence - darkest to lightest
+		[0 0 0]
+		[.2 .8 .8]
+		[.4 .8 .8]
+		[.6 .8 .8]
+		[.8 .8 .8]
+	]
+def
+
+/layerlen layercolorseq length def
+
+/setlayer {/maxlayer exch def /curlayer exch def
+	layercolorseq curlayer 1 sub layerlen mod get
+	aload pop sethsbcolor
+	/nodecolor {nopcolor} def
+	/edgecolor {nopcolor} def
+	/graphcolor {nopcolor} def
+} bind def
+
+/onlayer { curlayer ne {invis} if } def
+
+/onlayers {
+	/myupper exch def
+	/mylower exch def
+	curlayer mylower lt
+	curlayer myupper gt
+	or
+	{invis} if
+} def
+
+/curlayer 0 def
+
+%%EndResource
+%%EndProlog
+%%BeginSetup
+14 default-font-family set_font
+1 setmiterlimit
+% /arrowlength 10 def
+% /arrowwidth 5 def
+
+% make sure pdfmark is harmless for PS-interpreters other than Distiller
+/pdfmark where {pop} {userdict /pdfmark /cleartomark load put} ifelse
+% make '<<' and '>>' safe on PS Level 1 devices
+/languagelevel where {pop languagelevel}{1} ifelse
+2 lt {
+    userdict (<<) cvn ([) cvn load put
+    userdict (>>) cvn ([) cvn load put
+} if
+
+%%EndSetup
+setupLatin1
+%%Page: 1 1
+%%PageBoundingBox: 36 36 368 537
+%%PageOrientation: Portrait
+0 0 1 beginpage
+gsave
+36 36 332 501 boxprim clip newpath
+1 1 set_scale 0 rotate 40 40 translate
+% Node1
+gsave
+0 0 0 nodecolor
+newpath 114 270.5 moveto
+114 492.5 lineto
+210 492.5 lineto
+210 270.5 lineto
+closepath fill
+1 setlinewidth
+filled
+0 0 1 nodecolor
+newpath 114 270.5 moveto
+114 492.5 lineto
+210 492.5 lineto
+210 270.5 lineto
+closepath stroke
+0 0 1 nodecolor
+10 /Helvetica set_font
+137.5 480.5 moveto 49 (Stack< T >) alignedtext
+1 setlinewidth
+filled
+0 0 1 nodecolor
+newpath 114 473.5 moveto
+210 473.5 lineto
+stroke
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 461.5 moveto 25 (- size) alignedtext
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 450.5 moveto 46 (- topStack) alignedtext
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 439.5 moveto 25 (- data) alignedtext
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 428.5 moveto 80 (- defaultStackSize) alignedtext
+1 setlinewidth
+filled
+0 0 1 nodecolor
+newpath 114 421.5 moveto
+210 421.5 lineto
+stroke
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 409.5 moveto 41 (+ Stack\(\)) alignedtext
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 398.5 moveto 41 (+ Stack\(\)) alignedtext
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 387.5 moveto 41 (+ Stack\(\)) alignedtext
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 376.5 moveto 47 (+ ~Stack\(\)) alignedtext
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 365.5 moveto 63 (+ operator>>\(\)) alignedtext
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 354.5 moveto 63 (+ operator<<\(\)) alignedtext
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 343.5 moveto 49 (+ getData\(\)) alignedtext
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 332.5 moveto 39 (+ isFull\(\)) alignedtext
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 321.5 moveto 52 (+ isEmpty\(\)) alignedtext
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 310.5 moveto 67 (+ getMaxSize\(\)) alignedtext
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 299.5 moveto 70 (+ getTopStack\(\)) alignedtext
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 288.5 moveto 75 (+ getDataCount\(\)) alignedtext
+0 0 1 nodecolor
+10 /Helvetica set_font
+122 277.5 moveto 68 (+ getLastData\(\)) alignedtext
+grestore
+% Node2
+gsave
+[ /Rect [ 0 0 96 223 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI ($class_stack.html) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0 0 0 nodecolor
+newpath 0 .5 moveto
+0 222.5 lineto
+96 222.5 lineto
+96 .5 lineto
+closepath stroke
+0 0 0 nodecolor
+10 /Helvetica set_font
+17 210.5 moveto 62 (Stack< float >) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 0 203.5 moveto
+96 203.5 lineto
+stroke
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 191.5 moveto 25 (- size) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 180.5 moveto 46 (- topStack) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 169.5 moveto 25 (- data) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 158.5 moveto 80 (- defaultStackSize) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 0 151.5 moveto
+96 151.5 lineto
+stroke
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 139.5 moveto 41 (+ Stack\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 128.5 moveto 41 (+ Stack\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 117.5 moveto 41 (+ Stack\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 106.5 moveto 47 (+ ~Stack\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 95.5 moveto 63 (+ operator>>\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 84.5 moveto 63 (+ operator<<\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 73.5 moveto 49 (+ getData\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 62.5 moveto 39 (+ isFull\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 51.5 moveto 52 (+ isEmpty\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 40.5 moveto 67 (+ getMaxSize\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 29.5 moveto 70 (+ getTopStack\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 18.5 moveto 75 (+ getDataCount\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+8 7.5 moveto 68 (+ getLastData\(\)) alignedtext
+grestore
+% Node1->Node2
+gsave
+1 setlinewidth
+dashed
+0.10588 1 1 edgecolor
+newpath 111.2 261.07 moveto
+105.76 248.29 100.25 235.33 94.86 222.67 curveto
+stroke
+0.10588 1 1 edgecolor
+newpath 108 262.5 moveto
+115.14 270.33 lineto
+114.44 259.76 lineto
+closepath fill
+1 setlinewidth
+solid
+0.10588 1 1 edgecolor
+newpath 108 262.5 moveto
+115.14 270.33 lineto
+114.44 259.76 lineto
+closepath stroke
+0 0 0 edgecolor
+10 /Helvetica set_font
+105 244 moveto 37 (< float >) alignedtext
+grestore
+% Node3
+gsave
+[ /Rect [ 114 0 210 223 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI ($class_stack.html) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0 0 0 nodecolor
+newpath 114 .5 moveto
+114 222.5 lineto
+210 222.5 lineto
+210 .5 lineto
+closepath stroke
+0 0 0 nodecolor
+10 /Helvetica set_font
+134.5 210.5 moveto 55 (Stack< int >) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 114 203.5 moveto
+210 203.5 lineto
+stroke
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 191.5 moveto 25 (- size) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 180.5 moveto 46 (- topStack) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 169.5 moveto 25 (- data) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 158.5 moveto 80 (- defaultStackSize) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 114 151.5 moveto
+210 151.5 lineto
+stroke
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 139.5 moveto 41 (+ Stack\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 128.5 moveto 41 (+ Stack\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 117.5 moveto 41 (+ Stack\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 106.5 moveto 47 (+ ~Stack\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 95.5 moveto 63 (+ operator>>\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 84.5 moveto 63 (+ operator<<\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 73.5 moveto 49 (+ getData\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 62.5 moveto 39 (+ isFull\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 51.5 moveto 52 (+ isEmpty\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 40.5 moveto 67 (+ getMaxSize\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 29.5 moveto 70 (+ getTopStack\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 18.5 moveto 75 (+ getDataCount\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+122 7.5 moveto 68 (+ getLastData\(\)) alignedtext
+grestore
+% Node1->Node3
+gsave
+1 setlinewidth
+dashed
+0.10588 1 1 edgecolor
+newpath 162 260.32 moveto
+162 247.79 162 235.09 162 222.67 curveto
+stroke
+0.10588 1 1 edgecolor
+newpath 158.5 260.33 moveto
+162 270.33 lineto
+165.5 260.33 lineto
+closepath fill
+1 setlinewidth
+solid
+0.10588 1 1 edgecolor
+newpath 158.5 260.33 moveto
+162 270.33 lineto
+165.5 260.33 lineto
+closepath stroke
+0 0 0 edgecolor
+10 /Helvetica set_font
+162 244 moveto 29 (< int >) alignedtext
+grestore
+% Node4
+gsave
+[ /Rect [ 228 0 324 223 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI ($class_stack.html) >>
+  /Subtype /Link
+/ANN pdfmark
+1 setlinewidth
+0 0 0 nodecolor
+newpath 228 .5 moveto
+228 222.5 lineto
+324 222.5 lineto
+324 .5 lineto
+closepath stroke
+0 0 0 nodecolor
+10 /Helvetica set_font
+242 210.5 moveto 68 (Stack< string >) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 228 203.5 moveto
+324 203.5 lineto
+stroke
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 191.5 moveto 25 (- size) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 180.5 moveto 46 (- topStack) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 169.5 moveto 25 (- data) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 158.5 moveto 80 (- defaultStackSize) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 228 151.5 moveto
+324 151.5 lineto
+stroke
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 139.5 moveto 41 (+ Stack\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 128.5 moveto 41 (+ Stack\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 117.5 moveto 41 (+ Stack\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 106.5 moveto 47 (+ ~Stack\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 95.5 moveto 63 (+ operator>>\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 84.5 moveto 63 (+ operator<<\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 73.5 moveto 49 (+ getData\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 62.5 moveto 39 (+ isFull\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 51.5 moveto 52 (+ isEmpty\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 40.5 moveto 67 (+ getMaxSize\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 29.5 moveto 70 (+ getTopStack\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 18.5 moveto 75 (+ getDataCount\(\)) alignedtext
+0 0 0 nodecolor
+10 /Helvetica set_font
+236 7.5 moveto 68 (+ getLastData\(\)) alignedtext
+grestore
+% Node1->Node4
+gsave
+1 setlinewidth
+dashed
+0.10588 1 1 edgecolor
+newpath 212.8 261.07 moveto
+218.24 248.29 223.75 235.33 229.14 222.67 curveto
+stroke
+0.10588 1 1 edgecolor
+newpath 209.56 259.76 moveto
+208.86 270.33 lineto
+216 262.5 lineto
+closepath fill
+1 setlinewidth
+solid
+0.10588 1 1 edgecolor
+newpath 209.56 259.76 moveto
+208.86 270.33 lineto
+216 262.5 lineto
+closepath stroke
+0 0 0 edgecolor
+10 /Helvetica set_font
+219 244 moveto 43 (< string >) alignedtext
+grestore
+endpage
+showpage
+grestore
+%%PageTrailer
+%%EndPage: 1
+%%Trailer
+%%Pages: 1
+%%BoundingBox: 36 36 368 537
+end
+restore
+%%EOF
