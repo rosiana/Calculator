@@ -229,19 +229,17 @@ void superkalkulator::Input(string input){
 		cout<<".....Ekspresi....."<<endl;
 		ArabCalc *arab;
 		RomanCalc *roman;
-		cout<<"Check"<<CheckEkspresiType(input)<<endl;
-		cout<<"Input"<<input<<endl;
 		if(CheckEkspresiType(input) == modekalkulator || (modekalkulator == 1 && CheckEkspresiType(input) == 0) || (modekalkulator == 2 && CheckEkspresiType(input) == 0))
 		{
 			switch(modekalkulator)
 			{
-				case 1 : cout<<"Running Kalk Arab ";
+				case 1 : cout<<"Running Kalk Arab "<<endl;
 						arab = new ArabCalc(input,modeekspresi,70);
 						cout<<"Hasil "<<arab->Calculate()<<endl;
 						break;
-				case 2 : cout<<"Running Kalk Logika ";
+				case 2 : cout<<"Running Kalk Logika "<<endl;
 						break;
-				case 3 : cout<<"Running Kalk Romawi ";
+				case 3 : cout<<"Running Kalk Romawi "<<endl;
 						roman = new RomanCalc(input,modeekspresi,70);
 						cout<<"Hasil "<<roman->Calculate()<<endl;
 						break;

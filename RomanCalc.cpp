@@ -305,18 +305,15 @@ int RomanCalc::CalculatePrefix() {
 	string tempekspresi = ekspresi;
     len = tempekspresi.length();
     j = 0;
-
     for(i=len-1; i>=0; i--){
 
-        if(tempekspresi[0] == 'M' || tempekspresi[0] == 'D' || tempekspresi[0] == 'C' || tempekspresi[0] == 'L' || tempekspresi[0] == 'X'
-		|| tempekspresi[0] == 'V'|| tempekspresi[0] == 'I'){
+        if(tempekspresi[i] == 'M' || tempekspresi[i] == 'D' || tempekspresi[i] == 'C' || tempekspresi[i] == 'L' || tempekspresi[i] == 'X'
+		|| tempekspresi[i] == 'V'|| tempekspresi[i] == 'I'){
             buffer[j++] = tempekspresi[i];
         }
 		
         else if(tempekspresi[i]==' '){
             if(j>0){
-				cout<<"Masuk"<<buffer<<endl;
-				cout<<"Buffer"<<buffer<<endl;
                 buffer[j] = '\0';
                 x = RomantoDec(buffer);
                 s<<x;
@@ -360,25 +357,28 @@ int RomanCalc::CalculatePrefix() {
  * @brief Penghitungan mode postfix
  */
 int RomanCalc::CalculatePostfix() {
-    string buffer;
+
     int i,op1, op2, len, j, x;
     Stack<int> s;
 	string ekspresitemp = ekspresi;
     len = ekspresitemp.length();
     j = 0;
+	string buffer;
 	int dumpint;
     for(i=0; i<len;i++){
 
-        if(ekspresitemp[0] == 'M' || ekspresitemp[0] == 'D' || ekspresitemp[0] == 'C' || ekspresitemp[0] == 'L' || ekspresitemp[0] == 'X'
-		|| ekspresitemp[0] == 'V'|| ekspresitemp[0] == 'I'){
+        if(ekspresitemp[i] == 'M' || ekspresitemp[i] == 'D' || ekspresitemp[i] == 'C' || ekspresitemp[i] == 'L' || ekspresitemp[i] == 'X'
+		|| ekspresitemp[i] == 'V'|| ekspresitemp[i] == 'I'){
             buffer += ekspresitemp.substr(i,1);
+			cout<<ekspresitemp.substr(i,1)<<":"<<buffer<<endl;
 			j++;
         }
         else if(ekspresitemp[i]==' '){
             if(j>0){
-				cout<<"Buffer"<<buffer<<endl;
                 x = RomantoDec(buffer);
                 s<<x;
+				buffer.erase(0,j);
+				j=0;
             }
         }
         else if(ekspresitemp[i]=='+' || ekspresitemp[i]=='-' || ekspresitemp[i]=='*' || ekspresitemp[i]==':' || ekspresitemp[i]=='%' || ekspresitemp[i]=='/'){
