@@ -12,164 +12,290 @@
     <li id="current"><a href="files.html"><span>Files</span></a></li>
     <li><a href="dirs.html"><span>Directories</span></a></li>
   </ul></div>
+<div class="tabs">
+  <ul>
+    <li><a href="files.html"><span>File&nbsp;List</span></a></li>
+    <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
+  </ul></div>
 <div class="nav">
 <a class="el" href="dir_C_3A_2FUsers_2F.html">Users</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_C_3A_2FUsers_2FRosi_2F.html">Rosi</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_C_3A_2FUsers_2FRosi_2FDesktop_2F.html">Desktop</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_C_3A_2FUsers_2FRosi_2FDesktop_2Fbelajar_2F.html">belajar</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_C_3A_2FUsers_2FRosi_2FDesktop_2Fbelajar_2FCalculator_2F.html">Calculator</a></div>
-<h1>ArabCalc.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include &lt;iostream&gt;</span>
-<a name="l00002"></a>00002 <span class="preprocessor">#include &lt;stdlib.h&gt;</span>
-<a name="l00003"></a>00003 
-<a name="l00004"></a>00004 <span class="preprocessor">#include "ArabCalc.h"</span>
-<a name="l00005"></a>00005 
-<a name="l00006"></a>00006 <span class="keyword">using namespace </span>std;
-<a name="l00007"></a>00007 
-<a name="l00008"></a><a class="code" href="class_arab_calc.html#b8753fcf7122ff1c02af495cd391ec04">00008</a> <a class="code" href="class_arab_calc.html#b8753fcf7122ff1c02af495cd391ec04">ArabCalc::ArabCalc</a>(string ekspresi,<span class="keywordtype">int</span> mode,<span class="keywordtype">int</span> size) :bil(size),operatorx(size){
-<a name="l00009"></a>00009         this-&gt;ekspresi = ekspresi;
-<a name="l00010"></a>00010         this-&gt;mode = mode;
-<a name="l00011"></a>00011 }
+<h1>ArabCalc.cpp</h1><a href="_arab_calc_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00008"></a>00008 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<a name="l00010"></a>00010 
+<a name="l00011"></a>00011 <span class="preprocessor">#include "<a class="code" href="_arab_calc_8h.html">ArabCalc.h</a>"</span>
 <a name="l00012"></a>00012 
-<a name="l00013"></a><a class="code" href="class_arab_calc.html#3f083162c86a86c8f5039f4c1e033e4e">00013</a> <a class="code" href="class_arab_calc.html#3f083162c86a86c8f5039f4c1e033e4e">ArabCalc::~ArabCalc</a>(){
-<a name="l00014"></a>00014         <span class="comment">//no memory to free</span>
-<a name="l00015"></a>00015 }
-<a name="l00016"></a>00016 
-<a name="l00017"></a><a class="code" href="class_arab_calc.html#ef3b608a0cfab3929e1afe02afe9e580">00017</a> <span class="keywordtype">float</span> <a class="code" href="class_arab_calc.html#ef3b608a0cfab3929e1afe02afe9e580">ArabCalc::Calculate</a>(){
-<a name="l00018"></a>00018         <span class="keywordtype">float</span> hasil;
-<a name="l00019"></a>00019         <span class="keywordflow">if</span>(mode == 2) <span class="comment">//Sufix</span>
-<a name="l00020"></a>00020         {
-<a name="l00021"></a>00021                 hasil = <a class="code" href="class_arab_calc.html#bef31d5dcaf6b2f26dc145c04d823cd8">CalculateSufix</a>();
-<a name="l00022"></a>00022         }
-<a name="l00023"></a>00023         <span class="keywordflow">return</span> hasil;
-<a name="l00024"></a>00024 }
-<a name="l00025"></a>00025 
-<a name="l00026"></a><a class="code" href="class_arab_calc.html#bef31d5dcaf6b2f26dc145c04d823cd8">00026</a> <span class="keywordtype">float</span> <a class="code" href="class_arab_calc.html#bef31d5dcaf6b2f26dc145c04d823cd8">ArabCalc::CalculateSufix</a>(){
-<a name="l00027"></a>00027         string dumpoperator;
-<a name="l00028"></a>00028         <span class="keywordtype">float</span> dumpbil;
-<a name="l00029"></a>00029         <span class="keywordtype">float</span> hasil;
-<a name="l00030"></a>00030         string ekspresitemp = ekspresi;
-<a name="l00031"></a>00031         <span class="keywordflow">while</span>(ekspresitemp.length() != 0)
-<a name="l00032"></a>00032         {
-<a name="l00033"></a>00033                 <span class="keywordtype">char</span> *temp =  <span class="keyword">new</span> <span class="keywordtype">char</span>[30];
-<a name="l00034"></a>00034                 <span class="keywordtype">int</span> isCompleteRead = 0;
-<a name="l00035"></a>00035                 <span class="keywordtype">int</span> ctemp = 0;
-<a name="l00036"></a>00036                 <span class="keywordflow">while</span>(ekspresitemp[0] == <span class="charliteral">'0'</span> || ekspresitemp[0] == <span class="charliteral">'1'</span> || ekspresitemp[0] == <span class="charliteral">'2'</span> || ekspresitemp[0] == <span class="charliteral">'3'</span> || ekspresitemp[0] == <span class="charliteral">'4'</span> || ekspresitemp[0] == <span class="charliteral">'5'</span>
-<a name="l00037"></a>00037                 || ekspresitemp[0] == <span class="charliteral">'6'</span>|| ekspresitemp[0] == <span class="charliteral">'7'</span> || ekspresitemp[0] == <span class="charliteral">'8'</span> || ekspresitemp[0] == <span class="charliteral">'9'</span> || ekspresitemp[0] == <span class="charliteral">'.'</span>)
-<a name="l00038"></a>00038                 {       
-<a name="l00039"></a>00039                         temp[ctemp] = ekspresitemp[0];
-<a name="l00040"></a>00040                         ekspresitemp.erase(0,1);
-<a name="l00041"></a>00041                         ctemp++;
-<a name="l00042"></a>00042                         isCompleteRead = 1;
-<a name="l00043"></a>00043                 }
-<a name="l00044"></a>00044                 <span class="keywordflow">if</span>(isCompleteRead == 1)
-<a name="l00045"></a>00045                 {       
-<a name="l00046"></a>00046                         bil&lt;&lt; atof(temp);
-<a name="l00047"></a>00047                 }
-<a name="l00048"></a>00048                 <span class="keywordflow">if</span>(ekspresitemp[0] == <span class="charliteral">'+'</span> || ekspresitemp[0] == <span class="charliteral">'-'</span> || ekspresitemp[0] == <span class="charliteral">'*'</span> || ekspresitemp[0] == <span class="charliteral">':'</span> || ekspresitemp[0] == <span class="charliteral">'/'</span> || ekspresitemp[0] == <span class="charliteral">'%'</span> || ekspresitemp[0] == <span class="charliteral">'('</span>|| ekspresitemp[0] == <span class="charliteral">')'</span>)
-<a name="l00049"></a>00049                 {
-<a name="l00050"></a>00050                         <span class="keywordflow">if</span>(operatorx.isEmpty() || ekspresitemp[0] == <span class="charliteral">'('</span>)
-<a name="l00051"></a>00051                         {
-<a name="l00052"></a>00052                                 operatorx&lt;&lt;ekspresitemp.substr(0,1);
-<a name="l00053"></a>00053                                 
-<a name="l00054"></a>00054                         }
-<a name="l00055"></a>00055                         <span class="keywordflow">else</span>
-<a name="l00056"></a>00056                         {
-<a name="l00057"></a>00057                                 <span class="keywordflow">if</span>(ekspresitemp[0] == <span class="charliteral">'+'</span> || ekspresitemp[0] == <span class="charliteral">'-'</span>)
-<a name="l00058"></a>00058                                 {
-<a name="l00059"></a>00059                                         <span class="keywordflow">if</span>(operatorx.getLastData() == <span class="stringliteral">"*"</span> || operatorx.getLastData() == <span class="stringliteral">":"</span>|| operatorx.getLastData() == <span class="stringliteral">"/"</span> || operatorx.getLastData() == <span class="stringliteral">"%"</span> || operatorx.getLastData() == <span class="stringliteral">"+"</span> || operatorx.getLastData() == <span class="stringliteral">"-"</span>)
-<a name="l00060"></a>00060                                         {
-<a name="l00061"></a>00061                                                 SmallCalculate(bil,operatorx);
-<a name="l00062"></a>00062                                                 operatorx&lt;&lt;ekspresitemp.substr(0,1);
-<a name="l00063"></a>00063                                         }
-<a name="l00064"></a>00064                                         <span class="keywordflow">else</span>
-<a name="l00065"></a>00065                                         {
-<a name="l00066"></a>00066                                                 operatorx&lt;&lt;ekspresitemp.substr(0,1);
-<a name="l00067"></a>00067                                                 
-<a name="l00068"></a>00068                                         }
-<a name="l00069"></a>00069                                 }
-<a name="l00070"></a>00070                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(ekspresitemp[0] == <span class="charliteral">'*'</span> || ekspresitemp[0] == <span class="charliteral">'/'</span> || ekspresitemp[0] == <span class="charliteral">'%'</span> || ekspresitemp[0] == <span class="charliteral">':'</span>)
-<a name="l00071"></a>00071                                 {
-<a name="l00072"></a>00072                                         
-<a name="l00073"></a>00073                                         <span class="keywordflow">if</span>(operatorx.getLastData() == <span class="stringliteral">"*"</span> || operatorx.getLastData() == <span class="stringliteral">"/"</span> || operatorx.getLastData() == <span class="stringliteral">":"</span>  || operatorx.getLastData() == <span class="stringliteral">"%"</span>)
-<a name="l00074"></a>00074                                         {
-<a name="l00075"></a>00075                                                 SmallCalculate(bil,operatorx);
-<a name="l00076"></a>00076                                                 operatorx&lt;&lt;ekspresitemp.substr(0,1);
-<a name="l00077"></a>00077                                         }
-<a name="l00078"></a>00078                                         <span class="keywordflow">else</span>
-<a name="l00079"></a>00079                                         {
-<a name="l00080"></a>00080                                                 operatorx&lt;&lt;ekspresitemp.substr(0,1);
-<a name="l00081"></a>00081                                         }
-<a name="l00082"></a>00082                                 }
-<a name="l00083"></a>00083                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(ekspresitemp[0] == <span class="charliteral">')'</span>)
-<a name="l00084"></a>00084                                 {
-<a name="l00085"></a>00085                                         <span class="keywordflow">while</span>(operatorx.getLastData() != <span class="stringliteral">"("</span>)
-<a name="l00086"></a>00086                                         {
-<a name="l00087"></a>00087                                                 SmallCalculate(bil,operatorx);
-<a name="l00088"></a>00088                                         }
-<a name="l00089"></a>00089                                         operatorx&gt;&gt;dumpoperator;
-<a name="l00090"></a>00090                                 }
-<a name="l00091"></a>00091                                 
-<a name="l00092"></a>00092                         }
-<a name="l00093"></a>00093                         ekspresitemp.erase(0,1);
-<a name="l00094"></a>00094                 }
-<a name="l00095"></a>00095         }
-<a name="l00096"></a>00096         <span class="keywordflow">while</span>(!operatorx.isEmpty())
-<a name="l00097"></a>00097         {
-<a name="l00098"></a>00098                 SmallCalculate(bil,operatorx);
+<a name="l00013"></a>00013 <span class="keyword">using namespace </span>std;
+<a name="l00014"></a>00014 
+<a name="l00019"></a><a class="code" href="class_arab_calc.html#b8753fcf7122ff1c02af495cd391ec04">00019</a> <a class="code" href="class_arab_calc.html#b8753fcf7122ff1c02af495cd391ec04">ArabCalc::ArabCalc</a>(string ekspresi,<span class="keywordtype">int</span> mode,<span class="keywordtype">int</span> size) :bil(size),operatorx(size){
+<a name="l00020"></a>00020         this-&gt;ekspresi = ekspresi;
+<a name="l00021"></a>00021         this-&gt;mode = mode;
+<a name="l00022"></a>00022 }
+<a name="l00023"></a>00023 
+<a name="l00028"></a><a class="code" href="class_arab_calc.html#3f083162c86a86c8f5039f4c1e033e4e">00028</a> <a class="code" href="class_arab_calc.html#3f083162c86a86c8f5039f4c1e033e4e">ArabCalc::~ArabCalc</a>(){
+<a name="l00029"></a>00029         <span class="comment">//no memory to free</span>
+<a name="l00030"></a>00030 }
+<a name="l00031"></a>00031 
+<a name="l00036"></a><a class="code" href="class_arab_calc.html#ef3b608a0cfab3929e1afe02afe9e580">00036</a> <span class="keywordtype">float</span> <a class="code" href="class_arab_calc.html#ef3b608a0cfab3929e1afe02afe9e580">ArabCalc::Calculate</a>(){
+<a name="l00037"></a>00037         <span class="keywordtype">float</span> hasil;
+<a name="l00038"></a>00038         <span class="keywordflow">if</span>(mode == 1)
+<a name="l00039"></a>00039     {
+<a name="l00040"></a>00040                 hasil = <a class="code" href="class_arab_calc.html#968d7f0f8876ad0fb9a25576e0f0e7c6">CalculatePrefix</a>();
+<a name="l00041"></a>00041         }
+<a name="l00042"></a>00042         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(mode == 2)
+<a name="l00043"></a>00043         {
+<a name="l00044"></a>00044                 hasil = CalculateInfix();
+<a name="l00045"></a>00045         }
+<a name="l00046"></a>00046         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(mode == 3)
+<a name="l00047"></a>00047         {
+<a name="l00048"></a>00048                 hasil = CalculatePostfix();
+<a name="l00049"></a>00049         }
+<a name="l00050"></a>00050         <span class="keywordflow">return</span> hasil;
+<a name="l00051"></a>00051 }
+<a name="l00052"></a>00052 
+<a name="l00057"></a><a class="code" href="class_arab_calc.html#39d423c5d2e7a2c63c57b26c42a65915">00057</a> <span class="keywordtype">void</span> <a class="code" href="class_arab_calc.html#39d423c5d2e7a2c63c57b26c42a65915">ArabCalc::SmallCalculate</a>(Stack&lt;float&gt; &amp;bil,Stack&lt;string&gt; &amp;operatorx)
+<a name="l00058"></a>00058 {
+<a name="l00059"></a>00059         <span class="keywordtype">float</span> popbil1;
+<a name="l00060"></a>00060         <span class="keywordtype">float</span> popbil2;
+<a name="l00061"></a>00061         string dumpoperator;
+<a name="l00062"></a>00062         <span class="keywordtype">float</span> dumpbil;
+<a name="l00063"></a>00063         popbil1 = bil.<a class="code" href="class_stack.html#56eaad5e56d8d809ba7ccd52524c1d43">getLastData</a>();
+<a name="l00064"></a>00064         bil&gt;&gt;dumpbil;
+<a name="l00065"></a>00065         popbil2 = bil.<a class="code" href="class_stack.html#56eaad5e56d8d809ba7ccd52524c1d43">getLastData</a>();
+<a name="l00066"></a>00066         bil&gt;&gt;dumpbil;
+<a name="l00067"></a>00067         string popoperator = operatorx.getLastData();
+<a name="l00068"></a>00068         operatorx&gt;&gt;dumpoperator;
+<a name="l00069"></a>00069         <span class="keywordflow">if</span>(popoperator == <span class="stringliteral">"*"</span>)
+<a name="l00070"></a>00070         {
+<a name="l00071"></a>00071                 bil&lt;&lt; popbil2*popbil1;
+<a name="l00072"></a>00072         }
+<a name="l00073"></a>00073         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(popoperator == <span class="stringliteral">":"</span>)
+<a name="l00074"></a>00074         {
+<a name="l00075"></a>00075                 bil&lt;&lt; popbil2/popbil1;
+<a name="l00076"></a>00076         }
+<a name="l00077"></a>00077         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(popoperator == <span class="stringliteral">"/"</span>)
+<a name="l00078"></a>00078         {
+<a name="l00079"></a>00079                 <span class="keywordtype">int</span> a = (<span class="keywordtype">int</span>) floor(popbil2/popbil1 + 0.5);
+<a name="l00080"></a>00080                 bil&lt;&lt; a;
+<a name="l00081"></a>00081         }
+<a name="l00082"></a>00082         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(popoperator == <span class="stringliteral">"%"</span>)
+<a name="l00083"></a>00083         {
+<a name="l00084"></a>00084                 <span class="keywordtype">int</span> tempint1 = (<span class="keywordtype">int</span>) floor(popbil1 + 0.5);
+<a name="l00085"></a>00085                 <span class="keywordtype">int</span> tempint2 = (int) floor(popbil2 + 0.5);
+<a name="l00086"></a>00086                 <span class="keywordtype">float</span> hasil = (float)(tempint2%tempint1);
+<a name="l00087"></a>00087                 bil&lt;&lt; hasil;
+<a name="l00088"></a>00088         }
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(popoperator == <span class="stringliteral">"+"</span>)
+<a name="l00091"></a>00091         {
+<a name="l00092"></a>00092                 bil&lt;&lt; popbil2+popbil1;
+<a name="l00093"></a>00093         }
+<a name="l00094"></a>00094         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(popoperator == <span class="stringliteral">"-"</span>)
+<a name="l00095"></a>00095         {
+<a name="l00096"></a>00096                 bil&lt;&lt; popbil2-popbil1;
+<a name="l00097"></a>00097         }
+<a name="l00098"></a>00098 }
 <a name="l00099"></a>00099 
-<a name="l00100"></a>00100         }
-<a name="l00101"></a>00101         hasil = bil.getLastData();
-<a name="l00102"></a>00102         <span class="comment">//Cleaning</span>
-<a name="l00103"></a>00103         <span class="keywordflow">while</span>(!bil.isEmpty())
-<a name="l00104"></a>00104         {
-<a name="l00105"></a>00105                 bil&gt;&gt;dumpbil;
-<a name="l00106"></a>00106         }
-<a name="l00107"></a>00107         <span class="keywordflow">while</span>(!operatorx.isEmpty())
-<a name="l00108"></a>00108         {
-<a name="l00109"></a>00109                 operatorx&gt;&gt;dumpoperator;
-<a name="l00110"></a>00110         }
-<a name="l00111"></a>00111         <span class="keywordflow">return</span> hasil;
-<a name="l00112"></a>00112 }
-<a name="l00113"></a>00113 
-<a name="l00114"></a><a class="code" href="class_arab_calc.html#39d423c5d2e7a2c63c57b26c42a65915">00114</a> <span class="keywordtype">void</span> <a class="code" href="class_arab_calc.html#39d423c5d2e7a2c63c57b26c42a65915">ArabCalc::SmallCalculate</a>(Stack&lt;float&gt; &amp;bil,Stack&lt;string&gt; &amp;operatorx)
-<a name="l00115"></a>00115 {
-<a name="l00116"></a>00116         <span class="keywordtype">float</span> popbil1;
-<a name="l00117"></a>00117         <span class="keywordtype">float</span> popbil2;
-<a name="l00118"></a>00118         string dumpoperator;
-<a name="l00119"></a>00119         <span class="keywordtype">float</span> dumpbil;
-<a name="l00120"></a>00120         popbil1 = bil.getLastData();
-<a name="l00121"></a>00121         bil&gt;&gt;dumpbil;
-<a name="l00122"></a>00122         popbil2 = bil.getLastData();
-<a name="l00123"></a>00123         bil&gt;&gt;dumpbil;
-<a name="l00124"></a>00124         string popoperator = operatorx.getLastData();
-<a name="l00125"></a>00125         operatorx&gt;&gt;dumpoperator;
-<a name="l00126"></a>00126         <span class="keywordflow">if</span>(popoperator == <span class="stringliteral">"*"</span>)
-<a name="l00127"></a>00127         {
-<a name="l00128"></a>00128                 bil&lt;&lt; popbil2*popbil1;
-<a name="l00129"></a>00129         }
-<a name="l00130"></a>00130         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(popoperator == <span class="stringliteral">":"</span>)
-<a name="l00131"></a>00131         {
-<a name="l00132"></a>00132                 bil&lt;&lt; popbil2/popbil1;
-<a name="l00133"></a>00133         }
-<a name="l00134"></a>00134         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(popoperator == <span class="stringliteral">"/"</span>)
-<a name="l00135"></a>00135         {
-<a name="l00136"></a>00136                 <span class="keywordtype">int</span> a = (<span class="keywordtype">int</span>) floor(popbil2/popbil1 + 0.5);
-<a name="l00137"></a>00137                 bil&lt;&lt; a;
-<a name="l00138"></a>00138         }
-<a name="l00139"></a>00139         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(popoperator == <span class="stringliteral">"%"</span>)
-<a name="l00140"></a>00140         {       
-<a name="l00141"></a>00141                 <span class="keywordtype">int</span> tempint1 = (<span class="keywordtype">int</span>) floor(popbil1 + 0.5);
-<a name="l00142"></a>00142                 <span class="keywordtype">int</span> tempint2 = (int) floor(popbil2 + 0.5);
-<a name="l00143"></a>00143                 <span class="keywordtype">float</span> hasil = (float)(tempint2%tempint1);
-<a name="l00144"></a>00144                 bil&lt;&lt; hasil;
-<a name="l00145"></a>00145         }
-<a name="l00146"></a>00146         
-<a name="l00147"></a>00147         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(popoperator == <span class="stringliteral">"+"</span>)
-<a name="l00148"></a>00148         {
-<a name="l00149"></a>00149                 bil&lt;&lt; popbil2+popbil1;
-<a name="l00150"></a>00150         }
-<a name="l00151"></a>00151         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(popoperator == <span class="stringliteral">"-"</span>)
-<a name="l00152"></a>00152         {
-<a name="l00153"></a>00153                 bil&lt;&lt; popbil2-popbil1;
-<a name="l00154"></a>00154         }
-<a name="l00155"></a>00155 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Thu Mar 19 02:12:54 2015 for Calculator by&nbsp;
+<a name="l00104"></a><a class="code" href="class_arab_calc.html#39a440cd99043f8ef3809d8191620779">00104</a> <span class="keywordtype">float</span> <a class="code" href="class_arab_calc.html#39a440cd99043f8ef3809d8191620779">ArabCalc::CalculateInfix</a>(){
+<a name="l00105"></a>00105         string dumpoperator;
+<a name="l00106"></a>00106         <span class="keywordtype">float</span> dumpbil;
+<a name="l00107"></a>00107         <span class="keywordtype">float</span> hasil;
+<a name="l00108"></a>00108         string ekspresitemp = ekspresi;
+<a name="l00109"></a>00109         <span class="keywordflow">while</span>(ekspresitemp.length() != 0)
+<a name="l00110"></a>00110         {
+<a name="l00111"></a>00111                 <span class="keywordtype">char</span> *temp =  <span class="keyword">new</span> <span class="keywordtype">char</span>[30];
+<a name="l00112"></a>00112                 <span class="keywordtype">int</span> isCompleteRead = 0;
+<a name="l00113"></a>00113                 <span class="keywordtype">int</span> ctemp = 0;
+<a name="l00114"></a>00114                 <span class="keywordflow">while</span>(ekspresitemp[0] == <span class="charliteral">'0'</span> || ekspresitemp[0] == <span class="charliteral">'1'</span> || ekspresitemp[0] == <span class="charliteral">'2'</span> || ekspresitemp[0] == <span class="charliteral">'3'</span> || ekspresitemp[0] == <span class="charliteral">'4'</span> || ekspresitemp[0] == <span class="charliteral">'5'</span>
+<a name="l00115"></a>00115                 || ekspresitemp[0] == <span class="charliteral">'6'</span>|| ekspresitemp[0] == <span class="charliteral">'7'</span> || ekspresitemp[0] == <span class="charliteral">'8'</span> || ekspresitemp[0] == <span class="charliteral">'9'</span> || ekspresitemp[0] == <span class="charliteral">'.'</span>)
+<a name="l00116"></a>00116                 {
+<a name="l00117"></a>00117                         temp[ctemp] = ekspresitemp[0];
+<a name="l00118"></a>00118                         ekspresitemp.erase(0,1);
+<a name="l00119"></a>00119                         ctemp++;
+<a name="l00120"></a>00120                         isCompleteRead = 1;
+<a name="l00121"></a>00121                 }
+<a name="l00122"></a>00122                 <span class="keywordflow">if</span>(isCompleteRead == 1)
+<a name="l00123"></a>00123                 {
+<a name="l00124"></a>00124                         bil&lt;&lt; atof(temp);
+<a name="l00125"></a>00125                 }
+<a name="l00126"></a>00126                 <span class="keywordflow">if</span>(ekspresitemp[0] == <span class="charliteral">'+'</span> || ekspresitemp[0] == <span class="charliteral">'-'</span> || ekspresitemp[0] == <span class="charliteral">'*'</span> || ekspresitemp[0] == <span class="charliteral">':'</span> || ekspresitemp[0] == <span class="charliteral">'/'</span> || ekspresitemp[0] == <span class="charliteral">'%'</span> || ekspresitemp[0] == <span class="charliteral">'('</span>|| ekspresitemp[0] == <span class="charliteral">')'</span>)
+<a name="l00127"></a>00127                 {
+<a name="l00128"></a>00128                         <span class="keywordflow">if</span>(operatorx.isEmpty() || ekspresitemp[0] == <span class="charliteral">'('</span>)
+<a name="l00129"></a>00129                         {
+<a name="l00130"></a>00130                                 operatorx&lt;&lt;ekspresitemp.substr(0,1);
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132                         }
+<a name="l00133"></a>00133                         <span class="keywordflow">else</span>
+<a name="l00134"></a>00134                         {
+<a name="l00135"></a>00135                                 <span class="keywordflow">if</span>(ekspresitemp[0] == <span class="charliteral">'+'</span> || ekspresitemp[0] == <span class="charliteral">'-'</span>)
+<a name="l00136"></a>00136                                 {
+<a name="l00137"></a>00137                                         <span class="keywordflow">if</span>(operatorx.getLastData() == <span class="stringliteral">"*"</span> || operatorx.getLastData() == <span class="stringliteral">":"</span>|| operatorx.getLastData() == <span class="stringliteral">"/"</span> || operatorx.getLastData() == <span class="stringliteral">"%"</span> || operatorx.getLastData() == <span class="stringliteral">"+"</span> || operatorx.getLastData() == <span class="stringliteral">"-"</span>)
+<a name="l00138"></a>00138                                         {
+<a name="l00139"></a>00139                                                 SmallCalculate(bil,operatorx);
+<a name="l00140"></a>00140                                                 operatorx&lt;&lt;ekspresitemp.substr(0,1);
+<a name="l00141"></a>00141                                         }
+<a name="l00142"></a>00142                                         <span class="keywordflow">else</span>
+<a name="l00143"></a>00143                                         {
+<a name="l00144"></a>00144                                                 operatorx&lt;&lt;ekspresitemp.substr(0,1);
+<a name="l00145"></a>00145 
+<a name="l00146"></a>00146                                         }
+<a name="l00147"></a>00147                                 }
+<a name="l00148"></a>00148                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(ekspresitemp[0] == <span class="charliteral">'*'</span> || ekspresitemp[0] == <span class="charliteral">'/'</span> || ekspresitemp[0] == <span class="charliteral">'%'</span> || ekspresitemp[0] == <span class="charliteral">':'</span>)
+<a name="l00149"></a>00149                                 {
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151                                         <span class="keywordflow">if</span>(operatorx.getLastData() == <span class="stringliteral">"*"</span> || operatorx.getLastData() == <span class="stringliteral">"/"</span> || operatorx.getLastData() == <span class="stringliteral">":"</span>  || operatorx.getLastData() == <span class="stringliteral">"%"</span>)
+<a name="l00152"></a>00152                                         {
+<a name="l00153"></a>00153                                                 SmallCalculate(bil,operatorx);
+<a name="l00154"></a>00154                                                 operatorx&lt;&lt;ekspresitemp.substr(0,1);
+<a name="l00155"></a>00155                                         }
+<a name="l00156"></a>00156                                         <span class="keywordflow">else</span>
+<a name="l00157"></a>00157                                         {
+<a name="l00158"></a>00158                                                 operatorx&lt;&lt;ekspresitemp.substr(0,1);
+<a name="l00159"></a>00159                                         }
+<a name="l00160"></a>00160                                 }
+<a name="l00161"></a>00161                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(ekspresitemp[0] == <span class="charliteral">')'</span>)
+<a name="l00162"></a>00162                                 {
+<a name="l00163"></a>00163                                         <span class="keywordflow">while</span>(operatorx.getLastData() != <span class="stringliteral">"("</span>)
+<a name="l00164"></a>00164                                         {
+<a name="l00165"></a>00165                                                 SmallCalculate(bil,operatorx);
+<a name="l00166"></a>00166                                         }
+<a name="l00167"></a>00167                                         operatorx&gt;&gt;dumpoperator;
+<a name="l00168"></a>00168                                 }
+<a name="l00169"></a>00169 
+<a name="l00170"></a>00170                         }
+<a name="l00171"></a>00171                         ekspresitemp.erase(0,1);
+<a name="l00172"></a>00172                 }
+<a name="l00173"></a>00173         }
+<a name="l00174"></a>00174         <span class="keywordflow">while</span>(!operatorx.isEmpty())
+<a name="l00175"></a>00175         {
+<a name="l00176"></a>00176                 SmallCalculate(bil,operatorx);
+<a name="l00177"></a>00177 
+<a name="l00178"></a>00178         }
+<a name="l00179"></a>00179         hasil = bil.getLastData();
+<a name="l00180"></a>00180         <span class="comment">//Cleaning</span>
+<a name="l00181"></a>00181         <span class="keywordflow">while</span>(!bil.isEmpty())
+<a name="l00182"></a>00182         {
+<a name="l00183"></a>00183                 bil&gt;&gt;dumpbil;
+<a name="l00184"></a>00184         }
+<a name="l00185"></a>00185         <span class="keywordflow">while</span>(!operatorx.isEmpty())
+<a name="l00186"></a>00186         {
+<a name="l00187"></a>00187                 operatorx&gt;&gt;dumpoperator;
+<a name="l00188"></a>00188         }
+<a name="l00189"></a>00189         <span class="keywordflow">return</span> hasil;
+<a name="l00190"></a>00190 }
+<a name="l00191"></a>00191 
+<a name="l00196"></a><a class="code" href="class_arab_calc.html#968d7f0f8876ad0fb9a25576e0f0e7c6">00196</a> <span class="keywordtype">float</span> <a class="code" href="class_arab_calc.html#968d7f0f8876ad0fb9a25576e0f0e7c6">ArabCalc::CalculatePrefix</a>() {
+<a name="l00197"></a>00197     <span class="keywordtype">char</span> buffer[15];
+<a name="l00198"></a>00198     <span class="keywordtype">int</span> i, len, j;
+<a name="l00199"></a>00199     <span class="keywordtype">float</span> op1, op2, x;
+<a name="l00200"></a>00200     Stack&lt;float&gt; s;
+<a name="l00201"></a>00201         <span class="keywordtype">float</span> dumpfloat;
+<a name="l00202"></a>00202     len = ekspresi.length();
+<a name="l00203"></a>00203     j = 0;
+<a name="l00204"></a>00204     <span class="keywordflow">for</span>(i=len-1; i&gt;=0; i--){
+<a name="l00205"></a>00205 
+<a name="l00206"></a>00206         <span class="keywordflow">if</span>((ekspresi[i]&gt;=<span class="charliteral">'0'</span> &amp;&amp; ekspresi[i]&lt;=<span class="charliteral">'9'</span>) || ekspresi[i]&lt;=<span class="charliteral">'.'</span>){
+<a name="l00207"></a>00207             buffer[j++] = ekspresi[i];
+<a name="l00208"></a>00208         }
+<a name="l00209"></a>00209         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(ekspresi[i]==<span class="charliteral">' '</span>){
+<a name="l00210"></a>00210             <span class="keywordflow">if</span>(j&gt;0){
+<a name="l00211"></a>00211                 buffer[j] = <span class="charliteral">'\0'</span>;
+<a name="l00212"></a>00212                 x = atof(buffer);
+<a name="l00213"></a>00213                 s&lt;&lt;x;
+<a name="l00214"></a>00214                 j = 0;
+<a name="l00215"></a>00215             }
+<a name="l00216"></a>00216         }
+<a name="l00217"></a>00217         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(ekspresi[i]==<span class="charliteral">'+'</span> || ekspresi[i]==<span class="charliteral">'-'</span> || ekspresi[i]==<span class="charliteral">'*'</span> || ekspresi[i]==<span class="charliteral">':'</span> || ekspresi[i]==<span class="charliteral">'%'</span> || ekspresi[i]==<span class="charliteral">'/'</span>){
+<a name="l00218"></a>00218             op1 = s.<a class="code" href="class_stack.html#56eaad5e56d8d809ba7ccd52524c1d43">getLastData</a>();
+<a name="l00219"></a>00219             s&gt;&gt;dumpfloat;
+<a name="l00220"></a>00220             op2 = s.getLastData();
+<a name="l00221"></a>00221             s&gt;&gt;dumpfloat;
+<a name="l00222"></a>00222             <span class="keywordflow">switch</span>(ekspresi[i]){
+<a name="l00223"></a>00223                 <span class="keywordflow">case</span> <span class="charliteral">'+'</span>:
+<a name="l00224"></a>00224                     s&lt;&lt;op2 + op1;
+<a name="l00225"></a>00225                     <span class="keywordflow">break</span>;
+<a name="l00226"></a>00226                 <span class="keywordflow">case</span> <span class="charliteral">'-'</span>:
+<a name="l00227"></a>00227                     s&lt;&lt;(op2 - op1);
+<a name="l00228"></a>00228                     <span class="keywordflow">break</span>;
+<a name="l00229"></a>00229                 <span class="keywordflow">case</span> <span class="charliteral">'*'</span>:
+<a name="l00230"></a>00230                     s&lt;&lt;(op2 * op1);
+<a name="l00231"></a>00231                     <span class="keywordflow">break</span>;
+<a name="l00232"></a>00232                 <span class="keywordflow">case</span> <span class="charliteral">':'</span>:
+<a name="l00233"></a>00233                     s&lt;&lt;(op2 / op1);
+<a name="l00234"></a>00234                     <span class="keywordflow">break</span>;
+<a name="l00235"></a>00235                 <span class="keywordflow">case</span> <span class="charliteral">'%'</span>: <span class="comment">// di c++ nggak bisa float mod float</span>
+<a name="l00236"></a>00236                     <span class="keywordflow">while</span> (op2 &gt;= op1) {
+<a name="l00237"></a>00237                         op2 = op2 - op1;
+<a name="l00238"></a>00238                     }
+<a name="l00239"></a>00239                     s&lt;&lt;(op2);
+<a name="l00240"></a>00240                     <span class="keywordflow">break</span>;
+<a name="l00241"></a>00241                 <span class="keywordflow">case</span> <span class="charliteral">'/'</span>:
+<a name="l00242"></a>00242                     <span class="keywordtype">int</span> div;
+<a name="l00243"></a>00243                     div = (<span class="keywordtype">int</span>)floor(op2 / op1);
+<a name="l00244"></a>00244                     s&lt;&lt;(div);
+<a name="l00245"></a>00245                     break;
+<a name="l00246"></a>00246             }
+<a name="l00247"></a>00247         }
+<a name="l00248"></a>00248     }
+<a name="l00249"></a>00249     return s.getLastData();
+<a name="l00250"></a>00250 }
+<a name="l00251"></a>00251 
+<a name="l00256"></a><a class="code" href="class_arab_calc.html#81d5c7f43d3de276cafd11096ec6204c">00256</a> <span class="keywordtype">float</span> <a class="code" href="class_arab_calc.html">ArabCalc</a>::CalculatePostfix() {
+<a name="l00257"></a>00257     <span class="keywordtype">char</span> buffer[15];
+<a name="l00258"></a>00258     <span class="keywordtype">int</span> i, len, j;
+<a name="l00259"></a>00259     <span class="keywordtype">float</span> op1, op2, x;
+<a name="l00260"></a>00260     Stack&lt;float&gt; s;
+<a name="l00261"></a>00261     len = ekspresi.length();
+<a name="l00262"></a>00262     j = 0;
+<a name="l00263"></a>00263         <span class="keywordtype">float</span> dumpfloat;
+<a name="l00264"></a>00264     <span class="keywordflow">for</span>(i=0; i&lt;len;i++){
+<a name="l00265"></a>00265 
+<a name="l00266"></a>00266         <span class="keywordflow">if</span>((ekspresi[i]&gt;=<span class="charliteral">'0'</span> &amp;&amp; ekspresi[i]&lt;=<span class="charliteral">'9'</span>) || ekspresi[i]&lt;=<span class="charliteral">'.'</span>){
+<a name="l00267"></a>00267             buffer[j++] = ekspresi[i];
+<a name="l00268"></a>00268         }
+<a name="l00269"></a>00269         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(ekspresi[i]==<span class="charliteral">' '</span>){
+<a name="l00270"></a>00270             <span class="keywordflow">if</span>(j&gt;0){
+<a name="l00271"></a>00271                 buffer[j] = <span class="charliteral">'\0'</span>;
+<a name="l00272"></a>00272                 x = atoi(buffer);
+<a name="l00273"></a>00273                 s&lt;&lt;x;
+<a name="l00274"></a>00274                 j = 0;
+<a name="l00275"></a>00275             }
+<a name="l00276"></a>00276         }
+<a name="l00277"></a>00277         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(ekspresi[i]==<span class="charliteral">'+'</span> || ekspresi[i]==<span class="charliteral">'-'</span> || ekspresi[i]==<span class="charliteral">'*'</span> || ekspresi[i]==<span class="charliteral">':'</span> || ekspresi[i]==<span class="charliteral">'%'</span> || ekspresi[i]==<span class="charliteral">'/'</span>){
+<a name="l00278"></a>00278             op1 = s.<a class="code" href="class_stack.html#56eaad5e56d8d809ba7ccd52524c1d43">getLastData</a>();
+<a name="l00279"></a>00279             s&gt;&gt;dumpfloat;
+<a name="l00280"></a>00280             op2 = s.getLastData();
+<a name="l00281"></a>00281             s&gt;&gt;dumpfloat;
+<a name="l00282"></a>00282             <span class="keywordflow">switch</span>(ekspresi[i]){
+<a name="l00283"></a>00283                 <span class="keywordflow">case</span> <span class="charliteral">'+'</span>:
+<a name="l00284"></a>00284                     s&lt;&lt;(op2 + op1);
+<a name="l00285"></a>00285                     <span class="keywordflow">break</span>;
+<a name="l00286"></a>00286                 <span class="keywordflow">case</span> <span class="charliteral">'-'</span>:
+<a name="l00287"></a>00287                     s&lt;&lt;(op2 - op1);
+<a name="l00288"></a>00288                     <span class="keywordflow">break</span>;
+<a name="l00289"></a>00289                 <span class="keywordflow">case</span> <span class="charliteral">'*'</span>:
+<a name="l00290"></a>00290                     s&lt;&lt;(op2 * op1);
+<a name="l00291"></a>00291                     <span class="keywordflow">break</span>;
+<a name="l00292"></a>00292                 <span class="keywordflow">case</span> <span class="charliteral">':'</span>:
+<a name="l00293"></a>00293                     s&lt;&lt;(op2 / op1);
+<a name="l00294"></a>00294                     <span class="keywordflow">break</span>;
+<a name="l00295"></a>00295                 <span class="keywordflow">case</span> <span class="charliteral">'%'</span>: <span class="comment">// di c++ nggak bisa float mod float</span>
+<a name="l00296"></a>00296                     <span class="keywordflow">while</span> (op2 &gt;= op1) {
+<a name="l00297"></a>00297                         op2 = op2 - op1;
+<a name="l00298"></a>00298                     }
+<a name="l00299"></a>00299                     s&lt;&lt;(op2);
+<a name="l00300"></a>00300                     <span class="keywordflow">break</span>;
+<a name="l00301"></a>00301                 <span class="keywordflow">case</span> <span class="charliteral">'/'</span>:
+<a name="l00302"></a>00302                     <span class="keywordtype">int</span> div;
+<a name="l00303"></a>00303                     div = (<span class="keywordtype">int</span>)floor(op2 / op1);
+<a name="l00304"></a>00304                     s&lt;&lt;(div);
+<a name="l00305"></a>00305                     break;
+<a name="l00306"></a>00306             }
+<a name="l00307"></a>00307         }
+<a name="l00308"></a>00308     }
+<a name="l00309"></a>00309     return s.getLastData();
+<a name="l00310"></a>00310 }
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Thu Mar 19 03:44:10 2015 for Calculator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.5 </small></address>
 </body>

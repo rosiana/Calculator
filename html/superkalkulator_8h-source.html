@@ -12,38 +12,44 @@
     <li id="current"><a href="files.html"><span>Files</span></a></li>
     <li><a href="dirs.html"><span>Directories</span></a></li>
   </ul></div>
+<div class="tabs">
+  <ul>
+    <li><a href="files.html"><span>File&nbsp;List</span></a></li>
+    <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
+  </ul></div>
 <div class="nav">
 <a class="el" href="dir_C_3A_2FUsers_2F.html">Users</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_C_3A_2FUsers_2FRosi_2F.html">Rosi</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_C_3A_2FUsers_2FRosi_2FDesktop_2F.html">Desktop</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_C_3A_2FUsers_2FRosi_2FDesktop_2Fbelajar_2F.html">belajar</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_C_3A_2FUsers_2FRosi_2FDesktop_2Fbelajar_2FCalculator_2F.html">Calculator</a></div>
-<h1>superkalkulator.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef superkalkulator_H</span>
-<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define superkalkulator_H</span>
-<a name="l00003"></a>00003 <span class="preprocessor"></span>
-<a name="l00004"></a>00004 <span class="preprocessor">#include &lt;string&gt;</span>
-<a name="l00005"></a>00005 <span class="preprocessor">#include "Stack.h"</span>
-<a name="l00006"></a>00006 <span class="keyword">using namespace </span>std;
-<a name="l00007"></a><a class="code" href="classsuperkalkulator.html">00007</a> <span class="keyword">class </span><a class="code" href="classsuperkalkulator.html">superkalkulator</a>{
-<a name="l00008"></a>00008         <span class="keyword">public</span>:
-<a name="l00009"></a>00009                 <a class="code" href="classsuperkalkulator.html#0fee8ac5eb224c42468afa01baad748d">superkalkulator</a>();
-<a name="l00010"></a>00010                 <a class="code" href="classsuperkalkulator.html#2aa376ad698b7b4f7f133b3998a07fff">~superkalkulator</a>();
-<a name="l00011"></a>00011                 <span class="keywordtype">int</span> <a class="code" href="classsuperkalkulator.html#d8082e61fc70a9af6a208024f594afd9">getCountLog</a>();
-<a name="l00012"></a>00012                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#a6386fb73a3f1a5f56603b094fb66c94">WriteLog</a>(string str);
-<a name="l00013"></a>00013                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#3b751a81a072f0baa5e85f7f43c27320">Save</a>();
-<a name="l00014"></a>00014                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#06d3c0bf8c4bf8e34c0b8faab70e6cda">Input</a>(string input);
-<a name="l00015"></a>00015                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#61b2d9f0ba56dac42e4458eade4602bc">Undo</a>(<span class="keywordtype">int</span> n);
-<a name="l00016"></a>00016                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#a039cd5a5c7e686e5e542a669a897ba3">Redo</a>(<span class="keywordtype">int</span> n);
-<a name="l00017"></a>00017                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#303071f52879a615848823e8ad8c1549">setMode</a>(<span class="keywordtype">int</span> n);
-<a name="l00018"></a>00018                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#fc49bc2a8f03da410c24c01101144c2b">setKalkulator</a>(<span class="keywordtype">int</span> n);
-<a name="l00019"></a>00019                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#5130ad9cbe82a8fd21d36465f7cc9538">runKalkulatorArab</a>();
-<a name="l00020"></a>00020                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#82a3e4e15373f23895e7496b3a71e077">runKalkulatorLogika</a>();
-<a name="l00021"></a>00021                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#a35b0eb0639cbd097c981373dd64bff9">runKalkulatorRomawi</a>();
-<a name="l00022"></a>00022                 Stack&lt;string&gt; <a class="code" href="classsuperkalkulator.html#d8d5f04f9c7dfee29b760afce7443fca">getLog</a>();
-<a name="l00023"></a>00023                 <span class="keywordtype">int</span> <a class="code" href="classsuperkalkulator.html#d6c80f4809273751b6fab73840783eb2">CheckEkspresiType</a>(string input);
-<a name="l00024"></a>00024         <span class="keyword">private</span>:
-<a name="l00025"></a>00025                 Stack&lt;string&gt; Log;
-<a name="l00026"></a>00026                 <span class="keywordtype">int</span> modeekspresi;
-<a name="l00027"></a>00027                 <span class="keywordtype">int</span> modekalkulator;
-<a name="l00028"></a>00028 };
-<a name="l00029"></a>00029 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Thu Mar 19 02:12:54 2015 for Calculator by&nbsp;
+<h1>superkalkulator.h</h1><a href="superkalkulator_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00008"></a>00008 <span class="preprocessor">#ifndef superkalkulator_H</span>
+<a name="l00009"></a>00009 <span class="preprocessor"></span><span class="preprocessor">#define superkalkulator_H</span>
+<a name="l00010"></a>00010 <span class="preprocessor"></span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include "<a class="code" href="_stack_8h.html">Stack.h</a>"</span>
+<a name="l00013"></a>00013 <span class="keyword">using namespace </span>std;
+<a name="l00014"></a><a class="code" href="classsuperkalkulator.html">00014</a> <span class="keyword">class </span><a class="code" href="classsuperkalkulator.html">superkalkulator</a>{
+<a name="l00015"></a>00015         <span class="keyword">public</span>:
+<a name="l00016"></a>00016                 <a class="code" href="classsuperkalkulator.html#0fee8ac5eb224c42468afa01baad748d">superkalkulator</a>();
+<a name="l00017"></a>00017                 <a class="code" href="classsuperkalkulator.html#2aa376ad698b7b4f7f133b3998a07fff">~superkalkulator</a>();
+<a name="l00018"></a>00018                 <span class="keywordtype">int</span> <a class="code" href="classsuperkalkulator.html#d8082e61fc70a9af6a208024f594afd9">getCountLog</a>();
+<a name="l00019"></a>00019                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#a6386fb73a3f1a5f56603b094fb66c94">WriteLog</a>(string str);
+<a name="l00020"></a>00020                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#3b751a81a072f0baa5e85f7f43c27320">Save</a>();
+<a name="l00021"></a>00021                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#06d3c0bf8c4bf8e34c0b8faab70e6cda">Input</a>(string input);
+<a name="l00022"></a>00022                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#61b2d9f0ba56dac42e4458eade4602bc">Undo</a>(<span class="keywordtype">int</span> n);
+<a name="l00023"></a>00023                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#a039cd5a5c7e686e5e542a669a897ba3">Redo</a>(<span class="keywordtype">int</span> n);
+<a name="l00024"></a>00024                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#303071f52879a615848823e8ad8c1549">setMode</a>(<span class="keywordtype">int</span> n);
+<a name="l00025"></a>00025                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#fc49bc2a8f03da410c24c01101144c2b">setKalkulator</a>(<span class="keywordtype">int</span> n);
+<a name="l00026"></a>00026                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#5130ad9cbe82a8fd21d36465f7cc9538">runKalkulatorArab</a>();
+<a name="l00027"></a>00027                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#82a3e4e15373f23895e7496b3a71e077">runKalkulatorLogika</a>();
+<a name="l00028"></a>00028                 <span class="keywordtype">void</span> <a class="code" href="classsuperkalkulator.html#a35b0eb0639cbd097c981373dd64bff9">runKalkulatorRomawi</a>();
+<a name="l00029"></a>00029                 Stack&lt;string&gt; <a class="code" href="classsuperkalkulator.html#d8d5f04f9c7dfee29b760afce7443fca">getLog</a>();
+<a name="l00030"></a>00030                 <span class="keywordtype">int</span> <a class="code" href="classsuperkalkulator.html#d6c80f4809273751b6fab73840783eb2">CheckEkspresiType</a>(string input);
+<a name="l00031"></a>00031         <span class="keyword">private</span>:
+<a name="l00032"></a>00032                 Stack&lt;string&gt; Log;
+<a name="l00033"></a>00033                 <span class="keywordtype">int</span> modeekspresi;
+<a name="l00034"></a>00034                 <span class="keywordtype">int</span> modekalkulator;
+<a name="l00035"></a>00035 };
+<a name="l00036"></a>00036 <span class="preprocessor">#endif</span>
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Thu Mar 19 03:44:10 2015 for Calculator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.5 </small></address>
 </body>
