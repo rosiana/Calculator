@@ -28,7 +28,33 @@ bool LogicCalc::Calculate(){
 }
 
 bool LogicCalc::CalculatePrefix(){
-	
+    char buffer[15];
+    string jawab;
+    int i,j; //iterator
+    bool op1, op2, x; //operand dan hasil
+    int len; //panjang
+    len = this->ekspresi.length();
+    j = 0;
+    for(i=len-1; i>=0; i--){
+        if(ekspresi[i] == '0' || ekspresi[i]=='1'){
+            buffer[0] = ekspresi[i];
+   	    x = atoi(buffer);
+            operand << x;
+        }
+        else if(isOperator(exp[i])){
+			operatorx << ekspresi.substr(i,1);
+            operand << Evaluate();
+        }
+    }
+    x = operand.getLastData();
+    if(operand.getLastData() == 0){
+	jawab = "false";
+    }
+    else{
+	jawab = "true";
+    }
+    cout << "Answer is " << jawab << endl;
+    return x;
 }
 
 bool LogicCalc::CalculateInfix(){
