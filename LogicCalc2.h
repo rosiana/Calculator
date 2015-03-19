@@ -7,9 +7,11 @@
 #include <cmath>
 #include <math.h>
 #include "Stack.h"
+#include "kalkulator.h"
+
 using namespace std;
 
-class LogicCalc2{
+class LogicCalc : public kalkulator<bool> {
 	public:
 		LogicCalc(string ekspresi, int mode);
 		~LogicCalc();
@@ -17,8 +19,8 @@ class LogicCalc2{
 		bool CalculatePrefix();
 		bool CalculateInfix();
 		bool CalculatePostfix();
-		void Evaluate();
-		
+		bool Evaluate();
+
 	private:
 		string ekspresi;
 		int mode;

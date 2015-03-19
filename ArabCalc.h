@@ -14,9 +14,11 @@
 #include <cmath>
 #include <math.h>
 #include "Stack.h"
+#include "kalkulator.h"
+
 using namespace std;
 
-class ArabCalc {
+class ArabCalc : public kalkulator<float> {
     public:
 		void Print(Stack<float> bil,Stack<string>operatorx); //tools debug
 		ArabCalc(string ekspresi,int mode,int size);
@@ -24,8 +26,8 @@ class ArabCalc {
         float Calculate();
 		void SmallCalculate(Stack<float> &bil,Stack<string> &operatorx);
 		float CalculateInfix();
-		int CalculatePrefix();
-		int CalculatePostfix();
+		float CalculatePrefix();
+		float CalculatePostfix();
 
     private:
         Stack<float> bil;

@@ -11,9 +11,10 @@
 
 using namespace std;
 
+template <class Z>
 class kalkulator{
 	public:
-		virtual calculate() = 0;
+		virtual Z Calculate() = 0;
 
 };
 #endif
