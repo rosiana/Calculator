@@ -16,9 +16,17 @@ ArabCalc::~ArabCalc(){
 
 float ArabCalc::Calculate(){
 	float hasil;
-	if(mode == 2) //Sufix
+	if(mode == 1)
 	{
-		hasil = CalculateSufix();
+		hasil = CalculatePrefix();
+	}
+	else if(mode == 2)
+	{
+		hasil = CalculateInfix();
+	}
+	if(mode == 3)
+	{
+		hasil = CalculatePostfix();
 	}
 	return hasil;
 }
@@ -30,7 +38,7 @@ float ArabCalc::CalculatePrefix(){
 	j = 0;
 	len = this->ekspresi.length();
 	for(i=len-1;i>=0;i--){
-		if((ekspresi[i] >= '0' && ekspresi<='9') || ekspresi[i]=='.'){
+		if((ekspresi[i] >= '0' && ekspresi[i]<='9') || ekspresi[i]=='.'){
 			buffer[j++] = ekspresi[i];
 		}
 		else if(ekspresi[i]==' '){
@@ -51,12 +59,13 @@ float ArabCalc::CalculatePrefix(){
 		else if(ekspresi[i]=='+' || ekspresi[i]=='-' || ekspresi[i]=='*' || ekspresi[i]==':' || ekspresi[i]=='%' || ekspresi[i]=='/'){
 			this->operatorx << ekspresi.substr(i,1);
 			SmallCalculate(bil, operatorx);
-			}
 		}
 	}
+	x = bil.getLastData();
+	return x;
 }
 
-float ArabCalc::CalculateSufix(){
+float ArabCalc::CalculateInfix(){
 	string dumpoperator;
 	float dumpbil;
 	float hasil;
@@ -68,14 +77,14 @@ float ArabCalc::CalculateSufix(){
 		int ctemp = 0;
 		while(ekspresitemp[0] == '0' || ekspresitemp[0] == '1' || ekspresitemp[0] == '2' || ekspresitemp[0] == '3' || ekspresitemp[0] == '4' || ekspresitemp[0] == '5'
 		|| ekspresitemp[0] == '6'|| ekspresitemp[0] == '7' || ekspresitemp[0] == '8' || ekspresitemp[0] == '9' || ekspresitemp[0] == '.')
-		{	
+		{
 			temp[ctemp] = ekspresitemp[0];
 			ekspresitemp.erase(0,1);
 			ctemp++;
 			isCompleteRead = 1;
 		}
 		if(isCompleteRead == 1)
-		{	
+		{
 			bil<< atof(temp);
 		}
 		if(ekspresitemp[0] == '+' || ekspresitemp[0] == '-' || ekspresitemp[0] == '*' || ekspresitemp[0] == ':' || ekspresitemp[0] == '/' || ekspresitemp[0] == '%' || ekspresitemp[0] == '('|| ekspresitemp[0] == ')')
@@ -83,7 +92,7 @@ float ArabCalc::CalculateSufix(){
 			if(operatorx.isEmpty() || ekspresitemp[0] == '(')
 			{
 				operatorx<<ekspresitemp.substr(0,1);
-				
+
 			}
 			else
 			{
@@ -97,12 +106,12 @@ float ArabCalc::CalculateSufix(){
 					else
 					{
 						operatorx<<ekspresitemp.substr(0,1);
-						
+
 					}
 				}
 				else if(ekspresitemp[0] == '*' || ekspresitemp[0] == '/' || ekspresitemp[0] == '%' || ekspresitemp[0] == ':')
 				{
-					
+
 					if(operatorx.getLastData() == "*" || operatorx.getLastData() == "/" || operatorx.getLastData() == ":"  || operatorx.getLastData() == "%")
 					{
 						SmallCalculate(bil,operatorx);
@@ -121,7 +130,7 @@ float ArabCalc::CalculateSufix(){
 					}
 					operatorx>>dumpoperator;
 				}
-				
+
 			}
 			ekspresitemp.erase(0,1);
 		}
@@ -169,8 +178,8 @@ float ArabCalc::CalculatePostfix(){
 			SmallCalculate(bil, operatorx);
 			}
 		}
-	}
-	x = bil.getLastData();
+    x = bil.getLastData();
+	return x;
 }
 
 void ArabCalc::SmallCalculate(Stack<float> &bil,Stack<string> &operatorx)
@@ -199,13 +208,13 @@ void ArabCalc::SmallCalculate(Stack<float> &bil,Stack<string> &operatorx)
 		bil<< a;
 	}
 	else if(popoperator == "%")
-	{	
+	{
 		int tempint1 = (int) floor(popbil1 + 0.5);
 		int tempint2 = (int) floor(popbil2 + 0.5);
 		float hasil = (float)(tempint2%tempint1);
 		bil<< hasil;
 	}
-	
+
 	else if(popoperator == "+")
 	{
 		bil<< popbil2+popbil1;

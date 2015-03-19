@@ -1,4 +1,6 @@
 base referer
-rect $class_stack.html 5,365 133,663
-rect $class_stack.html 91,5 219,303
-rect $class_stack.html 157,365 285,663
+rect $classkalkulator.html 5,475 140,553
+rect $classkalkulator.html 18,115 127,193
+rect $class_stack.html 165,365 293,663
+rect $class_stack.html 219,5 347,303
+rect $class_stack.html 317,365 445,663

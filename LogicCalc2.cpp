@@ -22,7 +22,7 @@ bool LogicCalc::Calculate(){
 		hasil = CalculateInfix();
 	}
 	else if(mode == 3){
-		hasil = CalculatePostfix();		
+		hasil = CalculatePostfix();
 	}
 	return hasil;
 }
@@ -41,7 +41,7 @@ bool LogicCalc::CalculatePrefix(){
    	    x = atoi(buffer);
             operand << x;
         }
-        else if(isOperator(exp[i])){
+        else if(ekspresi[i] == '&' || ekspresi[i] == '|' || ekspresi[i]=='~'){
 			operatorx << ekspresi.substr(i,1);
             operand << Evaluate();
         }
@@ -58,7 +58,7 @@ bool LogicCalc::CalculatePrefix(){
 }
 
 bool LogicCalc::CalculateInfix(){
-	
+
 }
 
 bool LogicCalc::CalculatePostfix(){
@@ -75,7 +75,7 @@ bool LogicCalc::CalculatePostfix(){
 			x = atoi(buffer);
             operand << x;
         }
-        else if(isOperator(ekspresi[i])){
+        else if(ekspresi[i] == '&' || ekspresi[i] == '|' || ekspresi[i]=='~'){
             operatorx << ekspresi.substr(i,1);
             operand << Evaluate();
         }
@@ -91,24 +91,23 @@ bool LogicCalc::CalculatePostfix(){
     return x;
 }
 
-void LogicCalc::Evaluate(){
+bool LogicCalc::Evaluate(){
 	bool ans, op1, op2;
-	char operat;
+	string operat;
 	this->operatorx >> operat;
-	switch (operat){
-		case '&':
+    if (operat == "&"){
 			operand >> op1;
 	        operand >> op2;
 	        ans = op1 & op2;
 	        cout << op1 <<" & " << op2 << "=" << ans << endl;
-	        break;
-	    case '|':
+    }
+	 else if(operat == "|"){
 			operand >> op1;
-	        operand >> op2;	
+	        operand >> op2;
 	        ans = op1 | op2;
 	        cout << op1 <<" | " << op2 << "=" << ans << endl;
-	        break;
-	    case '~':
+	 }
+	 else if(operat=="~"){
 			operand >> op1;
 	        if (op1 == 1){
 				ans = false;
@@ -117,7 +116,6 @@ void LogicCalc::Evaluate(){
 				ans = true;
 	        }
 	        cout << "~"<<op1 << "=" << ans << endl;
-	        break;
     }
     return ans;
 }

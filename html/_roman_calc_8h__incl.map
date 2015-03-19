@@ -1,3 +1,4 @@
 base referer
-rect $_stack_8h-source.html 395,56 461,83
-rect $boolean_8h-source.html 509,56 588,83
+rect $_stack_8h-source.html 406,259 473,285
+rect $kalkulator_8h-source.html 395,5 484,32
+rect $boolean_8h-source.html 532,259 611,285

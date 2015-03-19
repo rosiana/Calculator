@@ -8,5 +8,7 @@ digraph G
   Node1 -> Node2 [dir=back,color="midnightblue",fontsize=10,style="solid"];
   Node2 [label="C:/Users/Rosi/Desktop/belajar/Calculator/ArabCalc.cpp",height=0.2,width=0.4,color="black",URL="$_arab_calc_8cpp-source.html"];
   Node1 -> Node3 [dir=back,color="midnightblue",fontsize=10,style="solid"];
-  Node3 [label="C:/Users/Rosi/Desktop/belajar/Calculator/superkalkulator.cpp",height=0.2,width=0.4,color="black",URL="$superkalkulator_8cpp-source.html"];
+  Node3 [label="C:/Users/Rosi/Desktop/belajar/Calculator/ArabCalc2.cpp",height=0.2,width=0.4,color="black",URL="$_arab_calc2_8cpp-source.html"];
+  Node1 -> Node4 [dir=back,color="midnightblue",fontsize=10,style="solid"];
+  Node4 [label="C:/Users/Rosi/Desktop/belajar/Calculator/superkalkulator.cpp",height=0.2,width=0.4,color="black",URL="$superkalkulator_8cpp-source.html"];
 }

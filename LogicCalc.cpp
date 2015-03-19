@@ -2,7 +2,7 @@
  * @author
  * @file LogicCalc.cpp
  * @class LogicCalc
- * @brief Kelas untuk pengolahan ekspresi dengan operand angka arab
+ * @brief Kelas untuk pengolahan ekspresi dengan operand boolean
  */
 
 #include <iostream>
@@ -28,7 +28,7 @@ void LogicCalc::Print(Stack<int> bil,Stack<string>operatorx){
 
 /**
  * @fn LogicCalc(string ekspresi,int mode,int size)
- * @brief Konstruktor parameter kalkulator arab
+ * @brief Konstruktor parameter kalkulator logika
  */
 LogicCalc::LogicCalc(string ekspresi,int mode,int size) :bil(size),operatorx(size){
 	this->ekspresi = ekspresi;
@@ -37,7 +37,7 @@ LogicCalc::LogicCalc(string ekspresi,int mode,int size) :bil(size),operatorx(siz
 
 /**
  * @fn ~LogicCalc()
- * @brief Destruktor kalkulator arab
+ * @brief Destruktor kalkulator logika
  */
 LogicCalc::~LogicCalc(){
 	//no memory to free
@@ -78,8 +78,15 @@ void LogicCalc::SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
 	operatorx>>dumpoperator;
 	if(popoperator == "~")
 	{
-		bil<< -999; //counter untuk merubah bil masukan berikut nya menjadi negasi dari input
-		operatorx>>dumpoperator;
+		if(!bil.isEmpty() && bil.getLastData() == -999)
+		{
+			bil>>dumpbil; //Pop -999
+			operatorx>>dumpoperator;
+		}
+		else
+		{
+			bil<< -999; //counter untuk merubah bil masukan berikut nya menjadi negasi dari input
+		}
 	}
 	else if(popoperator == "&")
 	{
@@ -156,7 +163,7 @@ int LogicCalc::CalculateInfix(){
 					}
 				}
 			}
-			
+
 		}
 		if(ekspresitemp[0] == '~' || ekspresitemp[0] == '&' || ekspresitemp[0] == '|' || ekspresitemp[0] == '(' || ekspresitemp[0] == ')')
 		{
@@ -227,32 +234,6 @@ int LogicCalc::CalculateInfix(){
  * @brief Penghitungan mode prefix
  */
 int LogicCalc::CalculatePrefix() {
-     char buffer[15];
-    string jawab;
-    int i,j; //iterator
-	bool op1, op2, x; //operand dan hasil
-	int len; //panjang
-    len = this->ekspresi.length();
-    j = 0;
-    for(i=0; i<len;i++){
-        if(ekspresi[i] == '0' || ekspresi[i]=='1'){
-            buffer[0] = ekspresi[i];
-			x = atoi(buffer);
-            bil << x;
-        }
-        else if(ekspresi[i] == '&' || ekspresi[i] == '|' || ekspresi[i]=='~'){
-            operatorx << ekspresi.substr(i,1);
-            SmallCalculate(bil,operatorx);
-        }
-    }
-    return bil.getLastData();
-}
-
-/**
- * @fn CalculatePostfix()
- * @brief Penghitungan mode postfix
- */
-int LogicCalc::CalculatePostfix() {
     char buffer[15];
     string jawab;
     int i,j; //iterator
@@ -268,6 +249,32 @@ int LogicCalc::CalculatePostfix() {
         }
         else if(ekspresi[i] == '&' || ekspresi[i] == '|' || ekspresi[i]=='~'){
 			operatorx << ekspresi.substr(i,1);
+            SmallCalculate(bil,operatorx);
+        }
+    }
+    return bil.getLastData();
+}
+
+/**
+ * @fn CalculatePostfix()
+ * @brief Penghitungan mode postfix
+ */
+int LogicCalc::CalculatePostfix() {
+    char buffer[15];
+    string jawab;
+    int i,j; //iterator
+	bool op1, op2, x; //operand dan hasil
+	int len; //panjang
+    len = this->ekspresi.length();
+    j = 0;
+    for(i=0; i<len;i++){
+        if(ekspresi[i] == '0' || ekspresi[i]=='1'){
+            buffer[0] = ekspresi[i];
+			x = atoi(buffer);
+            bil << x;
+        }
+        else if(ekspresi[i] == '&' || ekspresi[i] == '|' || ekspresi[i]=='~'){
+            operatorx << ekspresi.substr(i,1);
             SmallCalculate(bil,operatorx);
         }
     }

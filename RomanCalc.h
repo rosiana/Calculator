@@ -14,9 +14,11 @@
 #include <cmath>
 #include <math.h>
 #include "Stack.h"
+#include "kalkulator.h"
+
 using namespace std;
 
-class RomanCalc {
+class RomanCalc : public kalkulator<string> {
     public:
 		//void Print(Stack<int> bil,Stack<string>operatorx); //tools debug
 		RomanCalc(string ekspresi,int mode,int size);

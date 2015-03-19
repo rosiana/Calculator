@@ -1,0 +1,7 @@
+base referer
+rect $classkalkulator.html 13,145 139,223
+rect $classkalkulator.html 166,145 301,223
+rect $classkalkulator.html 327,145 454,223
+rect $class_arab_calc.html 5,338 141,562
+rect $class_roman_calc.html 165,331 301,569
+rect $class_logic_calc.html 325,272 461,628

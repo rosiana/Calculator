@@ -8,13 +8,17 @@ digraph G
   Node1 -> Node2 [dir=back,color="midnightblue",fontsize=10,style="solid"];
   Node2 [label="C:/Users/Rosi/Desktop/belajar/Calculator/ArabCalc.h",height=0.2,width=0.4,color="red",URL="$_arab_calc_8h-source.html"];
   Node1 -> Node3 [dir=back,color="midnightblue",fontsize=10,style="solid"];
-  Node3 [label="C:/Users/Rosi/Desktop/belajar/Calculator/superkalkulator.h",height=0.2,width=0.4,color="red",URL="$superkalkulator_8h-source.html"];
+  Node3 [label="C:/Users/Rosi/Desktop/belajar/Calculator/LogicCalc.h",height=0.2,width=0.4,color="red",URL="$_logic_calc_8h-source.html"];
   Node1 -> Node4 [dir=back,color="midnightblue",fontsize=10,style="solid"];
-  Node4 [label="C:/Users/Rosi/Desktop/belajar/Calculator/RomanCalc.h",height=0.2,width=0.4,color="red",URL="$_roman_calc_8h-source.html"];
+  Node4 [label="C:/Users/Rosi/Desktop/belajar/Calculator/LogicCalc2.h",height=0.2,width=0.4,color="red",URL="$_logic_calc2_8h-source.html"];
   Node1 -> Node5 [dir=back,color="midnightblue",fontsize=10,style="solid"];
-  Node5 [label="C:/Users/Rosi/Desktop/belajar/Calculator/Stack.cpp",height=0.2,width=0.4,color="black",URL="$_stack_8cpp-source.html"];
+  Node5 [label="C:/Users/Rosi/Desktop/belajar/Calculator/superkalkulator.h",height=0.2,width=0.4,color="red",URL="$superkalkulator_8h-source.html"];
   Node1 -> Node6 [dir=back,color="midnightblue",fontsize=10,style="solid"];
-  Node6 [label="C:/Users/Rosi/Desktop/belajar/Calculator/tes5.cpp",height=0.2,width=0.4,color="black",URL="$tes5_8cpp-source.html"];
+  Node6 [label="C:/Users/Rosi/Desktop/belajar/Calculator/RomanCalc.h",height=0.2,width=0.4,color="red",URL="$_roman_calc_8h-source.html"];
   Node1 -> Node7 [dir=back,color="midnightblue",fontsize=10,style="solid"];
-  Node7 [label="C:/Users/Rosi/Desktop/belajar/Calculator/tes6.cpp",height=0.2,width=0.4,color="black",URL="$tes6_8cpp-source.html"];
+  Node7 [label="C:/Users/Rosi/Desktop/belajar/Calculator/Stack.cpp",height=0.2,width=0.4,color="black",URL="$_stack_8cpp-source.html"];
+  Node1 -> Node8 [dir=back,color="midnightblue",fontsize=10,style="solid"];
+  Node8 [label="C:/Users/Rosi/Desktop/belajar/Calculator/tes5.cpp",height=0.2,width=0.4,color="black",URL="$tes5_8cpp-source.html"];
+  Node1 -> Node9 [dir=back,color="midnightblue",fontsize=10,style="solid"];
+  Node9 [label="C:/Users/Rosi/Desktop/belajar/Calculator/tes6.cpp",height=0.2,width=0.4,color="black",URL="$tes6_8cpp-source.html"];
 }
