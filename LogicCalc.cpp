@@ -13,7 +13,7 @@
 using namespace std;
 
 //tools debug
-void LogicCalc::Print(Stack<int> bil,Stack<string>operatorx){
+/*void LogicCalc::Print(Stack<int> bil,Stack<string>operatorx){
 	cout<<"Stack bilangan"<<endl;
 	for(int i = 0;i<=bil.getDataCount()-1;i++)
 	{
@@ -24,7 +24,7 @@ void LogicCalc::Print(Stack<int> bil,Stack<string>operatorx){
 	{
 		cout<<j<<"). "<<operatorx.getData(j)<<endl;
 	}
-}
+}*/
 
 /**
  * @fn LogicCalc(string ekspresi,int mode,int size)
@@ -49,7 +49,6 @@ LogicCalc::~LogicCalc(){
  */
 int LogicCalc::Calculate(){
 	int hasil;
-	cout<<"Masuk"<<endl;
 	if(mode == 1)
     {
 		hasil = CalculatePrefix();
@@ -62,7 +61,6 @@ int LogicCalc::Calculate(){
 	{
 		hasil = CalculatePostfix();
 	}
-	cout<<"Out"<<endl;
 	return hasil;
 }
 
@@ -72,8 +70,6 @@ int LogicCalc::Calculate(){
  */
 void LogicCalc::SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
 {
-	cout<<"Start Calculate"<<endl;
-	Print(bil,operatorx);
 	int popbil1;
 	int popbil2;
 	string dumpoperator;
@@ -113,7 +109,6 @@ void LogicCalc::SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
 		popbil2 = bil.getLastData();
 		bil>>dumpbil;
 		bool x = popbil1 | popbil2;
-		cout <<"XXXXXXXXXXXXXXXXXXX"<< x<< endl;
 		if(x==1)
 		{
 			bil<< 1;
@@ -124,8 +119,6 @@ void LogicCalc::SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
 		}
 		operatorx>>dumpoperator;
 	}
-	cout<<"Finish Calculate"<<endl;
-	Print(bil,operatorx);
 }
 
 /**
@@ -138,7 +131,6 @@ int LogicCalc::CalculateInfix(){
 	int hasil;
 	string ekspresitemp = ekspresi;
 	string temp;
-	cout<<"Infix"<<endl;
 	while(ekspresitemp.length() != 0)
 	{
 		int isCompleteRead = 0;
@@ -184,16 +176,11 @@ int LogicCalc::CalculateInfix(){
 			}
 			
 		}
-		cout<<"Printtttttt"<<endl;
-		Print(bil,operatorx);
 		if(ekspresitemp[0] == '~' || ekspresitemp[0] == '&' || ekspresitemp[0] == '|' || ekspresitemp[0] == '(' || ekspresitemp[0] == ')')
 		{
-			cout<<"ASDFASDFASDFASDFADSF"<<endl;
 			if(ekspresitemp[0] == '~')
 			{
-				cout<<"Ther is operand"<<ekspresitemp.substr(0,1)<<endl;
 				operatorx<<ekspresitemp.substr(0,1);
-				cout<<"PPPPPPPPPPPPPPPPPPPP"<<endl;
 				SmallCalculate(bil,operatorx);
 			}
 			else if(operatorx.isEmpty() || ekspresitemp[0] == '(')
@@ -202,7 +189,6 @@ int LogicCalc::CalculateInfix(){
 			}
 			else if(ekspresitemp[0] == '&' || ekspresitemp[0] == '|' || ekspresitemp[0] == ')')
 			{
-				cout<<"BBBBBBBBBBBBBBBBBBB"<<ekspresitemp[0]<<endl;
 				if(ekspresitemp[0] == '&' || ekspresitemp[0] == '|')
 				{
 					operatorx<<ekspresitemp.substr(0,1);
@@ -231,15 +217,9 @@ int LogicCalc::CalculateInfix(){
 
 			}
 		}
-		cout<<"Erase"<<endl;
 		ekspresitemp.erase(0,1);
-		cout<<"Ekspresi Left"<<ekspresitemp<<endl;
-		Print(bil,operatorx);
-		cout<<"Length : "<<ekspresitemp.length()<<endl;
 	}
-	cout<<"Parse Complete"<<endl;
-	Print(bil,operatorx);
-	cout<<"IsEmpty()"<<operatorx.isEmpty()<<endl;
+
 	if(operatorx.isEmpty())
 	{
 		while(!operatorx.isEmpty())
@@ -248,7 +228,6 @@ int LogicCalc::CalculateInfix(){
 
 		}
 	}
-	cout<<"Masuk hasil"<<endl;
 	hasil = bil.getLastData();
 	return hasil;
 	//End

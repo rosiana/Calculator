@@ -90,7 +90,7 @@ void ArabCalc::SmallCalculate(Stack<float> &bil,Stack<string> &operatorx)
 	}
 	else if(popoperator == "/")
 	{
-		int a = (int) floor(popbil2/popbil1 + 0.5);
+		int a = (int) floor(popbil2/popbil1 - 0.5);
 		bil<< a;
 	}
 	else if(popoperator == "%")
