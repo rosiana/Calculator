@@ -59,7 +59,7 @@
 <a name="l00038"></a>00038 
 <a name="l00039"></a>00039 <span class="keywordtype">int</span> main()
 <a name="l00040"></a>00040 {
-<a name="l00041"></a>00041     <span class="keywordtype">char</span> exp[1000], buffer[15];
+<a name="l00041"></a>00041     <span class="keywordtype">char</span> exp[1000], buffer[15], buffer2[15];
 <a name="l00042"></a>00042     <span class="keywordtype">int</span> i,op1, op2, len, j, x;
 <a name="l00043"></a>00043     stack&lt;int&gt; s;
 <a name="l00044"></a>00044     printf(<span class="stringliteral">"Enter a Prefix Expression:\n"</span>);
@@ -69,31 +69,41 @@
 <a name="l00048"></a>00048     <span class="keywordflow">for</span>(i=len-1; i&gt;=0; i--){
 <a name="l00049"></a>00049 
 <a name="l00050"></a>00050         <span class="keywordflow">if</span>(exp[i]&gt;=<span class="charliteral">'0'</span> &amp;&amp; exp[i]&lt;=<span class="charliteral">'9'</span>){
-<a name="l00051"></a>00051             buffer[j++] = exp[i];
-<a name="l00052"></a>00052         }
-<a name="l00053"></a>00053         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(exp[i]==<span class="charliteral">' '</span>){
-<a name="l00054"></a>00054             <span class="keywordflow">if</span>(j&gt;0){
-<a name="l00055"></a>00055                 buffer[j] = <span class="charliteral">'\0'</span>;
-<a name="l00056"></a>00056                 x = atoi(buffer);
-<a name="l00057"></a>00057                 s.push(x);
-<a name="l00058"></a>00058                 j = 0;
-<a name="l00059"></a>00059             }
-<a name="l00060"></a>00060         }
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(isOperator(exp[i])){
-<a name="l00063"></a>00063             op1 = s.top();
-<a name="l00064"></a>00064             s.pop();
-<a name="l00065"></a>00065             op2 = s.top();
-<a name="l00066"></a>00066             s.pop();
-<a name="l00067"></a>00067             s.push(performOperation(exp[i], op1, op2));
-<a name="l00068"></a>00068         }
-<a name="l00069"></a>00069     }
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071     printf(<span class="stringliteral">"Answer is %d\n"</span>, s.top());
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073     <span class="keywordflow">return</span> 0;
-<a name="l00074"></a>00074 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Thu Mar 19 03:44:10 2015 for Calculator by&nbsp;
+<a name="l00051"></a>00051             buffer[j] = exp[i];
+<a name="l00052"></a>00052             <span class="comment">//cout &lt;&lt; buffer[j] &lt;&lt; endl;</span>
+<a name="l00053"></a>00053             j++;
+<a name="l00054"></a>00054         }
+<a name="l00055"></a>00055         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(exp[i]==<span class="charliteral">' '</span>){
+<a name="l00056"></a>00056             <span class="keywordflow">if</span>(j&gt;0){
+<a name="l00057"></a>00057                                 cout &lt;&lt; <span class="stringliteral">"Nilai j: "</span> &lt;&lt; j &lt;&lt; endl;
+<a name="l00058"></a>00058                                 <span class="keywordtype">int</span> n =j-1;
+<a name="l00059"></a>00059                                 <span class="keywordtype">int</span> k;
+<a name="l00060"></a>00060                 <span class="keywordflow">for</span>(k = 0; k &lt; j; k++){
+<a name="l00061"></a>00061                                         buffer2[k]=buffer[n];
+<a name="l00062"></a>00062                                         cout &lt;&lt; buffer2[k]&lt;&lt;endl;
+<a name="l00063"></a>00063                                         n--;
+<a name="l00064"></a>00064                 }
+<a name="l00065"></a>00065                 buffer2[k+1] = <span class="charliteral">'\0'</span>;
+<a name="l00066"></a>00066                 x = atoi(buffer2);
+<a name="l00067"></a>00067                 s.push(x);
+<a name="l00068"></a>00068                 j = 0;
+<a name="l00069"></a>00069             }
+<a name="l00070"></a>00070         }
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072         <span class="keywordflow">else</span> <span class="keywordflow">if</span>(isOperator(exp[i])){
+<a name="l00073"></a>00073             op1 = s.top();
+<a name="l00074"></a>00074             s.pop();
+<a name="l00075"></a>00075             op2 = s.top();
+<a name="l00076"></a>00076             s.pop();
+<a name="l00077"></a>00077             s.push(performOperation(exp[i], op1, op2));
+<a name="l00078"></a>00078         }
+<a name="l00079"></a>00079     }
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081     printf(<span class="stringliteral">"Answer is %d\n"</span>, s.top());
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083     <span class="keywordflow">return</span> 0;
+<a name="l00084"></a>00084 }
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Thu Mar 19 10:38:22 2015 for Calculator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.5 </small></address>
 </body>

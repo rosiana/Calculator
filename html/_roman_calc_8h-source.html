@@ -29,31 +29,34 @@
 <a name="l00014"></a>00014 <span class="preprocessor">#include &lt;cmath&gt;</span>
 <a name="l00015"></a>00015 <span class="preprocessor">#include &lt;math.h&gt;</span>
 <a name="l00016"></a>00016 <span class="preprocessor">#include "<a class="code" href="_stack_8h.html">Stack.h</a>"</span>
-<a name="l00017"></a>00017 <span class="keyword">using namespace </span>std;
+<a name="l00017"></a>00017 <span class="preprocessor">#include "<a class="code" href="kalkulator_8h.html">kalkulator.h</a>"</span>
 <a name="l00018"></a>00018 
-<a name="l00019"></a><a class="code" href="class_roman_calc.html">00019</a> <span class="keyword">class </span><a class="code" href="class_roman_calc.html">RomanCalc</a> {
-<a name="l00020"></a>00020     <span class="keyword">public</span>:
-<a name="l00021"></a>00021                 <a class="code" href="class_roman_calc.html#98bbd4d6af013fbb7f7f5e282c0057ec">RomanCalc</a>(string ekspresi,<span class="keywordtype">int</span> mode,<span class="keywordtype">int</span> size);
-<a name="l00022"></a>00022                 <a class="code" href="class_roman_calc.html#f7ab50c87dc838fdc30f1622d55948fd">~RomanCalc</a>();
-<a name="l00023"></a>00023         <span class="keywordtype">int</span> <a class="code" href="class_roman_calc.html#24cf3d90b3810d31bbde7af678eb8f9e">RomantoDec</a>(string s);
-<a name="l00024"></a>00024         string <a class="code" href="class_roman_calc.html#907493780cf78dc8e85d999c1a7d5556">DectoRoman</a>(<span class="keywordtype">int</span> d);
-<a name="l00025"></a>00025         string <a class="code" href="class_roman_calc.html#ef3b608a0cfab3929e1afe02afe9e580">Calculate</a>();
-<a name="l00026"></a>00026                 <span class="keywordtype">void</span> <a class="code" href="class_roman_calc.html#0f8f717719f6e76b6680f44bd81bbd9f">SmallCalculate</a>(Stack&lt;int&gt; &amp;bil, Stack&lt;string&gt; &amp;operatorx);
-<a name="l00027"></a>00027                 <span class="keywordtype">int</span> <a class="code" href="class_roman_calc.html#39a440cd99043f8ef3809d8191620779">CalculateInfix</a>();
-<a name="l00028"></a>00028                 <span class="keywordtype">int</span> <a class="code" href="class_roman_calc.html#968d7f0f8876ad0fb9a25576e0f0e7c6">CalculatePrefix</a>();
-<a name="l00029"></a>00029                 <span class="keywordtype">int</span> <a class="code" href="class_roman_calc.html#81d5c7f43d3de276cafd11096ec6204c">CalculatePostfix</a>();
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031 
-<a name="l00032"></a>00032     <span class="keyword">private</span>:
-<a name="l00033"></a>00033         Stack&lt;int&gt; bil;
-<a name="l00034"></a>00034         Stack&lt;string&gt; operatorx;
-<a name="l00035"></a>00035                 <span class="keywordtype">int</span> mode;
-<a name="l00036"></a>00036                 string ekspresi;
-<a name="l00037"></a>00037 };
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 <span class="preprocessor">#endif</span>
-<a name="l00040"></a>00040 <span class="preprocessor"></span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Thu Mar 19 03:44:10 2015 for Calculator by&nbsp;
+<a name="l00019"></a>00019 <span class="keyword">using namespace </span>std;
+<a name="l00020"></a>00020 
+<a name="l00021"></a><a class="code" href="class_roman_calc.html">00021</a> <span class="keyword">class </span><a class="code" href="class_roman_calc.html">RomanCalc</a> : <span class="keyword">public</span> <a class="code" href="classkalkulator.html">kalkulator</a>&lt;string&gt; {
+<a name="l00022"></a>00022     <span class="keyword">public</span>:
+<a name="l00023"></a>00023                 <span class="comment">//void Print(Stack&lt;int&gt; bil,Stack&lt;string&gt;operatorx); //tools debug</span>
+<a name="l00024"></a>00024                 <a class="code" href="class_roman_calc.html#98bbd4d6af013fbb7f7f5e282c0057ec">RomanCalc</a>(string ekspresi,<span class="keywordtype">int</span> mode,<span class="keywordtype">int</span> size);
+<a name="l00025"></a>00025                 <a class="code" href="class_roman_calc.html#f7ab50c87dc838fdc30f1622d55948fd">~RomanCalc</a>();
+<a name="l00026"></a>00026         <span class="keywordtype">int</span> <a class="code" href="class_roman_calc.html#24cf3d90b3810d31bbde7af678eb8f9e">RomantoDec</a>(string s);
+<a name="l00027"></a>00027         string <a class="code" href="class_roman_calc.html#907493780cf78dc8e85d999c1a7d5556">DectoRoman</a>(<span class="keywordtype">int</span> d);
+<a name="l00028"></a>00028         string <a class="code" href="class_roman_calc.html#ef3b608a0cfab3929e1afe02afe9e580">Calculate</a>();
+<a name="l00029"></a>00029                 <span class="keywordtype">void</span> <a class="code" href="class_roman_calc.html#0f8f717719f6e76b6680f44bd81bbd9f">SmallCalculate</a>(Stack&lt;int&gt; &amp;bil, Stack&lt;string&gt; &amp;operatorx);
+<a name="l00030"></a>00030                 <span class="keywordtype">int</span> <a class="code" href="class_roman_calc.html#39a440cd99043f8ef3809d8191620779">CalculateInfix</a>();
+<a name="l00031"></a>00031                 <span class="keywordtype">int</span> <a class="code" href="class_roman_calc.html#968d7f0f8876ad0fb9a25576e0f0e7c6">CalculatePrefix</a>();
+<a name="l00032"></a>00032                 <span class="keywordtype">int</span> <a class="code" href="class_roman_calc.html#81d5c7f43d3de276cafd11096ec6204c">CalculatePostfix</a>();
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035     <span class="keyword">private</span>:
+<a name="l00036"></a>00036         Stack&lt;int&gt; bil;
+<a name="l00037"></a>00037         Stack&lt;string&gt; operatorx;
+<a name="l00038"></a>00038                 <span class="keywordtype">int</span> mode;
+<a name="l00039"></a>00039                 string ekspresi;
+<a name="l00040"></a>00040 };
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 <span class="preprocessor">#endif</span>
+<a name="l00043"></a>00043 <span class="preprocessor"></span>
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Thu Mar 19 10:38:22 2015 for Calculator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.5 </small></address>
 </body>

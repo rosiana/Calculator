@@ -2,7 +2,7 @@
  * @author
  * @file LogicCalc.cpp
  * @class LogicCalc
- * @brief Kelas untuk pengolahan ekspresi dengan operand angka arab
+ * @brief Kelas untuk pengolahan ekspresi dengan operand boolean
  */
 
 #include <iostream>
@@ -28,7 +28,7 @@ using namespace std;
 
 /**
  * @fn LogicCalc(string ekspresi,int mode,int size)
- * @brief Konstruktor parameter kalkulator arab
+ * @brief Konstruktor parameter kalkulator logika
  */
 LogicCalc::LogicCalc(string ekspresi,int mode,int size) :bil(size),operatorx(size){
 	this->ekspresi = ekspresi;
@@ -37,7 +37,7 @@ LogicCalc::LogicCalc(string ekspresi,int mode,int size) :bil(size),operatorx(siz
 
 /**
  * @fn ~LogicCalc()
- * @brief Destruktor kalkulator arab
+ * @brief Destruktor kalkulator logika
  */
 LogicCalc::~LogicCalc(){
 	//no memory to free
@@ -79,7 +79,7 @@ void LogicCalc::SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
 	if(popoperator == "~")
 	{
 		if(!bil.isEmpty() && bil.getLastData() == -999)
-		{	
+		{
 			bil>>dumpbil; //Pop -999
 		}
 		else
@@ -174,7 +174,7 @@ int LogicCalc::CalculateInfix(){
 					}
 				}
 			}
-			
+
 		}
 		if(ekspresitemp[0] == '~' || ekspresitemp[0] == '&' || ekspresitemp[0] == '|' || ekspresitemp[0] == '(' || ekspresitemp[0] == ')')
 		{
@@ -239,58 +239,24 @@ int LogicCalc::CalculateInfix(){
  */
 int LogicCalc::CalculatePrefix() {
     char buffer[15];
-    int i, len, j;
-    int op1, op2, x;
-    Stack<int> s;
-	int dumpint;
-    len = ekspresi.length();
+    string jawab;
+    int i,j; //iterator
+    bool op1, op2, x; //operand dan hasil
+    int len; //panjang
+    len = this->ekspresi.length();
     j = 0;
     for(i=len-1; i>=0; i--){
-        if(ekspresi[i]>='0' && ekspresi[i]<='9'){
-            buffer[j++] = ekspresi[i];
+        if(ekspresi[i] == '0' || ekspresi[i]=='1'){
+            buffer[0] = ekspresi[i];
+   	    x = atoi(buffer);
+            bil << x;
         }
-        else if(ekspresi[i]==' '){
-            if(j>0){
-
-                buffer[j] = '\0';
-                x = atof(buffer);
-                s<<x;
-                j = 0;
-            }
-        }
-        else if(ekspresi[i]=='+' || ekspresi[i]=='-' || ekspresi[i]=='*' || ekspresi[i]==':' || ekspresi[i]=='%' || ekspresi[i]=='/'){
-            op1 = s.getLastData();
-            s>>dumpint;
-            op2 = s.getLastData();
-            s>>dumpint;
-            switch(ekspresi[i]){
-                case '+':
-                    s<<op2 + op1;
-                    break;
-                case '-':
-                    s<<(op2 - op1);
-                    break;
-                case '*':
-                    s<<(op2 * op1);
-                    break;
-                case ':':
-                    s<<(op2 / op1);
-                    break;
-                case '%': // di c++ nggak bisa int mod int
-                    while (op2 >= op1) {
-                        op2 = op2 - op1;
-                    }
-                    s<<(op2);
-                    break;
-                case '/':
-                    int div;
-                    div = (int)floor(op2 / op1);
-                    s<<(div);
-                    break;
-            }
+        else if(ekspresi[i] == '&' || ekspresi[i] == '|' || ekspresi[i]=='~'){
+			operatorx << ekspresi.substr(i,1);
+            SmallCalculate(bil,operatorx);
         }
     }
-    return s.getLastData();
+    return bil.getLastData();
 }
 
 /**
@@ -299,57 +265,23 @@ int LogicCalc::CalculatePrefix() {
  */
 int LogicCalc::CalculatePostfix() {
     char buffer[15];
-    int i, len, j;
-    int op1, op2, x;
-    Stack<int> s;
-    len = ekspresi.length();
+    string jawab;
+    int i,j; //iterator
+	bool op1, op2, x; //operand dan hasil
+	int len; //panjang
+    len = this->ekspresi.length();
     j = 0;
-	int dumpint;
     for(i=0; i<len;i++){
-
-        if(ekspresi[i]>='0' && ekspresi[i]<='9'){
-            buffer[j++] = ekspresi[i];
+        if(ekspresi[i] == '0' || ekspresi[i]=='1'){
+            buffer[0] = ekspresi[i];
+			x = atoi(buffer);
+            bil << x;
         }
-        else if(ekspresi[i]==' '){
-            if(j>0){
-                buffer[j] = '\0';
-                x = atof(buffer);
-                s<<x;
-                j = 0;
-            }
-        }
-        else if(ekspresi[i]=='+' || ekspresi[i]=='-' || ekspresi[i]=='*' || ekspresi[i]==':' || ekspresi[i]=='%' || ekspresi[i]=='/'){
-            op1 = s.getLastData();
-            s>>dumpint;
-            op2 = s.getLastData();
-            s>>dumpint;
-            switch(ekspresi[i]){
-                case '+':
-                    s<<(op2 + op1);
-                    break;
-                case '-':
-                    s<<(op2 - op1);
-                    break;
-                case '*':
-                    s<<(op2 * op1);
-                    break;
-                case ':':
-                    s<<(op2 / op1);
-                    break;
-                case '%': // di c++ nggak bisa int mod int
-                    while (op2 >= op1) {
-                        op2 = op2 - op1;
-                    }
-                    s<<(op2);
-                    break;
-                case '/':
-                    int div;
-                    div = (int)floor(op2 / op1);
-                    s<<(div);
-                    break;
-            }
+        else if(ekspresi[i] == '&' || ekspresi[i] == '|' || ekspresi[i]=='~'){
+            operatorx << ekspresi.substr(i,1);
+            SmallCalculate(bil,operatorx);
         }
     }
-    return s.getLastData();
+    return bil.getLastData();
 }
 
