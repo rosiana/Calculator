@@ -142,8 +142,16 @@ void superkalkulator::Input(string input){
 			cout<<"3. Romawi"<<endl;
 			std::getline(std::cin,smode);
 			mode = String2Int(smode);
-			setKalkulator(mode);
-			cout<<"Berhasil"<<endl;
+			if(mode == 1 || mode == 2 || mode == 3)
+			{
+				setKalkulator(mode);
+				cout<<"Berhasil"<<endl;
+			}
+			else
+			{
+				cout<<"Gagal"<<endl;
+			}
+			
 		}
 		else
 		{

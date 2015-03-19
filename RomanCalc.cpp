@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "RomanCalc.h"
 
@@ -326,11 +327,19 @@ int RomanCalc::CalculatePrefix() {
         }
 		
         else if(tempekspresi[i]==' '){
-            if(j>0){
-                buffer[j] = '\0';
-                x = RomantoDec(buffer);
-                s<<x;
-                j = 0;
+			if(j>0){
+				char tempbuffer[15];
+				int counter = 0;
+				buffer[j] = '\0';
+				for(int i =j-1;i>=0;i--)
+				{
+					tempbuffer[counter] = buffer[i];
+					counter++;
+				}
+				tempbuffer[counter] = '\0';
+				x = RomantoDec(tempbuffer);
+				s<<x;
+				j = 0;
             }
         }
         else if(tempekspresi[i]=='+' || tempekspresi[i]=='-' || tempekspresi[i]=='*' || tempekspresi[i]==':' || tempekspresi[i]=='%' || tempekspresi[i]=='/'){

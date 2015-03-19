@@ -216,15 +216,23 @@ int ArabCalc::CalculatePrefix() {
 	int dumpint;
     len = ekspresi.length();
     j = 0;
+	
     for(i=len-1; i>=0; i--){
         if(ekspresi[i]>='0' && ekspresi[i]<='9'){
             buffer[j++] = ekspresi[i];
         }
         else if(ekspresi[i]==' '){
             if(j>0){
-
-                buffer[j] = '\0';
-                x = atof(buffer);
+				char tempbuffer[15];
+				int counter = 0;
+				buffer[j] = '\0';
+				for(int i =j-1;i>=0;i--)
+				{
+					tempbuffer[counter] = buffer[i];
+					counter++;
+				}
+                tempbuffer[j] = '\0';
+                x = atof(tempbuffer);
                 s<<x;
                 j = 0;
             }

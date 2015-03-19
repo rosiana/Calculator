@@ -10,6 +10,7 @@ int main(){
 	superkalkulator tes;
 	string masukan = "";
 	cout<<"Selamat datang"<<endl;
+	cout<<"Selamat datang"<<endl;
 	cout<<"Silahkan masukkan perintah atau exit untuk keluar"<<endl;
 	cout<<"Masukan : ";
 	std::getline(std::cin,masukan);
