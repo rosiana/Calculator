@@ -70,6 +70,7 @@ int LogicCalc::Calculate(){
  */
 void LogicCalc::SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
 {
+	Print(bil,operatorx);
 	int popbil1;
 	int popbil2;
 	string dumpoperator;
@@ -81,6 +82,9 @@ void LogicCalc::SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
 		if(!bil.isEmpty() && bil.getLastData() == -999)
 		{
 			bil>>dumpbil; //Pop -999
+		}
+		else if(!operatorx.isEmpty() && operatorx.getLastData() == "~")
+		{
 			operatorx>>dumpoperator;
 		}
 		else
@@ -118,6 +122,9 @@ void LogicCalc::SmallCalculate(Stack<int> &bil,Stack<string> &operatorx)
 			bil<< 0;
 		}
 	}
+	cout<<"Hasil Calculate"<<endl;	
+	Print(bil,operatorx);
+	cout<<endl<<endl;
 	
 }
 
@@ -132,9 +139,11 @@ int LogicCalc::CalculateInfix(){
 	string ekspresitemp = ekspresi;
 	string temp;
 	while(ekspresitemp.length() != 0)
-	{
+	{	
+		cout<<"Mulai"<<endl;
 		int isCompleteRead = 0;
 		int ctemp = 0; //Menghitung panjang buffer angka
+		cout<<"ASDFASDFASDF  "<<operatorx.getTopStack()<<endl;
 		if(ekspresitemp[0] == '0' || ekspresitemp[0] == '1')
 		{
 			if(bil.isEmpty())
@@ -162,6 +171,17 @@ int LogicCalc::CalculateInfix(){
 						bil<<1;
 					}
 				}
+				else
+				{
+					if(ekspresitemp[0] == '1')
+					{
+						bil<<1;
+					}
+					else if(ekspresitemp[0] == '0')
+					{
+						bil<<0;
+					}
+				}
 			}
 
 		}
@@ -169,10 +189,11 @@ int LogicCalc::CalculateInfix(){
 		{
 			if(ekspresitemp[0] == '~')
 			{
+				cout<<"TopStack"<<operatorx.getTopStack();
 				operatorx<<ekspresitemp.substr(0,1);
 				SmallCalculate(bil,operatorx);
 			}
-			if(operatorx.isEmpty() || ekspresitemp[0] == '(')
+			if((operatorx.isEmpty() || ekspresitemp[0] == '(') && ekspresitemp[0] != '~')
 			{
 				operatorx<<ekspresitemp.substr(0,1);
 
@@ -216,6 +237,9 @@ int LogicCalc::CalculateInfix(){
 			}
 		}
 		ekspresitemp.erase(0,1);
+		cout<<"Erase"<<endl;
+		Print(bil,operatorx);
+		cout<<endl;
 	}
 	
 

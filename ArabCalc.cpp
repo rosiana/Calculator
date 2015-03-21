@@ -90,7 +90,7 @@ void ArabCalc::SmallCalculate(Stack<float> &bil,Stack<string> &operatorx)
 	}
 	else if(popoperator == "/")
 	{
-		int a = (int) floor(popbil2/popbil1 - 0.5);
+		int a = (int) floor(popbil2/popbil1);
 		bil<< a;
 	}
 	else if(popoperator == "%")
@@ -208,7 +208,7 @@ float ArabCalc::CalculateInfix(){
  * @fn CalculatePrefix()
  * @brief Penghitungan mode prefix
  */
-int ArabCalc::CalculatePrefix() {
+float ArabCalc::CalculatePrefix() {
     char buffer[15];
     int i, len, j;
     int op1, op2, x;
@@ -276,7 +276,7 @@ int ArabCalc::CalculatePrefix() {
  * @fn CalculatePostfix()
  * @brief Penghitungan mode postfix
  */
-int ArabCalc::CalculatePostfix() {
+float ArabCalc::CalculatePostfix() {
     char buffer[15];
     int i, len, j;
     int op1, op2, x;
