@@ -10,6 +10,7 @@
 
 #include <string>
 #include "Stack.h"
+#include <sstream>
 using namespace std;
 class superkalkulator{
 	public:
@@ -23,11 +24,14 @@ class superkalkulator{
 		void Redo(int n);
 		void setMode(int n);
 		void setKalkulator(int n);
-		void runKalkulatorArab();
-		void runKalkulatorLogika();
-		void runKalkulatorRomawi();
+		void runKalkulatorArab(string input);
+		void runKalkulatorLogic(string input);
+		void runKalkulatorRomawi(string input);
 		Stack<string> getLog();
 		int CheckEkspresiType(string input);
+		void Set();
+		void ShowMem(int n);
+		void ShowAll();
 	private:
 		Stack<string> Log;
 		int modeekspresi;

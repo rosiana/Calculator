@@ -21,7 +21,7 @@ class LogicCalc {
 		void Print(Stack<int> bil,Stack<string>operatorx);
 		LogicCalc(string ekspresi,int mode,int size);
 		~LogicCalc();
-        int Calculate();
+        string Calculate();
 		void SmallCalculate(Stack<int> &bil,Stack<string> &operatorx);
 		int CalculateInfix();
 		int CalculatePrefix();

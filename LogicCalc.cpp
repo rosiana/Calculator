@@ -47,8 +47,9 @@ LogicCalc::~LogicCalc(){
  * @fn Calculate()
  * @brief Penghitungan sesuai mode ekspresi (prefix, infix, postfix)
  */
-int LogicCalc::Calculate(){
+string LogicCalc::Calculate(){
 	int hasil;
+	string hasilstr;
 	if(mode == 1)
     {
 		hasil = CalculatePrefix();
@@ -61,7 +62,19 @@ int LogicCalc::Calculate(){
 	{
 		hasil = CalculatePostfix();
 	}
-	return hasil;
+	if(hasil == 1)
+	{
+		hasilstr = "true";
+	}
+	else if(hasil == 0)
+	{
+		hasilstr = "false";
+	}
+	else
+	{
+		hasilstr = "Undefined";
+	}
+	return hasilstr;
 }
 
 /**
@@ -201,7 +214,6 @@ int LogicCalc::CalculateInfix(){
 		{
 			if(ekspresitemp[0] == '~')
 			{
-				cout<<"TopStack"<<operatorx.getTopStack();
 				operatorx<<ekspresitemp.substr(0,1);
 				SmallCalculate(bil,operatorx);
 			}
@@ -262,6 +274,7 @@ int LogicCalc::CalculateInfix(){
 
 	}
 	hasil = bil.getLastData();
+	cout<<"Hasil : "<<hasil<<endl;
 	return hasil;
 	//End
 }

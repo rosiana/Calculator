@@ -1,11 +1,12 @@
 #include <iostream>
-#include <cmath>
-#include <math.h>
+#include <string>
 using namespace std;
+
 int main(){
-	int a = 6;
-	float ab = 0.5;
-	float c = (a%ab);
+	string a = "log";
+	string b = " input";
+	string c;
+	c.append(a + "asdfasdF"+b);
 	cout<<c<<endl;
 	return 0;
 }
