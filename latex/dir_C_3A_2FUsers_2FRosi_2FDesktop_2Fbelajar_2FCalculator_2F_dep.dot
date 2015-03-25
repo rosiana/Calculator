@@ -1,5 +1,4 @@
 digraph G {
-  bgcolor=transparent;
   compound=true
   node [ fontsize=10, fontname="Helvetica"];
   edge [ labelfontsize=9, labelfontname="Helvetica"];
